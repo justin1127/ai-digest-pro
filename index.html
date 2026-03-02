@@ -1,239 +1,180 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AGI决策情报 | 2026.03.02</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 每日情报 | AI Intelligence Daily</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #080808;
+            --card: #141414;
+            --gold: #f3c344;
+            --gold-dim: #b8860b;
+            --text-main: #e0e0e0;
+            --text-gray: #888;
+            --border: rgba(243, 195, 68, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--bg); color: var(--text-main); font-family: 'Inter', sans-serif; line-height: 1.6; padding: 15px; }
+
+        /* Header Area */
+        header { padding: 20px 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; text-align: center; }
+        .tag { font-size: 10px; color: var(--gold); letter-spacing: 3px; font-weight: 800; margin-bottom: 8px; }
+        h1 { font-family: 'Noto Serif SC', serif; font-size: 28px; background: linear-gradient(180deg, #fff, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .meta-bar { font-size: 12px; color: var(--text-gray); margin-top: 10px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .disclaimer { font-size: 11px; background: rgba(243, 195, 68, 0.1); padding: 4px 12px; border-radius: 20px; color: var(--gold); margin-top: 10px; display: inline-block; }
+
+        /* Scoring Legend */
+        .score-legend { font-size: 10px; color: var(--text-gray); text-align: center; margin-bottom: 20px; }
+
+        /* Accordion Structure */
+        .accordion-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: 0.3s; }
+        .accordion-header { padding: 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
+        .accordion-header:hover { background: rgba(243, 195, 68, 0.05); }
+        .section-title { font-weight: 800; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+        .arrow { width: 12px; transition: 0.3s; fill: var(--gold); }
+
+        .accordion-content { max-height: 0; transition: max-height 0.4s ease-out; background: #1a1a1a; padding: 0 16px; overflow: hidden; }
+        .active .accordion-content { max-height: 2000px; padding: 20px 16px; border-top: 1px solid #222; }
+        .active .arrow { transform: rotate(180deg); }
+
+        /* Item Styles */
+        .news-item { margin-bottom: 25px; position: relative; padding-left: 10px; }
+        .news-item:last-child { margin-bottom: 0; }
+        .score-badge { display: inline-block; background: var(--gold); color: #000; font-size: 10px; font-weight: 900; padding: 1px 6px; border-radius: 4px; margin-right: 8px; vertical-align: middle; }
+        .news-title { font-weight: 700; font-size: 15px; color: #fff; margin-bottom: 8px; }
+
+        .analysis-grid { display: grid; grid-template-columns: 1fr; gap: 8px; font-size: 13px; }
+        .grid-row { display: flex; gap: 8px; margin-bottom: 4px; }
+        .label { color: var(--gold); font-weight: 800; min-width: 50px; font-size: 11px; flex-shrink: 0; }
+        .action-box { background: rgba(243, 195, 68, 0.08); padding: 10px; border-radius: 8px; border-left: 3px solid var(--gold); margin-top: 10px; }
+        .stock-tag { color: #52c41a; font-weight: 600; font-size: 12px; }
+
+        /* Footer */
+        footer { text-align: center; color: var(--text-gray); font-size: 11px; padding: 40px 0; border-top: 1px solid #222; }
+    </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen">
-  <!-- Header -->
-  <header class="bg-white shadow-sm border-b border-slate-200">
-    <div class="max-w-4xl mx-auto px-6 py-4">
-      <div class="flex items-center justify-between">
-        <div>
-          <h1 class="text-2xl font-bold text-slate-800">AGI 决策情报</h1>
-          <p class="text-sm text-slate-500 mt-1">2026.03.02 | 星期日</p>
-        </div>
-        <div class="flex items-center gap-4">
-          <span class="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full">已更新</span>
-          <button class="text-sm bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition">分享</button>
-        </div>
-      </div>
+<body>
+
+<header>
+    <div class="tag">AI INTELLIGENCE DAILY</div>
+    <h1>AI 每日情报</h1>
+    <div class="disclaimer">✨ 精选甄别 + 实时抓取系统</div>
+    <div class="meta-bar">
+        <span>📅 2026.03.02</span>
+        <span>🔍 扫描信源: 52</span>
+        <span>🎯 核心标的: 8</span>
     </div>
-  </header>
+</header>
 
-  <main class="max-w-4xl mx-auto px-6 py-8">
-    <!-- Stats -->
-    <div class="grid grid-cols-4 gap-4 mb-8">
-      <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200">
-        <p class="text-xs text-slate-500">洞察</p>
-        <p class="text-2xl font-bold text-slate-800">4</p>
-      </div>
-      <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200">
-        <p class="text-xs text-slate-500">新闻</p>
-        <p class="text-2xl font-bold text-slate-800">8</p>
-      </div>
-      <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200">
-        <p class="text-xs text-slate-500">来源</p>
-        <p class="text-2xl font-bold text-slate-800">14</p>
-      </div>
-      <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200">
-        <p class="text-xs text-slate-500">阅读时间</p>
-        <p class="text-2xl font-bold text-slate-800">5min</p>
-      </div>
+<div class="score-legend">打分规则：基于市场冲击力(30%)、技术原创性(40%)、行业指导价值(30%)评定</div>
+
+<div class="accordion-item active">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="section-title">🧠 元洞察 Meta Insights</div>
+        <svg class="arrow" viewBox="0 0 20 20"><path d="M5 7l5 5 5-5z"/></svg>
     </div>
+    <div class="accordion-content">
+        <div class="news-item">
+            <div class="news-title">📈 今日趋势：具身智能的"标准底座"已成型</div>
+            <p style="font-size: 13px; color: var(--text-gray);">中国发布首个人形机器人国家标准体系，标志着产业从"散兵游勇"进入"大工业化"生产阶段。</p>
+            <div class="action-box">
+                <div class="label">⚠️ 风险预警</div>
+                <div class="content" style="font-size: 13px;">警惕"数据洗稿"引发的国际版权诉讼，Anthropic 针对国产模型的指控可能引发合规性回溯。</div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!-- Meta Insights -->
-    <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 mb-6">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="text-2xl">🧠</span>
-        <h2 class="text-xl font-bold text-slate-800">元洞察 · Meta Insights</h2>
-      </div>
-      
-      <div class="space-y-4">
-        <div class="flex gap-4 p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-xl border border-red-100">
-          <span class="text-lg font-bold text-red-600 shrink-0">01</span>
-          <div>
-            <p class="text-slate-800 font-medium leading-relaxed">
-              <span class="text-red-600 font-semibold">AI军事化成为国家战略核心</span>，伦理与政策冲突白热化。Anthropic因坚持"不用于致命自主武器"红线遭五角大楼威胁封杀。
-            </p>
-          </div>
+<div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="section-title">🌐 行业动态 Industry Feed</div>
+        <svg class="arrow" viewBox="0 0 20 20"><path d="M5 7l5 5 5-5z"/></svg>
+    </div>
+    <div class="accordion-content">
+        <div class="news-item">
+            <span class="score-badge">9.5</span>
+            <div class="news-title">中国发布人形机器人及具身智能国家标准体系 (2026版)</div>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">WHAT</span>内容涵盖大脑、小脑、安全伦理等六大核心维度。</div>
+                <div class="grid-row"><span class="label">WHY</span>解决了 300 多款国产模型互不兼容的痛点，加速商业部署。</div>
+                <div class="action-box">
+                    <span class="label">📍 IMPACT</span>具身智能进入"标准件"时代。标的：<span class="stock-tag">三花智控、鸣志电器</span>。
+                </div>
+            </div>
         </div>
-        
-        <div class="flex gap-4 p-4 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl border border-amber-100">
-          <span class="text-lg font-bold text-amber-600 shrink-0">02</span>
-          <div>
-            <p class="text-slate-800 font-medium leading-relaxed">
-              <span class="text-amber-600 font-semibold">大模型融资进入"主权级"规模</span>。OpenAI寻求$110B巨额融资并与Amazon深度绑定，AI基础设施化趋势加速。
-            </p>
-          </div>
+        <div class="news-item">
+            <span class="score-badge">9.2</span>
+            <div class="news-title">Anthropic vs 五角大楼：AI伦理与军事需求的终极对决</div>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">WHAT</span>特朗普政府宣布禁止联邦使用Claude，但五角大楼仍用其策划伊朗空袭。</div>
+                <div class="grid-row"><span class="label">WHY</span>AI行业首次因安全伦理立场遭政府全面封杀，Claude是唯一IL-6安全许可模型。</div>
+                <div class="action-box">
+                    <span class="label">📍 IMPACT</span>AI安全立场成为政府采购决定性因素。标的：<span class="stock-tag">科大讯飞、寒武纪</span>。
+                </div>
+            </div>
         </div>
-        
-        <div class="flex gap-4 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-100">
-          <span class="text-lg font-bold text-blue-600 shrink-0">03</span>
-          <div>
-            <p class="text-slate-800 font-medium leading-relaxed">
-              <span class="text-blue-600 font-semibold">AI Agent从"对话工具"进化为"自主代理"</span>。三星S26 Gemini深度整合，标志着手机从"触控交互"转向"意图预测+代理执行"。
-            </p>
-          </div>
-        </div>
-        
-        <div class="flex gap-4 p-4 bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl border border-emerald-100">
-          <span class="text-lg font-bold text-emerald-600 shrink-0">04</span>
-          <div>
-            <p class="text-slate-800 font-medium leading-relaxed">
-              <span class="text-emerald-600 font-semibold">中国AI从"参数竞赛"转向"Agent应用落地"</span>。春节档Qwen3.5/GLM-5/Seedance集中发布，201语言+全球化布局。
-            </p>
-          </div>
-        </div>
-      </div>
+    </div>
+</div>
 
-      <div class="mt-6 p-4 bg-slate-50 rounded-xl">
-        <p class="text-sm font-semibold text-slate-600 mb-3">❓ 深度思考</p>
-        <ul class="space-y-2 text-sm text-slate-700">
-          <li>• 当手机全面进化为具身代理的"遥控器"，传统App的入口地位是否会彻底坍塌？</li>
-          <li>• 如果OpenAI独占2GW算力，中小型AI公司如何在巨头构建的算力围墙中寻找溢价空间？</li>
-          <li>• AI公司的"不作恶"承诺在军方合同面前是否只是营销口号？</li>
-        </ul>
-      </div>
-    </section>
+<div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="section-title">💰 投融资消息 Funding News</div>
+        <svg class="arrow" viewBox="0 0 20 20"><path d="M5 7l5 5 5-5z"/></svg>
+    </div>
+    <div class="accordion-content">
+        <div class="news-item">
+            <span class="score-badge">10.0</span>
+            <div class="news-title">OpenAI 锁定 1100 亿美元融资，亚马逊、NVIDIA 深度绑定</div>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">WHY</span>估值冲向 7300 亿美元，标志着 AGI 基建进入"万亿级"竞赛。</div>
+                <div class="action-box">
+                    <span class="label">📍 IMPACT</span>算力霸权进一步固化。标的：<span class="stock-tag">工业富联、浪潮信息</span>。
+                </div>
+            </div>
+        </div>
+        <div class="news-item">
+            <span class="score-badge">8.5</span>
+            <div class="news-title">三星 Galaxy S26 发布：Gemini 深度整合</div>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">WHAT</span>AI预测用户行为并自动执行任务，从"触控交互"转向"意图预测+代理执行"。</div>
+                <div class="action-box">
+                    <span class="label">📍 IMPACT</span>手机进入Agent时代。标的：<span class="stock-tag">舜宇光学、欧菲光</span>。
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!-- Strategic Anchor -->
-    <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 mb-6">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="text-2xl">⚓</span>
-        <h2 class="text-xl font-bold text-slate-800">战略锚点 · Strategic Anchors</h2>
-      </div>
-      
-      <div class="border-l-4 border-blue-500 pl-6 py-2">
-        <h3 class="text-lg font-bold text-slate-800 mb-4">Anthropic vs 五角大楼：AI伦理与军事需求的终极对决</h3>
-        
-        <div class="grid grid-cols-3 gap-4 mb-4">
-          <div class="p-3 bg-red-50 rounded-lg">
-            <p class="text-xs font-semibold text-red-600 mb-1">WHAT</p>
-            <p class="text-sm text-slate-700">特朗普政府宣布禁止联邦使用Claude，但五角大楼仍用其策划伊朗空袭</p>
-          </div>
-          <div class="p-3 bg-amber-50 rounded-lg">
-            <p class="text-xs font-semibold text-amber-600 mb-1">HOW</p>
-            <p class="text-sm text-slate-700">五角大楼要求"任何合法用途"，Anthropic坚持两条红线拒绝妥协</p>
-          </div>
-          <div class="p-3 bg-blue-50 rounded-lg">
-            <p class="text-xs font-semibold text-blue-600 mb-1">WHY</p>
-            <p class="text-sm text-slate-700">AI行业首次因伦理立场遭政府封杀，Claude是唯一IL-6安全许可模型</p>
-          </div>
+<div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="section-title">📈 股票雷达 Stock Radar</div>
+        <svg class="arrow" viewBox="0 0 20 20"><path d="M5 7l5 5 5-5z"/></svg>
+    </div>
+    <div class="accordion-content">
+        <div class="news-item">
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">科大讯飞</span><span class="stock-tag">002230</span>国产AI替代逻辑，政策驱动 📈</div>
+                <div class="grid-row"><span class="label">寒武纪</span><span class="stock-tag">688256</span>AI芯片国产替代，技术壁垒高 📈</div>
+                <div class="grid-row"><span class="label">Google</span><span class="stock-tag">$GOOGL</span>接受五角大楼条款，国防订单受益 📈</div>
+                <div class="grid-row"><span class="label">Palantir</span><span class="stock-tag">$PLTR</span>依赖Claude的IL-6许可，风险大 ⚠️</div>
+            </div>
         </div>
-        
-        <div class="p-4 bg-slate-50 rounded-xl">
-          <p class="text-sm font-semibold text-slate-600 mb-2">💡 影响与行动</p>
-          <ul class="text-sm text-slate-700 space-y-1">
-            <li>• AI安全立场成为政府采购决定性因素</li>
-            <li>• 创业机会：政府AI合规咨询、国防级AI安全工具</li>
-            <li>• 风险：若Anthropic被封，国防承包商必须清除其技术</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    </div>
+</div>
 
-    <!-- Industry Feed -->
-    <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 mb-6">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="text-2xl">🌐</span>
-        <h2 class="text-xl font-bold text-slate-800">行业动态 · Industry Feed</h2>
-      </div>
-      
-      <div class="space-y-3">
-        <div class="flex items-start gap-3 p-3 hover:bg-slate-50 rounded-lg transition">
-          <span class="text-lg">🔥</span>
-          <div class="flex-1">
-            <p class="text-slate-800 font-medium">Anthropic遭五角大楼封杀威胁：因拒绝"任何合法使用"条款，可能被列为"供应链风险"</p>
-            <p class="text-xs text-slate-500 mt-1">The Verge · 2小时前</p>
-          </div>
-        </div>
-        
-        <div class="flex items-start gap-3 p-3 hover:bg-slate-50 rounded-lg transition">
-          <span class="text-lg">💰</span>
-          <div class="flex-1">
-            <p class="text-slate-800 font-medium">OpenAI开启$1100亿融资：软银与NVIDIA各投$300亿，亚马逊投$500亿</p>
-            <p class="text-xs text-slate-500 mt-1">CNBC · 4小时前</p>
-          </div>
-        </div>
-        
-        <div class="flex items-start gap-3 p-3 hover:bg-slate-50 rounded-lg transition">
-          <span class="text-lg">📱</span>
-          <div class="flex-1">
-            <p class="text-slate-800 font-medium">三星Galaxy S26发布：Gemini深度整合，AI预测用户行为并自动执行任务</p>
-            <p class="text-xs text-slate-500 mt-1">Samsung · 6小时前</p>
-          </div>
-        </div>
-        
-        <div class="flex items-start gap-3 p-3 hover:bg-slate-50 rounded-lg transition">
-          <span class="text-lg">🤖</span>
-          <div class="flex-1">
-            <p class="text-slate-800 font-medium">阿里Qwen3.5：397B参数+201语言+原生多模态，瞄准AI Agent全球化</p>
-            <p class="text-xs text-slate-500 mt-1">Alibaba · 8小时前</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<footer>
+    © 2026 AI Intelligence Daily | Curated with Gemini 3 Flash<br>
+    智库支持：X (AlphaSignal), 华尔街见闻RSS, 机器之心
+</footer>
 
-    <!-- Stock Radar -->
-    <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 mb-6">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="text-2xl">📈</span>
-        <h2 class="text-xl font-bold text-slate-800">股票雷达 · Stock Radar</h2>
-      </div>
-      
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="border-b border-slate-200">
-              <th class="text-left py-2 text-slate-600 font-medium">标的</th>
-              <th class="text-left py-2 text-slate-600 font-medium">代码</th>
-              <th class="text-left py-2 text-slate-600 font-medium">逻辑</th>
-              <th class="text-center py-2 text-slate-600 font-medium">趋势</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-b border-slate-100">
-              <td class="py-3 font-medium">科大讯飞</td>
-              <td class="py-3 text-slate-500">002230</td>
-              <td class="py-3 text-slate-700">国产AI替代逻辑</td>
-              <td class="py-3 text-center"><span class="text-green-600 text-lg">📈</span></td>
-            </tr>
-            <tr class="border-b border-slate-100">
-              <td class="py-3 font-medium">寒武纪</td>
-              <td class="py-3 text-slate-500">688256</td>
-              <td class="py-3 text-slate-700">AI芯片国产替代</td>
-              <td class="py-3 text-center"><span class="text-green-600 text-lg">📈</span></td>
-            </tr>
-            <tr class="border-b border-slate-100">
-              <td class="py-3 font-medium">Google</td>
-              <td class="py-3 text-slate-500">$GOOGL</td>
-              <td class="py-3 text-slate-700">接受五角大楼条款，国防订单受益</td>
-              <td class="py-3 text-center"><span class="text-green-600 text-lg">📈</span></td>
-            </tr>
-            <tr>
-              <td class="py-3 font-medium">Palantir</td>
-              <td class="py-3 text-slate-500">$PLTR</td>
-              <td class="py-3 text-slate-700">依赖Claude的IL-6许可，风险大</td>
-              <td class="py-3 text-center"><span class="text-yellow-600 text-lg">⚠️</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="text-center py-8 border-t border-slate-200">
-      <p class="text-sm text-slate-500">🤖 AGI决策情报 · 由小宇宙AI自动生成</p>
-      <p class="text-xs text-slate-400 mt-2">每天早上8:00更新 · 信息源：50个（中文媒体/X博主/国际媒体）</p>
-      <button class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">💡 回复"深度"获取任意话题的详细分析</button>
-    </footer>
-  </main>
+<script>
+    function toggleAccordion(element) {
+        const item = element.parentElement;
+        item.classList.toggle('active');
+    }
+</script>
 </body>
 </html>
