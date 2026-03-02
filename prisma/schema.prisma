@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String         @id @default(uuid())
+  email               String         @unique
+  phone               String?
+  name                String?
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+  subscriptionStatus  SubscriptionStatus @default(FREE)
+  subscriptionEnd     DateTime?
+  preferences         Json?
+  
+  subscriptions       Subscription[]
+  payments            Payment[]
+  favorites           Favorite[]
+  
+  @@map("users")
+}
+
+model Subscription {
+  id          String              @id @default(uuid())
+  userId      String
+  user        User                @relation(fields: [userId], references: [id])
+  plan        Plan
+  amount      Decimal
+  status      SubscriptionStatus
+  startDate   DateTime
+  endDate     DateTime
+  createdAt   DateTime            @default(now())
+  
+  payments    Payment[]
+  
+  @@map("subscriptions")
+}
+
+model Payment {
+  id              String          @id @default(uuid())
+  subscriptionId  String
+  subscription    Subscription    @relation(fields: [subscriptionId], references: [id])
+  userId          String
+  user            User            @relation(fields: [userId], references: [id])
+  amount          Decimal
+  paymentMethod   String
+  transactionId   String          @unique
+  status          PaymentStatus
+  paidAt          DateTime?
+  createdAt       DateTime        @default(now())
+  
+  @@map("payments")
+}
+
+model Digest {
+  id              String      @id @default(uuid())
+  date            DateTime    @unique
+  title           String
+  content         String
+  summary         String?
+  channelsUsed    Json
+  createdAt       DateTime    @default(now())
+  
+  favorites       Favorite[]
+  
+  @@map("digests")
+}
+
+model Favorite {
+  id          String      @id @default(uuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  digestId    String
+  digest      Digest      @relation(fields: [digestId], references: [id])
+  createdAt   DateTime    @default(now())
+  
+  @@unique([userId, digestId])
+  @@map("favorites")
+}
+
+enum SubscriptionStatus {
+  FREE
+  ACTIVE
+  CANCELLED
+  EXPIRED
+}
+
+enum Plan {
+  MONTHLY
+  YEARLY
+  ENTERPRISE
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
