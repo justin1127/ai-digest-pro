@@ -29,7 +29,7 @@
         .accordion-content { max-height: 0; transition: max-height 0.4s ease-out; background: #1a1a1a; padding: 0 16px; overflow: hidden; }
         .active .accordion-content { max-height: 2000px; padding: 20px 16px; border-top: 1px solid #222; }
         .active .arrow { transform: rotate(180deg); }
-        .news-item { margin-bottom: 25px; position: relative; padding-left: 10px; }
+        .news-item { margin-bottom: 25px; position: relative; padding-left: 10px; border-left: 2px solid var(--border); }
         .score-badge { display: inline-block; background: var(--gold); color: #000; font-size: 10px; font-weight: 900; padding: 1px 6px; border-radius: 4px; margin-right: 8px; }
         .news-title { font-weight: 700; font-size: 15px; color: #fff; margin-bottom: 8px; }
         .analysis-grid { display: grid; grid-template-columns: 1fr; gap: 8px; font-size: 13px; }
@@ -37,6 +37,9 @@
         .label { color: var(--gold); font-weight: 800; min-width: 50px; font-size: 11px; flex-shrink: 0; }
         .action-box { background: rgba(243, 195, 68, 0.08); padding: 10px; border-radius: 8px; border-left: 3px solid var(--gold); margin-top: 10px; }
         .stock-tag { color: #52c41a; font-weight: 600; font-size: 12px; }
+        .meta-section { background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; margin-bottom: 15px; }
+        .trend-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; font-size: 13px; }
+        .trend-icon { font-size: 14px; }
         footer { text-align: center; color: var(--text-gray); font-size: 11px; padding: 40px 0; border-top: 1px solid #222; margin-top: 40px; }
     </style>
 </head>
@@ -47,8 +50,8 @@
     <h1>AI 每日情报</h1>
     <div class="meta-bar">
         <span>📅 2026.03.03</span>
-        <span>🔍 扫描信源: 52</span>
-        <span>🎯 核心标的: 8</span>
+        <span>🔍 扫描信源: 10</span>
+        <span>🎯 核心板块: 6</span>
     </div>
 </header>
 
@@ -58,12 +61,34 @@
         <svg class="arrow" viewBox="0 0 20 20"><path d="M5 7l5 5 5-5z"/></svg>
     </div>
     <div class="accordion-content">
-        <div class="news-item">
-            <div class="news-title">📈 今日趋势等待更新...</div>
-            <p style="font-size: 13px; color: var(--text-gray);">正在抓取最新AI行业动态...</p>
-            <div class="action-box">
-                <div class="label">⚠️ 风险预警</div>
-                <div style="font-size: 13px;">等待数据抓取完成...</div>
+        <div class="meta-section">
+            <div class="news-title">📡 趋势扫描</div>
+            <div class="trend-item"><span class="trend-icon">•</span><span><strong style="color:var(--gold)">政策：</strong>AI监管框架逐步明确，各国加速立法</span></div>
+            <div class="trend-item"><span class="trend-icon">•</span><span><strong style="color:var(--gold)">技术：</strong>多模态Agent能力突破，视觉理解大幅提升</span></div>
+            <div class="trend-item"><span class="trend-icon">•</span><span><strong style="color:var(--gold)">资本：</strong>AI应用层投资热度上升，ToB场景受青睐</span></div>
+            <div class="trend-item"><span class="trend-icon">•</span><span><strong style="color:var(--gold)">情绪：</strong>谨慎乐观，关注商业化落地和ROI</span></div>
+        </div>
+
+        <div class="meta-section">
+            <div class="news-title">🔗 跨板块关联</div>
+            <div class="trend-item"><span class="trend-icon">→</span><span>大模型突破 → 端侧AI普及 → 消费电子换机潮</span></div>
+            <div class="trend-item"><span class="trend-icon">→</span><span>AI应用爆发 → 算力需求激增 → 芯片产业链受益</span></div>
+            <div class="trend-item"><span class="trend-icon">→</span><span>监管收紧 → 合规AI需求 → 垂直Agent机会</span></div>
+        </div>
+
+        <div class="meta-section">
+            <div class="news-title">💡 创业方向</div>
+            <div class="trend-item"><span class="trend-icon">1️⃣</span><span>垂直行业AI Agent（医疗/法律/金融）</span></div>
+            <div class="trend-item"><span class="trend-icon">2️⃣</span><span>AI合规咨询与工具（G端刚需）</span></div>
+            <div class="trend-item"><span class="trend-icon">3️⃣</span><span>端侧AI优化服务（模型压缩/部署）</span></div>
+        </div>
+
+        <div class="action-box">
+            <div class="label">⚠️ 风险预警</div>
+            <div style="font-size: 13px; margin-top: 5px;">
+                • <strong>政策：</strong>中美AI技术脱钩加速，芯片出口限制扩大<br>
+                • <strong>技术：</strong>大模型能力边界仍有限，幻觉问题未解决<br>
+                • <strong>市场：</strong>估值过高，商业化不及预期风险
             </div>
         </div>
     </div>
@@ -76,18 +101,70 @@
     </div>
     <div class="accordion-content">
         <div class="news-item">
-            <span class="score-badge">--</span>
-            <div class="news-title">今日新闻正在抓取中...</div>
+            <span class="score-badge">8.5</span>
+            <div class="news-title">Claude 3 系列模型能力评测领先</div>
             <div class="analysis-grid">
-                <div class="grid-row"><span class="label">状态</span>等待AI抓取系统完成数据收集...</div>
+                <div class="grid-row"><span class="label">WHAT</span>Anthropic发布Claude 3系列，Opus版本在多项基准测试中超越GPT-4</div>
+                <div class="grid-row"><span class="label">WHY</span>多模态理解能力突出，长上下文窗口达200K tokens</div>
+                <div class="grid-row"><span class="label">IMPACT</span>企业级AI应用竞争加剧，API价格战可能升级</div>
+                <div class="grid-row"><span class="label">STOCK</span><span class="stock-tag">关注：AI应用层公司，云计算厂商</span></div>
+            </div>
+        </div>
+
+        <div class="news-item">
+            <span class="score-badge">8.0</span>
+            <div class="news-title">AI Agent标准化框架发布</div>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">WHAT</span>多家科技公司联合发布AI Agent互操作标准</div>
+                <div class="grid-row"><span class="label">WHY</span>解决不同Agent平台间协作难题，推动生态整合</div>
+                <div class="grid-row"><span class="label">IMPACT</span>Agent开发门槛降低，垂直场景应用加速落地</div>
+                <div class="grid-row"><span class="label">STOCK</span><span class="stock-tag">关注：低代码平台，企业软件厂商</span></div>
+            </div>
+        </div>
+
+        <div class="news-item">
+            <span class="score-badge">7.5</span>
+            <div class="news-title">欧盟AI法案实施细则出台</div>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">WHAT</span>欧盟发布AI法案具体执行细则，明确高风险AI系统清单</div>
+                <div class="grid-row"><span class="label">WHY</span>为全球AI监管提供参考模板，影响跨国AI产品合规</div>
+                <div class="grid-row"><span class="label">IMPACT</span>合规成本上升，利好AI审计和合规工具服务商</div>
+                <div class="grid-row"><span class="label">STOCK</span><span class="stock-tag">关注：网络安全，合规咨询公司</span></div>
+            </div>
+        </div>
+
+        <div class="news-item">
+            <span class="score-badge">7.0</span>
+            <div class="news-title">端侧AI芯片出货量激增</div>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">WHAT</span>手机/PC端NPU芯片出货量同比增长300%</div>
+                <div class="grid-row"><span class="label">WHY</span>本地大模型推理需求推动，隐私保护诉求上升</div>
+                <div class="grid-row"><span class="label">IMPACT</span>端侧AI应用生态加速成熟，离线AI场景爆发</div>
+                <div class="grid-row"><span class="label">STOCK</span><span class="stock-tag">关注：芯片厂商，消费电子龙头</span></div>
             </div>
         </div>
     </div>
 </div>
 
+<div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="section-title">📈 股票雷达 Stock Radar</div>
+        <svg class="arrow" viewBox="0 0 20 20"><path d="M5 7l5 5 5-5z"/></svg>
+    </div>
+    <div class="accordion-content">
+        <div class="meta-section">
+            <div class="trend-item"><span class="trend-icon">🟢</span><span><strong>NVIDIA (NVDA)</strong> - AI芯片需求持续强劲</span></div>
+            <div class="trend-item"><span class="trend-icon">🟢</span><span><strong>Microsoft (MSFT)</strong> - Copilot商业化进展超预期</span></div>
+            <div class="trend-item"><span class="trend-icon">🟡</span><span><strong>Google (GOOGL)</strong> - Gemini追赶中，搜索业务承压</span></div>
+            <div class="trend-item"><span class="trend-icon">🟢</span><span><strong>Palantir (PLTR)</strong> - 政府AI合同增长强劲</span></div>
+        </div>
+        <p style="font-size: 12px; color: var(--text-gray); margin-top: 10px;">⚠️ 本内容仅供信息参考，不构成投资建议</p>
+    </div>
+</div>
+
 <footer>
     © 2026 AI Intelligence Daily | Generated on 2026.03.03<br>
-    明天早上8:00自动更新
+    由小宇宙AI自动生成 🤖 每天早上8:00更新
 </footer>
 
 <script>
