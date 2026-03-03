@@ -9,33 +9,29 @@
             --bg-primary: #0a0a0f;
             --bg-secondary: #12121a;
             --bg-card: #1a1a2e;
+            --bg-hover: #252538;
             --text-primary: #ffffff;
             --text-secondary: #a0a0b0;
             --accent-gold: #f0c674;
             --accent-blue: #5fafd7;
             --accent-green: #87d787;
             --accent-red: #d78787;
-            --border: rgba(240, 198, 116, 0.2);
+            --border: rgba(240, 198, 116, 0.15);
         }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body {
             background: var(--bg-primary);
             color: var(--text-primary);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
             line-height: 1.6;
             min-height: 100vh;
         }
-        
-        /* Header */
         .header {
             background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card) 100%);
             padding: 40px 20px;
             text-align: center;
             border-bottom: 2px solid var(--border);
         }
-        
         .header-tag {
             font-size: 12px;
             color: var(--accent-gold);
@@ -43,7 +39,6 @@
             text-transform: uppercase;
             margin-bottom: 10px;
         }
-        
         .header-title {
             font-size: 36px;
             font-weight: 700;
@@ -52,7 +47,6 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 15px;
         }
-        
         .header-meta {
             display: flex;
             justify-content: center;
@@ -60,71 +54,78 @@
             color: var(--text-secondary);
             font-size: 14px;
         }
-        
-        .header-meta span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        /* Container */
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
         }
-        
-        /* Section */
         .section {
             background: var(--bg-card);
             border-radius: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             overflow: hidden;
             border: 1px solid var(--border);
+            transition: all 0.3s ease;
         }
-        
+        .section:hover {
+            border-color: rgba(240, 198, 116, 0.3);
+        }
         .section-header {
             padding: 20px;
+            background: linear-gradient(90deg, rgba(240,198,116,0.05), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+        }
+        .section-header:hover {
             background: linear-gradient(90deg, rgba(240,198,116,0.1), transparent);
-            border-bottom: 1px solid var(--border);
+        }
+        .section-header-left {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        
         .section-icon {
             font-size: 24px;
         }
-        
         .section-title {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
             color: var(--accent-gold);
         }
-        
+        .section-arrow {
+            width: 24px;
+            height: 24px;
+            color: var(--accent-gold);
+            transition: transform 0.3s ease;
+        }
         .section-content {
-            padding: 20px;
+            padding: 0 20px 20px;
+            display: none;
         }
-        
-        /* Meta Section */
-        .meta-grid {
-            display: grid;
-            gap: 20px;
+        .section.active .section-content {
+            display: block;
+            animation: fadeIn 0.3s ease;
         }
-        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .meta-grid { display: grid; gap: 16px; }
         .meta-card {
             background: rgba(255,255,255,0.03);
             border-radius: 12px;
             padding: 16px;
         }
-        
         .meta-title {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             margin-bottom: 12px;
             color: var(--accent-blue);
         }
-        
         .trend-item {
             display: flex;
             align-items: center;
@@ -132,29 +133,22 @@
             padding: 8px 0;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        
-        .trend-item:last-child {
-            border-bottom: none;
-        }
-        
+        .trend-item:last-child { border-bottom: none; }
         .trend-badge {
             padding: 2px 8px;
             border-radius: 4px;
             font-size: 11px;
             font-weight: 600;
         }
-        
         .trend-资本 { background: rgba(135, 215, 135, 0.2); color: var(--accent-green); }
         .trend-技术 { background: rgba(95, 175, 215, 0.2); color: var(--accent-blue); }
         .trend-产品 { background: rgba(240, 198, 116, 0.2); color: var(--accent-gold); }
         .trend-市场 { background: rgba(160, 160, 176, 0.2); color: var(--text-secondary); }
-        
         .connection-item {
             padding: 8px 0;
             color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 13px;
         }
-        
         .opportunity-card {
             background: rgba(240, 198, 116, 0.05);
             border-radius: 8px;
@@ -162,44 +156,39 @@
             margin-bottom: 10px;
             border-left: 3px solid var(--accent-gold);
         }
-        
         .opp-title {
             font-weight: 600;
             margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        
         .opp-level {
             font-size: 11px;
             padding: 2px 6px;
             border-radius: 4px;
             background: rgba(135, 215, 135, 0.2);
             color: var(--accent-green);
-            margin-left: 8px;
         }
-        
         .opp-desc {
             font-size: 13px;
             color: var(--text-secondary);
         }
-        
         .risk-item {
             display: flex;
             gap: 10px;
             padding: 8px 0;
         }
-        
         .risk-type {
             color: var(--accent-red);
             font-weight: 600;
             white-space: nowrap;
+            font-size: 13px;
         }
-        
         .risk-desc {
             color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 13px;
         }
-        
-        /* News Card */
         .news-card {
             background: rgba(255,255,255,0.02);
             border-radius: 12px;
@@ -207,14 +196,12 @@
             margin-bottom: 16px;
             border: 1px solid rgba(255,255,255,0.05);
         }
-        
         .news-header {
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 12px;
         }
-        
         .news-rank {
             width: 28px;
             height: 28px;
@@ -227,13 +214,11 @@
             font-weight: 700;
             font-size: 13px;
         }
-        
         .news-source {
             flex: 1;
             color: var(--text-secondary);
             font-size: 13px;
         }
-        
         .news-score {
             background: rgba(240, 198, 116, 0.2);
             color: var(--accent-gold);
@@ -242,50 +227,40 @@
             font-size: 13px;
             font-weight: 600;
         }
-        
         .news-title {
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 600;
             margin-bottom: 16px;
             line-height: 1.5;
         }
-        
-        .analysis-grid {
-            display: grid;
-            gap: 12px;
-        }
-        
+        .analysis-grid { display: grid; gap: 12px; }
         .analysis-item {
             display: flex;
             gap: 12px;
             align-items: flex-start;
         }
-        
         .analysis-label {
-            min-width: 110px;
+            min-width: 140px;
             font-weight: 600;
             color: var(--accent-blue);
-            font-size: 13px;
+            font-size: 12px;
             text-transform: uppercase;
         }
-        
         .analysis-content {
             flex: 1;
             color: var(--text-secondary);
             font-size: 14px;
+            line-height: 1.6;
         }
-        
         .analysis-item.highlight {
             background: rgba(240, 198, 116, 0.05);
             padding: 12px;
             border-radius: 8px;
             border-left: 3px solid var(--accent-gold);
         }
-        
         .analysis-item.highlight .analysis-label {
             color: var(--accent-gold);
         }
-        
         .stock-bar {
             display: flex;
             align-items: center;
@@ -294,25 +269,41 @@
             padding-top: 16px;
             border-top: 1px solid rgba(255,255,255,0.05);
         }
-        
         .stock-label {
             font-weight: 600;
             color: var(--accent-green);
             font-size: 13px;
         }
-        
         .stock-names {
             color: var(--text-secondary);
             font-size: 14px;
         }
-        
         .empty-section {
             text-align: center;
             padding: 40px;
             color: var(--text-secondary);
         }
-        
-        /* Footer */
+        .summary-bar {
+            background: linear-gradient(90deg, rgba(240,198,116,0.1), rgba(95,175,215,0.1));
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .summary-item { text-align: center; }
+        .summary-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+        .summary-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
         .footer {
             text-align: center;
             padding: 30px;
@@ -320,34 +311,6 @@
             font-size: 13px;
             border-top: 1px solid var(--border);
             margin-top: 40px;
-        }
-        
-        /* Summary */
-        .summary-bar {
-            background: linear-gradient(90deg, rgba(240,198,116,0.1), rgba(95,175,215,0.1));
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .summary-item {
-            text-align: center;
-        }
-        
-        .summary-number {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--accent-gold);
-        }
-        
-        .summary-label {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-top: 4px;
         }
     </style>
 </head>
@@ -363,56 +326,57 @@
     </header>
     
     <div class="container">
-        <!-- 元洞察 -->
-        <section class="section">
-            <div class="section-header">
-                <span class="section-icon">🧠</span>
-                <h2 class="section-title">元洞察 Meta Insights</h2>
+        
+        <div class="section active" id="section-meta">
+            <div class="section-header" onclick="toggleSection('meta')">
+                <div class="section-header-left">
+                    <span class="section-icon">🧠</span>
+                    <h2 class="section-title">元洞察 Meta Insights</h2>
+                </div>
+                <svg class="section-arrow" id="arrow-meta" viewBox="0 0 24 24" style="transform: rotate(180deg)">
+                    <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
             </div>
-            
-        <div class="section-content">
-            <div class="meta-grid">
-                <div class="meta-card">
-                    <div class="meta-title">📡 趋势扫描</div>
-                                
+            <div class="section-content" id="content-meta" style="display: block">
+                <div class="meta-grid">
+    <div class="meta-card">
+        <div class="meta-title">📡 趋势扫描</div>
+        
             <div class="trend-item">
                 <span class="trend-badge trend-资本">资本</span>
                 <span class="trend-text">AI投资热度持续，大额融资频发</span>
-            </div>            
+            </div>
             <div class="trend-item">
                 <span class="trend-badge trend-产品">产品</span>
                 <span class="trend-text">新产品密集发布，商业化提速</span>
             </div>
-                </div>
-                
-                <div class="meta-card">
-                    <div class="meta-title">🔗 跨板块关联</div>
-                    
+    </div>
+    <div class="meta-card">
+        <div class="meta-title">🔗 跨板块关联</div>
+        
             <div class="connection-item">🔗 大模型技术突破 → 应用场景扩展 → 商业化加速 → 投资热度上升</div>
             <div class="connection-item">🔗 资本涌入 → 人才争夺加剧 → 薪资水平上涨 → 行业竞争白热化</div>
             <div class="connection-item">🔗 监管趋严 → 合规需求上升 → 垂直领域机会 → 差异化竞争</div>
-                </div>
-                
-                <div class="meta-card">
-                    <div class="meta-title">💡 创业方向</div>
-                    
+    </div>
+    <div class="meta-card">
+        <div class="meta-title">💡 创业方向</div>
+        
             <div class="opportunity-card">
-                <div class="opp-title">垂直AI Agent</span> <span class="opp-level">高</span></div>
+                <div class="opp-title">垂直AI Agent <span class="opp-level">高</span></div>
                 <div class="opp-desc">医疗/法律/金融等垂直领域</div>
             </div>
             <div class="opportunity-card">
-                <div class="opp-title">AI基础设施</span> <span class="opp-level">中高</span></div>
+                <div class="opp-title">AI基础设施 <span class="opp-level">中高</span></div>
                 <div class="opp-desc">模型部署/监控/优化工具</div>
             </div>
             <div class="opportunity-card">
-                <div class="opp-title">AI安全合规</span> <span class="opp-level">中</span></div>
+                <div class="opp-title">AI安全合规 <span class="opp-level">中</span></div>
                 <div class="opp-desc">内容审核/数据隐私保护</div>
             </div>
-                </div>
-                
-                <div class="meta-card risk-card">
-                    <div class="meta-title">🚨 风险预警</div>
-                    
+    </div>
+    <div class="meta-card risk-card">
+        <div class="meta-title">🚨 风险预警</div>
+        
             <div class="risk-item">
                 <span class="risk-type">⚠️ 政策风险</span>
                 <span class="risk-desc">中美AI技术脱钩加速，芯片出口限制扩大</span>
@@ -425,336 +389,337 @@
                 <span class="risk-type">⚠️ 市场风险</span>
                 <span class="risk-desc">估值过高，商业化不及预期风险</span>
             </div>
-                </div>
+    </div>
+</div>
             </div>
         </div>
-        </section>
-        
-        <!-- 行业动态 -->
-        <section class="section">
-            <div class="section-header">
-                <span class="section-icon">🏭</span>
-                <h2 class="section-title">行业动态 Industry</h2>
+        <div class="section " id="section-industry">
+            <div class="section-header" onclick="toggleSection('industry')">
+                <div class="section-header-left">
+                    <span class="section-icon">🏭</span>
+                    <h2 class="section-title">行业动态 Industry</h2>
+                </div>
+                <svg class="section-arrow" id="arrow-industry" viewBox="0 0 24 24" style="transform: rotate(0deg)">
+                    <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
             </div>
-            
-        <div class="section-content">
-            
-            
-            <div class="news-card">
-                <div class="news-header">
-                    <span class="news-rank">#1</span>
-                    <span class="news-source">The Verge AI</span>
-                    <span class="news-score">8.3</span>
-                </div>
-                <div class="news-title">AI-generated art can&#8217;t be copyrighted after Supreme Court declines to review the rule</div>
+            <div class="section-content" id="content-industry" style="display: none">
                 
-                <div class="analysis-grid">
-                    <div class="analysis-item">
-                        <span class="analysis-label">What</span>
-                        <span class="analysis-content">AI-generated art can&#8217;t be copyrighted after Supreme Court declines to review the rule</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">How</span>
-                        <span class="analysis-content">The US Supreme Court has declined to hear a case over whether AI-generated art can obtain a copyrigh</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">Why</span>
-                        <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
-                    </div>
-                    <div class="analysis-item highlight">
-                        <span class="analysis-label">Impact & Action</span>
-                        <span class="analysis-content">对行业格局产生影响，值得关注</span>
-                    </div>
+        <div class="news-card">
+            <div class="news-header">
+                <span class="news-rank">#1</span>
+                <span class="news-source">The Verge AI</span>
+                <span class="news-score">8.3</span>
+            </div>
+            <div class="news-title">AI-generated art can&#8217;t be copyrighted after Supreme Court declines to review the rule</div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <span class="analysis-label">What 发生了什么</span>
+                    <span class="analysis-content">AI-generated art can&#8217;t be copyrighted after Supreme Court declines to review the rule</span>
                 </div>
-                
-                <div class="stock-bar">
-                    <span class="stock-label">📈 A股关联</span>
-                    <span class="stock-names">关注AI产业链相关标的</span>
+                <div class="analysis-item">
+                    <span class="analysis-label">How 如何发生</span>
+                    <span class="analysis-content">The US Supreme Court has declined to hear a case over whether AI-generated art can obtain a copyrigh</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Why 为什么重要</span>
+                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
+                </div>
+                <div class="analysis-item highlight">
+                    <span class="analysis-label">Impact & Action 影响与行动</span>
+                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
                 </div>
             </div>
             
-            <div class="news-card">
-                <div class="news-header">
-                    <span class="news-rank">#2</span>
-                    <span class="news-source">The Verge AI</span>
-                    <span class="news-score">8.1</span>
-                </div>
-                <div class="news-title">A robot arm with puppy dog eyes is just one of Lenovo&#8217;s new desktop AI concepts</div>
-                
-                <div class="analysis-grid">
-                    <div class="analysis-item">
-                        <span class="analysis-label">What</span>
-                        <span class="analysis-content">A robot arm with puppy dog eyes is just one of Lenovo&#8217;s new desktop AI concepts</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">How</span>
-                        <span class="analysis-content">Alongside a handful of new laptop concepts (and a range of real products too), Lenovo used MWC to an</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">Why</span>
-                        <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
-                    </div>
-                    <div class="analysis-item highlight">
-                        <span class="analysis-label">Impact & Action</span>
-                        <span class="analysis-content">对行业格局产生影响，值得关注</span>
-                    </div>
-                </div>
-                
-                <div class="stock-bar">
-                    <span class="stock-label">📈 A股关联</span>
-                    <span class="stock-names">关注AI产业链相关标的</span>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <div class="news-header">
-                    <span class="news-rank">#3</span>
-                    <span class="news-source">TechCrunch AI</span>
-                    <span class="news-score">7.9</span>
-                </div>
-                <div class="news-title">Google looks to tackle longstanding RCS spam in India — but not alone</div>
-                
-                <div class="analysis-grid">
-                    <div class="analysis-item">
-                        <span class="analysis-label">What</span>
-                        <span class="analysis-content">Google looks to tackle longstanding RCS spam in India — but not alone</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">How</span>
-                        <span class="analysis-content">Google is integrating carrier-level filtering into RCS in India through a partnership with Airtel to</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">Why</span>
-                        <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
-                    </div>
-                    <div class="analysis-item highlight">
-                        <span class="analysis-label">Impact & Action</span>
-                        <span class="analysis-content">对行业格局产生影响，值得关注</span>
-                    </div>
-                </div>
-                
-                <div class="stock-bar">
-                    <span class="stock-label">📈 A股关联</span>
-                    <span class="stock-names">阿里巴巴、百度、腾讯</span>
-                </div>
+            <div class="stock-bar">
+                <span class="stock-label">📈 A股强关联标的</span>
+                <span class="stock-names">关注AI产业链相关标的</span>
             </div>
         </div>
-        </section>
-        
-        <!-- 投资融资 -->
-        <section class="section">
-            <div class="section-header">
-                <span class="section-icon">💰</span>
-                <h2 class="section-title">投资融资 Investment</h2>
+        <div class="news-card">
+            <div class="news-header">
+                <span class="news-rank">#2</span>
+                <span class="news-source">The Verge AI</span>
+                <span class="news-score">8.1</span>
             </div>
+            <div class="news-title">A robot arm with puppy dog eyes is just one of Lenovo&#8217;s new desktop AI concepts</div>
             
-        <div class="section-content">
-            
-            
-            <div class="news-card">
-                <div class="news-header">
-                    <span class="news-rank">#1</span>
-                    <span class="news-source">The Verge AI</span>
-                    <span class="news-score">8.3</span>
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <span class="analysis-label">What 发生了什么</span>
+                    <span class="analysis-content">A robot arm with puppy dog eyes is just one of Lenovo&#8217;s new desktop AI concepts</span>
                 </div>
-                <div class="news-title">Nvidia&#8217;s spending $4 billion on photonics to stay ahead of the curve in AI</div>
-                
-                <div class="analysis-grid">
-                    <div class="analysis-item">
-                        <span class="analysis-label">What</span>
-                        <span class="analysis-content">Nvidia&#8217;s spending $4 billion on photonics to stay ahead of the curve in AI</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">How</span>
-                        <span class="analysis-content">Nvidia announced on Monday that it's investing $2 billion each into Lumentum and Coherent, which are</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">Why</span>
-                        <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
-                    </div>
-                    <div class="analysis-item highlight">
-                        <span class="analysis-label">Impact & Action</span>
-                        <span class="analysis-content">对行业格局产生影响，值得关注</span>
-                    </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">How 如何发生</span>
+                    <span class="analysis-content">Alongside a handful of new laptop concepts (and a range of real products too), Lenovo used MWC to an</span>
                 </div>
-                
-                <div class="stock-bar">
-                    <span class="stock-label">📈 A股关联</span>
-                    <span class="stock-names">关注AI产业链相关标的</span>
+                <div class="analysis-item">
+                    <span class="analysis-label">Why 为什么重要</span>
+                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
+                </div>
+                <div class="analysis-item highlight">
+                    <span class="analysis-label">Impact & Action 影响与行动</span>
+                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
                 </div>
             </div>
             
-            <div class="news-card">
-                <div class="news-header">
-                    <span class="news-rank">#2</span>
-                    <span class="news-source">The Verge AI</span>
-                    <span class="news-score">8.1</span>
-                </div>
-                <div class="news-title">How OpenAI caved to the Pentagon on AI surveillance</div>
-                
-                <div class="analysis-grid">
-                    <div class="analysis-item">
-                        <span class="analysis-label">What</span>
-                        <span class="analysis-content">How OpenAI caved to the Pentagon on AI surveillance</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">How</span>
-                        <span class="analysis-content">On Friday evening, amidst fallout from a standoff between the Department of Defense and Anthropic, O</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">Why</span>
-                        <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
-                    </div>
-                    <div class="analysis-item highlight">
-                        <span class="analysis-label">Impact & Action</span>
-                        <span class="analysis-content">对行业格局产生影响，值得关注</span>
-                    </div>
-                </div>
-                
-                <div class="stock-bar">
-                    <span class="stock-label">📈 A股关联</span>
-                    <span class="stock-names">三六零、昆仑万维、科大讯飞</span>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <div class="news-header">
-                    <span class="news-rank">#3</span>
-                    <span class="news-source">The Verge AI</span>
-                    <span class="news-score">7.9</span>
-                </div>
-                <div class="news-title">Defense secretary Pete Hegseth designates Anthropic a supply chain risk</div>
-                
-                <div class="analysis-grid">
-                    <div class="analysis-item">
-                        <span class="analysis-label">What</span>
-                        <span class="analysis-content">Defense secretary Pete Hegseth designates Anthropic a supply chain risk</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">How</span>
-                        <span class="analysis-content">Nearly two hours after President Donald Trump announced on Truth Social that he was banning Anthropi</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">Why</span>
-                        <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
-                    </div>
-                    <div class="analysis-item highlight">
-                        <span class="analysis-label">Impact & Action</span>
-                        <span class="analysis-content">对行业格局产生影响，值得关注</span>
-                    </div>
-                </div>
-                
-                <div class="stock-bar">
-                    <span class="stock-label">📈 A股关联</span>
-                    <span class="stock-names">关注AI产业链相关标的</span>
-                </div>
+            <div class="stock-bar">
+                <span class="stock-label">📈 A股强关联标的</span>
+                <span class="stock-names">关注AI产业链相关标的</span>
             </div>
         </div>
-        </section>
-        
-        <!-- 技术突破 -->
-        <section class="section">
-            <div class="section-header">
-                <span class="section-icon">🔬</span>
-                <h2 class="section-title">技术突破 Technology</h2>
+        <div class="news-card">
+            <div class="news-header">
+                <span class="news-rank">#3</span>
+                <span class="news-source">TechCrunch AI</span>
+                <span class="news-score">7.9</span>
             </div>
+            <div class="news-title">Google looks to tackle longstanding RCS spam in India — but not alone</div>
             
-        <div class="section-content empty-section">
-            <p>今日暂无技术突破相关资讯</p>
-        </div>
-        </section>
-        
-        <!-- 新品发布 -->
-        <section class="section">
-            <div class="section-header">
-                <span class="section-icon">🚀</span>
-                <h2 class="section-title">新品发布 Product</h2>
-            </div>
-            
-        <div class="section-content">
-            
-            
-            <div class="news-card">
-                <div class="news-header">
-                    <span class="news-rank">#1</span>
-                    <span class="news-source">The Verge AI</span>
-                    <span class="news-score">8.3</span>
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <span class="analysis-label">What 发生了什么</span>
+                    <span class="analysis-content">Google looks to tackle longstanding RCS spam in India — but not alone</span>
                 </div>
-                <div class="news-title">Anthropic upgrades Claude’s memory to attract AI switchers</div>
-                
-                <div class="analysis-grid">
-                    <div class="analysis-item">
-                        <span class="analysis-label">What</span>
-                        <span class="analysis-content">Anthropic upgrades Claude’s memory to attract AI switchers</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">How</span>
-                        <span class="analysis-content">Anthropic is making it easier to switch to its Claude AI from other chatbots with an update that bri</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">Why</span>
-                        <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
-                    </div>
-                    <div class="analysis-item highlight">
-                        <span class="analysis-label">Impact & Action</span>
-                        <span class="analysis-content">对行业格局产生影响，值得关注</span>
-                    </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">How 如何发生</span>
+                    <span class="analysis-content">Google is integrating carrier-level filtering into RCS in India through a partnership with Airtel to</span>
                 </div>
-                
-                <div class="stock-bar">
-                    <span class="stock-label">📈 A股关联</span>
-                    <span class="stock-names">关注AI产业链相关标的</span>
+                <div class="analysis-item">
+                    <span class="analysis-label">Why 为什么重要</span>
+                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
+                </div>
+                <div class="analysis-item highlight">
+                    <span class="analysis-label">Impact & Action 影响与行动</span>
+                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
                 </div>
             </div>
             
-            <div class="news-card">
-                <div class="news-header">
-                    <span class="news-rank">#2</span>
-                    <span class="news-source">The Verge AI</span>
-                    <span class="news-score">8.1</span>
-                </div>
-                <div class="news-title">Apple might use Google servers to store data for its upgraded AI Siri</div>
-                
-                <div class="analysis-grid">
-                    <div class="analysis-item">
-                        <span class="analysis-label">What</span>
-                        <span class="analysis-content">Apple might use Google servers to store data for its upgraded AI Siri</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">How</span>
-                        <span class="analysis-content">Apple has asked Google to look into "setting up servers" for a new version of Siri that's Gemini-pow</span>
-                    </div>
-                    <div class="analysis-item">
-                        <span class="analysis-label">Why</span>
-                        <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
-                    </div>
-                    <div class="analysis-item highlight">
-                        <span class="analysis-label">Impact & Action</span>
-                        <span class="analysis-content">对行业格局产生影响，值得关注</span>
-                    </div>
-                </div>
-                
-                <div class="stock-bar">
-                    <span class="stock-label">📈 A股关联</span>
-                    <span class="stock-names">阿里巴巴、百度、腾讯</span>
-                </div>
+            <div class="stock-bar">
+                <span class="stock-label">📈 A股强关联标的</span>
+                <span class="stock-names">阿里巴巴、百度、腾讯</span>
             </div>
         </div>
-        </section>
-        
-        <!-- 教育资讯 -->
-        <section class="section">
-            <div class="section-header">
-                <span class="section-icon">🎓</span>
-                <h2 class="section-title">教育资讯 Education</h2>
+            </div>
+        </div>
+        <div class="section " id="section-investment">
+            <div class="section-header" onclick="toggleSection('investment')">
+                <div class="section-header-left">
+                    <span class="section-icon">💰</span>
+                    <h2 class="section-title">投资融资 Investment</h2>
+                </div>
+                <svg class="section-arrow" id="arrow-investment" viewBox="0 0 24 24" style="transform: rotate(0deg)">
+                    <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+            </div>
+            <div class="section-content" id="content-investment" style="display: none">
+                
+        <div class="news-card">
+            <div class="news-header">
+                <span class="news-rank">#1</span>
+                <span class="news-source">The Verge AI</span>
+                <span class="news-score">8.3</span>
+            </div>
+            <div class="news-title">Nvidia&#8217;s spending $4 billion on photonics to stay ahead of the curve in AI</div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <span class="analysis-label">What 发生了什么</span>
+                    <span class="analysis-content">Nvidia&#8217;s spending $4 billion on photonics to stay ahead of the curve in AI</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">How 如何发生</span>
+                    <span class="analysis-content">Nvidia announced on Monday that it's investing $2 billion each into Lumentum and Coherent, which are</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Why 为什么重要</span>
+                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
+                </div>
+                <div class="analysis-item highlight">
+                    <span class="analysis-label">Impact & Action 影响与行动</span>
+                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
+                </div>
             </div>
             
-        <div class="section-content empty-section">
-            <p>今日暂无教育资讯相关资讯</p>
+            <div class="stock-bar">
+                <span class="stock-label">📈 A股强关联标的</span>
+                <span class="stock-names">关注AI产业链相关标的</span>
+            </div>
         </div>
-        </section>
+        <div class="news-card">
+            <div class="news-header">
+                <span class="news-rank">#2</span>
+                <span class="news-source">The Verge AI</span>
+                <span class="news-score">8.1</span>
+            </div>
+            <div class="news-title">How OpenAI caved to the Pentagon on AI surveillance</div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <span class="analysis-label">What 发生了什么</span>
+                    <span class="analysis-content">How OpenAI caved to the Pentagon on AI surveillance</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">How 如何发生</span>
+                    <span class="analysis-content">On Friday evening, amidst fallout from a standoff between the Department of Defense and Anthropic, O</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Why 为什么重要</span>
+                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
+                </div>
+                <div class="analysis-item highlight">
+                    <span class="analysis-label">Impact & Action 影响与行动</span>
+                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
+                </div>
+            </div>
+            
+            <div class="stock-bar">
+                <span class="stock-label">📈 A股强关联标的</span>
+                <span class="stock-names">三六零、昆仑万维、科大讯飞</span>
+            </div>
+        </div>
+        <div class="news-card">
+            <div class="news-header">
+                <span class="news-rank">#3</span>
+                <span class="news-source">The Verge AI</span>
+                <span class="news-score">7.9</span>
+            </div>
+            <div class="news-title">Defense secretary Pete Hegseth designates Anthropic a supply chain risk</div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <span class="analysis-label">What 发生了什么</span>
+                    <span class="analysis-content">Defense secretary Pete Hegseth designates Anthropic a supply chain risk</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">How 如何发生</span>
+                    <span class="analysis-content">Nearly two hours after President Donald Trump announced on Truth Social that he was banning Anthropi</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Why 为什么重要</span>
+                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
+                </div>
+                <div class="analysis-item highlight">
+                    <span class="analysis-label">Impact & Action 影响与行动</span>
+                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
+                </div>
+            </div>
+            
+            <div class="stock-bar">
+                <span class="stock-label">📈 A股强关联标的</span>
+                <span class="stock-names">关注AI产业链相关标的</span>
+            </div>
+        </div>
+            </div>
+        </div>
+        <div class="section " id="section-technology">
+            <div class="section-header" onclick="toggleSection('technology')">
+                <div class="section-header-left">
+                    <span class="section-icon">🔬</span>
+                    <h2 class="section-title">技术突破 Technology</h2>
+                </div>
+                <svg class="section-arrow" id="arrow-technology" viewBox="0 0 24 24" style="transform: rotate(0deg)">
+                    <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+            </div>
+            <div class="section-content" id="content-technology" style="display: none">
+                <div class="empty-section"><p>今日暂无相关资讯</p></div>
+            </div>
+        </div>
+        <div class="section " id="section-product">
+            <div class="section-header" onclick="toggleSection('product')">
+                <div class="section-header-left">
+                    <span class="section-icon">🚀</span>
+                    <h2 class="section-title">新品发布 Product</h2>
+                </div>
+                <svg class="section-arrow" id="arrow-product" viewBox="0 0 24 24" style="transform: rotate(0deg)">
+                    <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+            </div>
+            <div class="section-content" id="content-product" style="display: none">
+                
+        <div class="news-card">
+            <div class="news-header">
+                <span class="news-rank">#1</span>
+                <span class="news-source">The Verge AI</span>
+                <span class="news-score">8.3</span>
+            </div>
+            <div class="news-title">Anthropic upgrades Claude’s memory to attract AI switchers</div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <span class="analysis-label">What 发生了什么</span>
+                    <span class="analysis-content">Anthropic upgrades Claude’s memory to attract AI switchers</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">How 如何发生</span>
+                    <span class="analysis-content">Anthropic is making it easier to switch to its Claude AI from other chatbots with an update that bri</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Why 为什么重要</span>
+                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
+                </div>
+                <div class="analysis-item highlight">
+                    <span class="analysis-label">Impact & Action 影响与行动</span>
+                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
+                </div>
+            </div>
+            
+            <div class="stock-bar">
+                <span class="stock-label">📈 A股强关联标的</span>
+                <span class="stock-names">关注AI产业链相关标的</span>
+            </div>
+        </div>
+        <div class="news-card">
+            <div class="news-header">
+                <span class="news-rank">#2</span>
+                <span class="news-source">The Verge AI</span>
+                <span class="news-score">8.1</span>
+            </div>
+            <div class="news-title">Apple might use Google servers to store data for its upgraded AI Siri</div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <span class="analysis-label">What 发生了什么</span>
+                    <span class="analysis-content">Apple might use Google servers to store data for its upgraded AI Siri</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">How 如何发生</span>
+                    <span class="analysis-content">Apple has asked Google to look into "setting up servers" for a new version of Siri that's Gemini-pow</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Why 为什么重要</span>
+                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
+                </div>
+                <div class="analysis-item highlight">
+                    <span class="analysis-label">Impact & Action 影响与行动</span>
+                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
+                </div>
+            </div>
+            
+            <div class="stock-bar">
+                <span class="stock-label">📈 A股强关联标的</span>
+                <span class="stock-names">阿里巴巴、百度、腾讯</span>
+            </div>
+        </div>
+            </div>
+        </div>
+        <div class="section " id="section-education">
+            <div class="section-header" onclick="toggleSection('education')">
+                <div class="section-header-left">
+                    <span class="section-icon">🎓</span>
+                    <h2 class="section-title">教育资讯 Education</h2>
+                </div>
+                <svg class="section-arrow" id="arrow-education" viewBox="0 0 24 24" style="transform: rotate(0deg)">
+                    <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+            </div>
+            <div class="section-content" id="content-education" style="display: none">
+                <div class="empty-section"><p>今日暂无相关资讯</p></div>
+            </div>
+        </div>
         
-        <!-- 汇总统计 -->
         <div class="summary-bar">
             <div class="summary-item">
                 <div class="summary-number">19</div>
@@ -779,5 +744,23 @@
         <p>© 2026 AI每日情报 | 每天早上8:30更新</p>
         <p>由小宇宙AI自动生成 🤖 仅供信息参考，不构成投资建议</p>
     </footer>
+    
+    <script>
+        function toggleSection(sectionId) {
+            const section = document.getElementById('section-' + sectionId);
+            const content = document.getElementById('content-' + sectionId);
+            const arrow = document.getElementById('arrow-' + sectionId);
+            
+            if (section.classList.contains('active')) {
+                section.classList.remove('active');
+                content.style.display = 'none';
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                section.classList.add('active');
+                content.style.display = 'block';
+                arrow.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
 </body>
 </html>
