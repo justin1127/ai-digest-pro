@@ -283,6 +283,31 @@
             padding: 40px;
             color: var(--text-secondary);
         }
+        .translate-badge {
+            background: rgba(95, 175, 215, 0.2);
+            color: var(--accent-blue);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .original-link-bar {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: right;
+        }
+        .original-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 13px;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .original-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
         .summary-bar {
             background: linear-gradient(90deg, rgba(240,198,116,0.1), rgba(95,175,215,0.1));
             border-radius: 12px;
@@ -347,8 +372,8 @@
                 <span class="trend-text">AI投资热度持续，大额融资频发</span>
             </div>
             <div class="trend-item">
-                <span class="trend-badge trend-产品">产品</span>
-                <span class="trend-text">新产品密集发布，商业化提速</span>
+                <span class="trend-badge trend-技术">技术</span>
+                <span class="trend-text">技术突破加速，创新应用涌现</span>
             </div>
     </div>
     <div class="meta-card">
@@ -409,46 +434,15 @@
             <div class="news-header">
                 <span class="news-rank">#1</span>
                 <span class="news-source">The Verge AI</span>
+                <span class="translate-badge">🌐 译</span>
                 <span class="news-score">8.3</span>
             </div>
-            <div class="news-title">AI-generated art can&#8217;t be copyrighted after Supreme Court declines to review the rule</div>
+            <div class="news-title">A 机器人 arm with puppy dog eyes is just one of Lenovo&#8217;s new desktop 人工智能 concepts</div>
             
             <div class="analysis-grid">
                 <div class="analysis-item">
                     <span class="analysis-label">What 发生了什么</span>
-                    <span class="analysis-content">AI-generated art can&#8217;t be copyrighted after Supreme Court declines to review the rule</span>
-                </div>
-                <div class="analysis-item">
-                    <span class="analysis-label">How 如何发生</span>
-                    <span class="analysis-content">The US Supreme Court has declined to hear a case over whether AI-generated art can obtain a copyrigh</span>
-                </div>
-                <div class="analysis-item">
-                    <span class="analysis-label">Why 为什么重要</span>
-                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
-                </div>
-                <div class="analysis-item highlight">
-                    <span class="analysis-label">Impact & Action 影响与行动</span>
-                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
-                </div>
-            </div>
-            
-            <div class="stock-bar">
-                <span class="stock-label">📈 A股强关联标的</span>
-                <span class="stock-names">关注AI产业链相关标的</span>
-            </div>
-        </div>
-        <div class="news-card">
-            <div class="news-header">
-                <span class="news-rank">#2</span>
-                <span class="news-source">The Verge AI</span>
-                <span class="news-score">8.1</span>
-            </div>
-            <div class="news-title">A robot arm with puppy dog eyes is just one of Lenovo&#8217;s new desktop AI concepts</div>
-            
-            <div class="analysis-grid">
-                <div class="analysis-item">
-                    <span class="analysis-label">What 发生了什么</span>
-                    <span class="analysis-content">A robot arm with puppy dog eyes is just one of Lenovo&#8217;s new desktop AI concepts</span>
+                    <span class="analysis-content">A 机器人 arm with puppy dog eyes is just one of Lenovo&#8217;s new desktop 人工智能 concepts</span>
                 </div>
                 <div class="analysis-item">
                     <span class="analysis-label">How 如何发生</span>
@@ -466,25 +460,30 @@
             
             <div class="stock-bar">
                 <span class="stock-label">📈 A股强关联标的</span>
-                <span class="stock-names">关注AI产业链相关标的</span>
+                <span class="stock-names">汇川技术、埃斯顿、机器人</span>
+            </div>
+            
+            <div class="original-link-bar">
+                <a href="https://www.theverge.com/tech/885228/lenovo-ai-workmate-companion-work-concept-robot-arm-desktop-clock-hub" target="_blank" class="original-link">📄 查看原文</a>
             </div>
         </div>
         <div class="news-card">
             <div class="news-header">
-                <span class="news-rank">#3</span>
-                <span class="news-source">TechCrunch AI</span>
-                <span class="news-score">7.9</span>
+                <span class="news-rank">#2</span>
+                <span class="news-source">MIT Tech Review</span>
+                <span class="translate-badge">🌐 译</span>
+                <span class="news-score">8.1</span>
             </div>
-            <div class="news-title">Google looks to tackle longstanding RCS spam in India — but not alone</div>
+            <div class="news-title">The Download: protesting 人工智能, and what’s floating in space</div>
             
             <div class="analysis-grid">
                 <div class="analysis-item">
                     <span class="analysis-label">What 发生了什么</span>
-                    <span class="analysis-content">Google looks to tackle longstanding RCS spam in India — but not alone</span>
+                    <span class="analysis-content">The Download: protesting 人工智能, and what’s floating in space</span>
                 </div>
                 <div class="analysis-item">
                     <span class="analysis-label">How 如何发生</span>
-                    <span class="analysis-content">Google is integrating carrier-level filtering into RCS in India through a partnership with Airtel to</span>
+                    <span class="analysis-content">This is today&#8217;s edition of&#160;The Download,&#160;our weekday newsletter that provides a dail</span>
                 </div>
                 <div class="analysis-item">
                     <span class="analysis-label">Why 为什么重要</span>
@@ -498,7 +497,48 @@
             
             <div class="stock-bar">
                 <span class="stock-label">📈 A股强关联标的</span>
-                <span class="stock-names">阿里巴巴、百度、腾讯</span>
+                <span class="stock-names">关注AI产业链相关标的</span>
+            </div>
+            
+            <div class="original-link-bar">
+                <a href="https://www.technologyreview.com/2026/03/02/1133811/the-download-protesting-ai-and-whats-floating-in-space/" target="_blank" class="original-link">📄 查看原文</a>
+            </div>
+        </div>
+        <div class="news-card">
+            <div class="news-header">
+                <span class="news-rank">#3</span>
+                <span class="news-source">MIT Tech Review</span>
+                <span class="translate-badge">🌐 译</span>
+                <span class="news-score">7.9</span>
+            </div>
+            <div class="news-title">MIT Technology Review is a 2026 ASME finalist in reporting</div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <span class="analysis-label">What 发生了什么</span>
+                    <span class="analysis-content">MIT Technology Review is a 2026 ASME finalist in reporting</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">How 如何发生</span>
+                    <span class="analysis-content">The American Society of Magazine Editors has named MIT Technology Review as a finalist for a 2026 Na</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Why 为什么重要</span>
+                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
+                </div>
+                <div class="analysis-item highlight">
+                    <span class="analysis-label">Impact & Action 影响与行动</span>
+                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
+                </div>
+            </div>
+            
+            <div class="stock-bar">
+                <span class="stock-label">📈 A股强关联标的</span>
+                <span class="stock-names">关注AI产业链相关标的</span>
+            </div>
+            
+            <div class="original-link-bar">
+                <a href="https://www.technologyreview.com/2026/02/27/1133769/asme-finalist-reporting/" target="_blank" class="original-link">📄 查看原文</a>
             </div>
         </div>
             </div>
@@ -519,18 +559,19 @@
             <div class="news-header">
                 <span class="news-rank">#1</span>
                 <span class="news-source">The Verge AI</span>
+                <span class="translate-badge">🌐 译</span>
                 <span class="news-score">8.3</span>
             </div>
-            <div class="news-title">Nvidia&#8217;s spending $4 billion on photonics to stay ahead of the curve in AI</div>
+            <div class="news-title">人工智能-generated art can&#8217;t be copyrighted after Supreme Court declines to review the rule</div>
             
             <div class="analysis-grid">
                 <div class="analysis-item">
                     <span class="analysis-label">What 发生了什么</span>
-                    <span class="analysis-content">Nvidia&#8217;s spending $4 billion on photonics to stay ahead of the curve in AI</span>
+                    <span class="analysis-content">人工智能-generated art can&#8217;t be copyrighted after Supreme Court declines to review the rule</span>
                 </div>
                 <div class="analysis-item">
                     <span class="analysis-label">How 如何发生</span>
-                    <span class="analysis-content">Nvidia announced on Monday that it's investing $2 billion each into Lumentum and Coherent, which are</span>
+                    <span class="analysis-content">The US Supreme Court has declined to hear a case over whether 人工智能-generated art can obtain a copyri</span>
                 </div>
                 <div class="analysis-item">
                     <span class="analysis-label">Why 为什么重要</span>
@@ -546,44 +587,17 @@
                 <span class="stock-label">📈 A股强关联标的</span>
                 <span class="stock-names">关注AI产业链相关标的</span>
             </div>
+            
+            <div class="original-link-bar">
+                <a href="https://www.theverge.com/policy/887678/supreme-court-ai-art-copyright" target="_blank" class="original-link">📄 查看原文</a>
+            </div>
         </div>
         <div class="news-card">
             <div class="news-header">
                 <span class="news-rank">#2</span>
                 <span class="news-source">The Verge AI</span>
+                <span class="translate-badge">🌐 译</span>
                 <span class="news-score">8.1</span>
-            </div>
-            <div class="news-title">How OpenAI caved to the Pentagon on AI surveillance</div>
-            
-            <div class="analysis-grid">
-                <div class="analysis-item">
-                    <span class="analysis-label">What 发生了什么</span>
-                    <span class="analysis-content">How OpenAI caved to the Pentagon on AI surveillance</span>
-                </div>
-                <div class="analysis-item">
-                    <span class="analysis-label">How 如何发生</span>
-                    <span class="analysis-content">On Friday evening, amidst fallout from a standoff between the Department of Defense and Anthropic, O</span>
-                </div>
-                <div class="analysis-item">
-                    <span class="analysis-label">Why 为什么重要</span>
-                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
-                </div>
-                <div class="analysis-item highlight">
-                    <span class="analysis-label">Impact & Action 影响与行动</span>
-                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
-                </div>
-            </div>
-            
-            <div class="stock-bar">
-                <span class="stock-label">📈 A股强关联标的</span>
-                <span class="stock-names">三六零、昆仑万维、科大讯飞</span>
-            </div>
-        </div>
-        <div class="news-card">
-            <div class="news-header">
-                <span class="news-rank">#3</span>
-                <span class="news-source">The Verge AI</span>
-                <span class="news-score">7.9</span>
             </div>
             <div class="news-title">Defense secretary Pete Hegseth designates Anthropic a supply chain risk</div>
             
@@ -610,6 +624,47 @@
                 <span class="stock-label">📈 A股强关联标的</span>
                 <span class="stock-names">关注AI产业链相关标的</span>
             </div>
+            
+            <div class="original-link-bar">
+                <a href="https://www.theverge.com/policy/886632/pentagon-designates-anthropic-supply-chain-risk-ai-standoff" target="_blank" class="original-link">📄 查看原文</a>
+            </div>
+        </div>
+        <div class="news-card">
+            <div class="news-header">
+                <span class="news-rank">#3</span>
+                <span class="news-source">The Verge AI</span>
+                <span class="translate-badge">🌐 译</span>
+                <span class="news-score">7.9</span>
+            </div>
+            <div class="news-title">Trump orders federal agencies to drop Anthropic’s 人工智能</div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <span class="analysis-label">What 发生了什么</span>
+                    <span class="analysis-content">Trump orders federal agencies to drop Anthropic’s 人工智能</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">How 如何发生</span>
+                    <span class="analysis-content">On Friday afternoon, Donald Trump posted on Truth Social, accusing Anthropic, the 人工智能 company behin</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Why 为什么重要</span>
+                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
+                </div>
+                <div class="analysis-item highlight">
+                    <span class="analysis-label">Impact & Action 影响与行动</span>
+                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
+                </div>
+            </div>
+            
+            <div class="stock-bar">
+                <span class="stock-label">📈 A股强关联标的</span>
+                <span class="stock-names">关注AI产业链相关标的</span>
+            </div>
+            
+            <div class="original-link-bar">
+                <a href="https://www.theverge.com/policy/886489/pentagon-anthropic-trump-dod" target="_blank" class="original-link">📄 查看原文</a>
+            </div>
         </div>
             </div>
         </div>
@@ -624,7 +679,121 @@
                 </svg>
             </div>
             <div class="section-content" id="content-technology" style="display: none">
-                <div class="empty-section"><p>今日暂无相关资讯</p></div>
+                
+        <div class="news-card">
+            <div class="news-header">
+                <span class="news-rank">#1</span>
+                <span class="news-source">ArXiv AI</span>
+                <span class="translate-badge">🌐 译</span>
+                <span class="news-score">8.3</span>
+            </div>
+            <div class="news-title">TraderBench: How Robust Are 人工智能 Agents in Adversarial Capital Markets?</div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <span class="analysis-label">What 发生了什么</span>
+                    <span class="analysis-content">TraderBench: How Robust Are 人工智能 Agents in Adversarial Capital Markets?</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">How 如何发生</span>
+                    <span class="analysis-content">arXiv:2603.00285v1 Announce Type: new 
+Abstract: Evaluating 人工智能 agents in finance faces two key cha</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Why 为什么重要</span>
+                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
+                </div>
+                <div class="analysis-item highlight">
+                    <span class="analysis-label">Impact & Action 影响与行动</span>
+                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
+                </div>
+            </div>
+            
+            <div class="stock-bar">
+                <span class="stock-label">📈 A股强关联标的</span>
+                <span class="stock-names">昆仑万维、三六零、科大讯飞</span>
+            </div>
+            
+            <div class="original-link-bar">
+                <a href="https://arxiv.org/abs/2603.00285" target="_blank" class="original-link">📄 查看原文</a>
+            </div>
+        </div>
+        <div class="news-card">
+            <div class="news-header">
+                <span class="news-rank">#2</span>
+                <span class="news-source">ArXiv AI</span>
+                <span class="translate-badge">🌐 译</span>
+                <span class="news-score">8.1</span>
+            </div>
+            <div class="news-title">NeuroHex: Highly-Efficient Hex Coordinate System for Creating World Models to Enable Adaptive 人工智能</div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <span class="analysis-label">What 发生了什么</span>
+                    <span class="analysis-content">NeuroHex: Highly-Efficient Hex Coordinate System for Creating World Models to Enable Adaptive 人工智能</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">How 如何发生</span>
+                    <span class="analysis-content">arXiv:2603.00376v1 Announce Type: new 
+Abstract: \textit{NeuroHex} is a hexagonal coordinate system </span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Why 为什么重要</span>
+                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
+                </div>
+                <div class="analysis-item highlight">
+                    <span class="analysis-label">Impact & Action 影响与行动</span>
+                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
+                </div>
+            </div>
+            
+            <div class="stock-bar">
+                <span class="stock-label">📈 A股强关联标的</span>
+                <span class="stock-names">关注AI产业链相关标的</span>
+            </div>
+            
+            <div class="original-link-bar">
+                <a href="https://arxiv.org/abs/2603.00376" target="_blank" class="original-link">📄 查看原文</a>
+            </div>
+        </div>
+        <div class="news-card">
+            <div class="news-header">
+                <span class="news-rank">#3</span>
+                <span class="news-source">ArXiv AI</span>
+                <span class="translate-badge">🌐 译</span>
+                <span class="news-score">7.9</span>
+            </div>
+            <div class="news-title">EmCoop: A Framework and Benchmark for Embodied Cooperation Among 大模型 Agents</div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <span class="analysis-label">What 发生了什么</span>
+                    <span class="analysis-content">EmCoop: A Framework and Benchmark for Embodied Cooperation Among 大模型 Agents</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">How 如何发生</span>
+                    <span class="analysis-content">arXiv:2603.00349v1 Announce Type: new 
+Abstract: Real-world scenarios increasingly require multiple </span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Why 为什么重要</span>
+                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
+                </div>
+                <div class="analysis-item highlight">
+                    <span class="analysis-label">Impact & Action 影响与行动</span>
+                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
+                </div>
+            </div>
+            
+            <div class="stock-bar">
+                <span class="stock-label">📈 A股强关联标的</span>
+                <span class="stock-names">昆仑万维、三六零、科大讯飞</span>
+            </div>
+            
+            <div class="original-link-bar">
+                <a href="https://arxiv.org/abs/2603.00349" target="_blank" class="original-link">📄 查看原文</a>
+            </div>
+        </div>
             </div>
         </div>
         <div class="section " id="section-product">
@@ -642,19 +811,20 @@
         <div class="news-card">
             <div class="news-header">
                 <span class="news-rank">#1</span>
-                <span class="news-source">The Verge AI</span>
+                <span class="news-source">Ars Technica AI</span>
+                <span class="translate-badge">🌐 译</span>
                 <span class="news-score">8.3</span>
             </div>
-            <div class="news-title">Anthropic upgrades Claude’s memory to attract AI switchers</div>
+            <div class="news-title">谷歌 reveals Nano Banana 2 人工智能 image 模型, coming to Gemini today</div>
             
             <div class="analysis-grid">
                 <div class="analysis-item">
                     <span class="analysis-label">What 发生了什么</span>
-                    <span class="analysis-content">Anthropic upgrades Claude’s memory to attract AI switchers</span>
+                    <span class="analysis-content">谷歌 reveals Nano Banana 2 人工智能 image 模型, coming to Gemini today</span>
                 </div>
                 <div class="analysis-item">
                     <span class="analysis-label">How 如何发生</span>
-                    <span class="analysis-content">Anthropic is making it easier to switch to its Claude AI from other chatbots with an update that bri</span>
+                    <span class="analysis-content">谷歌's new image 模型 replaces the previous versions immediately.</span>
                 </div>
                 <div class="analysis-item">
                     <span class="analysis-label">Why 为什么重要</span>
@@ -670,37 +840,9 @@
                 <span class="stock-label">📈 A股强关联标的</span>
                 <span class="stock-names">关注AI产业链相关标的</span>
             </div>
-        </div>
-        <div class="news-card">
-            <div class="news-header">
-                <span class="news-rank">#2</span>
-                <span class="news-source">The Verge AI</span>
-                <span class="news-score">8.1</span>
-            </div>
-            <div class="news-title">Apple might use Google servers to store data for its upgraded AI Siri</div>
             
-            <div class="analysis-grid">
-                <div class="analysis-item">
-                    <span class="analysis-label">What 发生了什么</span>
-                    <span class="analysis-content">Apple might use Google servers to store data for its upgraded AI Siri</span>
-                </div>
-                <div class="analysis-item">
-                    <span class="analysis-label">How 如何发生</span>
-                    <span class="analysis-content">Apple has asked Google to look into "setting up servers" for a new version of Siri that's Gemini-pow</span>
-                </div>
-                <div class="analysis-item">
-                    <span class="analysis-label">Why 为什么重要</span>
-                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
-                </div>
-                <div class="analysis-item highlight">
-                    <span class="analysis-label">Impact & Action 影响与行动</span>
-                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
-                </div>
-            </div>
-            
-            <div class="stock-bar">
-                <span class="stock-label">📈 A股强关联标的</span>
-                <span class="stock-names">阿里巴巴、百度、腾讯</span>
+            <div class="original-link-bar">
+                <a href="https://arstechnica.com/ai/2026/02/google-releases-nano-banana-2-ai-image-generator-promises-pro-results-with-flash-speed/" target="_blank" class="original-link">📄 查看原文</a>
             </div>
         </div>
             </div>
@@ -716,13 +858,50 @@
                 </svg>
             </div>
             <div class="section-content" id="content-education" style="display: none">
-                <div class="empty-section"><p>今日暂无相关资讯</p></div>
+                
+        <div class="news-card">
+            <div class="news-header">
+                <span class="news-rank">#1</span>
+                <span class="news-source">DeepMind Blog</span>
+                <span class="translate-badge">🌐 译</span>
+                <span class="news-score">8.3</span>
+            </div>
+            <div class="news-title">Accelerating discovery in India through 人工智能-powered science and education</div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <span class="analysis-label">What 发生了什么</span>
+                    <span class="analysis-content">Accelerating discovery in India through 人工智能-powered science and education</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">How 如何发生</span>
+                    <span class="analysis-content">谷歌 DeepMind brings National Partnerships for 人工智能 initiative to India, scaling 人工智能 for science and </span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Why 为什么重要</span>
+                    <span class="analysis-content">AI行业快速发展，技术/商业模式创新</span>
+                </div>
+                <div class="analysis-item highlight">
+                    <span class="analysis-label">Impact & Action 影响与行动</span>
+                    <span class="analysis-content">对行业格局产生影响，值得关注</span>
+                </div>
+            </div>
+            
+            <div class="stock-bar">
+                <span class="stock-label">📈 A股强关联标的</span>
+                <span class="stock-names">关注AI产业链相关标的</span>
+            </div>
+            
+            <div class="original-link-bar">
+                <a href="https://deepmind.google/blog/accelerating-discovery-in-india-through-ai-powered-science-and-education/" target="_blank" class="original-link">📄 查看原文</a>
+            </div>
+        </div>
             </div>
         </div>
         
         <div class="summary-bar">
             <div class="summary-item">
-                <div class="summary-number">19</div>
+                <div class="summary-number">76</div>
                 <div class="summary-label">精选消息</div>
             </div>
             <div class="summary-item">
@@ -730,7 +909,7 @@
                 <div class="summary-label">信源数量</div>
             </div>
             <div class="summary-item">
-                <div class="summary-number">3</div>
+                <div class="summary-number">5</div>
                 <div class="summary-label">核心板块</div>
             </div>
             <div class="summary-item">
