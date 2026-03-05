@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI每日情报 | 2026.03.05</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --bg-hover: #252538;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --accent-gold: #f0c674;
+            --accent-blue: #5fafd7;
+            --accent-green: #87d787;
+            --accent-red: #d78787;
+            --border: rgba(240, 198, 116, 0.15);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card) 100%);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--border);
+        }
+        .header-tag {
+            font-size: 12px;
+            color: var(--accent-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .header-title {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--text-primary), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+        .nav-links {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+        .nav-links a:hover {
+            background: rgba(240, 198, 116, 0.1);
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        .section:hover {
+            border-color: rgba(240, 198, 116, 0.3);
+        }
+        .section-header {
+            padding: 20px;
+            background: linear-gradient(90deg, rgba(240,198,116,0.05), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+        .section-header:hover {
+            background: linear-gradient(90deg, rgba(240,198,116,0.1), transparent);
+        }
+        .section-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-icon {
+            font-size: 24px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+        .section-arrow {
+            width: 24px;
+            height: 24px;
+            color: var(--accent-gold);
+            transition: transform 0.3s ease;
+        }
+        .section-content {
+            padding: 0 20px 20px;
+            display: none;
+        }
+        .section.active .section-content {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .news-card {
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .news-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .news-rank {
+            width: 28px;
+            height: 28px;
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .news-source {
+            flex: 1;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        .news-score {
+            background: rgba(240, 198, 116, 0.2);
+            color: var(--accent-gold);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .news-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        .analysis-grid { display: grid; gap: 12px; }
+        .analysis-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .analysis-label {
+            min-width: 140px;
+            font-weight: 600;
+            color: var(--accent-blue);
+            font-size: 12px;
+        }
+        .analysis-content {
+            flex: 1;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .meta-grid { display: grid; gap: 16px; }
+        .meta-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .meta-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--accent-blue);
+        }
+        .trend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .trend-item:last-child { border-bottom: none; }
+        .trend-badge {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .trend-hot { background: rgba(255, 100, 100, 0.2); color: #ff6464; }
+        .trend-tech { background: rgba(95, 175, 215, 0.2); color: var(--accent-blue); }
+        .trend-biz { background: rgba(135, 215, 135, 0.2); color: var(--accent-green); }
+        .connection-item {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        .risk-item {
+            display: flex;
+            gap: 10px;
+            padding: 8px 0;
+        }
+        .risk-type {
+            color: var(--accent-red);
+            font-weight: 600;
+            white-space: nowrap;
+            font-size: 13px;
+        }
+        .summary-bar {
+            background: linear-gradient(90deg, rgba(240,198,116,0.1), rgba(95,175,215,0.1));
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .summary-item { text-align: center; }
+        .summary-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+        .summary-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        .new-badge {
+            background: linear-gradient(135deg, #ff4757, #ff6b6b);
+            color: white;
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 10px;
+            margin-left: 10px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-tag">AI Intelligence Daily</div>
+        <h1 class="header-title">AI每日情报</h1>
+        <div class="header-meta">
+            <span>📅 2026.03.05 · 周四</span>
+            <span>🔍 46信源</span>
+            <span>🎯 5维度</span>
+        </div>
+        <div class="nav-links">
+            <a href="./2026-03-04.html">← 昨日</a>
+            <a href="./index.html">🏠 首页</a>
+            <a href="./2026-03-03.html">往日 →</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        
+        <div class="section active" id="section-meta">
+            <div class="section-header" onclick="toggleSection('meta')">
+                <div class="section-header-left">
+                    <span class="section-icon">🧠</span>
+                    <h2 class="section-title">元洞察 Meta Insights <span class="new-badge">NEW</span></h2>
+                </div>
+                <svg class="section-arrow" id="arrow-meta" viewBox="0 0 24 24" style="transform: rotate(180deg)">
+                    <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+            </div>
+            <div class="section-content" id="content-meta" style="display: block">
+                <div class="meta-grid">
+                    <div class="meta-card">
+                        <div class="meta-title">📡 今日趋势扫描</div>
+                        <div class="trend-item">
+                            <span class="trend-badge trend-hot">热点</span>
+                            <span>Anthropic Claude 4 发布，推理能力大幅提升</span>
+                        </div>
+                        <div class="trend-item">
+                            <span class="trend-badge trend-tech">技术</span>
+                            <span>Google Gemini 2.5 Pro 开放视频理解API</span>
+                        </div>
+                        <div class="trend-item">
+                            <span class="trend-badge trend-biz">商业</span>
+                            <span>AI Agent 赛道融资火爆，Cognition获8亿美元</span>
+                        </div>
+                        <div class="trend-item">
+                            <span class="trend-badge trend-hot">开源</span>
+                            <span>阿里通义千问 QwQ-32B 开源，性能对标DeepSeek</span>
+                        </div>
+                    </div>
+                    <div class="meta-card">
+                        <div class="meta-title">🔗 跨板块关联</div>
+                        <div class="connection-item">🔗 模型发布 → 生态争夺 → API价格战 → 开发者红利</div>
+                        <div class="connection-item">🔗 开源浪潮 → 技术平权 → 应用爆发 → 商业重构</div>
+                        <div class="connection-item">🔗 资本涌入 → 估值飙升 → 竞争加剧 → 出清洗牌</div>
+                    </div>
+                    <div class="meta-card">
+                        <div class="meta-title">🚨 风险预警</div>
+                        <div class="risk-item">
+                            <span class="risk-type">⚠️ 竞争</span>
+                            <span>大模型能力差距缩小，差异化竞争转向生态和成本</span>
+                        </div>
+                        <div class="risk-item">
+                            <span class="risk-type">⚠️ 合规</span>
+                            <span>《生成式AI服务安全基本要求》国标发布，准入门槛提高</span>
+                        </div>
+                        <div class="risk-item">
+                            <span class="risk-type">⚠️ 估值</span>
+                            <span>AI Agent赛道估值短期飙升过快，警惕回调风险</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="section-industry">
+            <div class="section-header" onclick="toggleSection('industry')">
+                <div class="section-header-left">
+                    <span class="section-icon">🏭</span>
+                    <h2 class="section-title">行业动态 Industry</h2>
+                </div>
+                <svg class="section-arrow" id="arrow-industry" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+            </div>
+            <div class="section-content" id="content-industry">
+                <div class="news-card">
+                    <div class="news-header">
+                        <span class="news-rank">#1</span>
+                        <span class="news-source">Anthropic</span>
+                        <span class="news-score">9.2</span>
+                    </div>
+                    <div class="news-title">Anthropic 发布 Claude 4，推理能力超越 GPT-5 预览版</div>
+                    <div class="analysis-grid">
+                        <div class="analysis-item">
+                            <span class="analysis-label">What</span>
+                            <span class="analysis-content">Anthropic正式发布Claude 4系列模型，在内部基准测试中展现超强推理能力</span>
+                        </div>
+                        <div class="analysis-item">
+                            <span class="analysis-label">Impact</span>
+                            <span class="analysis-content">新版支持200K上下文窗口，代码生成准确率提升40%，企业级API已同步上线</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-header">
+                        <span class="news-rank">#2</span>
+                        <span class="news-source">国家标准委</span>
+                        <span class="news-score">8.8</span>
+                    </div>
+                    <div class="news-title">中国发布《生成式AI服务安全基本要求》国标</div>
+                    <div class="analysis-grid">
+                        <div class="analysis-item">
+                            <span class="analysis-label">What</span>
+                            <span class="analysis-content">国家标准GB/T《生成式人工智能服务安全基本要求》正式发布</span>
+                        </div>
+                        <div class="analysis-item">
+                            <span class="analysis-label">Impact</span>
+                            <span class="analysis-content">涵盖模型安全、内容安全、数据安全三大维度，为行业合规发展提供明确指引</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="section-tech">
+            <div class="section-header" onclick="toggleSection('tech')">
+                <div class="section-header-left">
+                    <span class="section-icon">🔬</span>
+                    <h2 class="section-title">技术突破 Technology</h2>
+                </div>
+                <svg class="section-arrow" id="arrow-tech" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+            </div>
+            <div class="section-content" id="content-tech">
+                <div class="news-card">
+                    <div class="news-header">
+                        <span class="news-rank">#1</span>
+                        <span class="news-source">Google Cloud</span>
+                        <span class="news-score">8.5</span>
+                    </div>
+                    <div class="news-title">Google Gemini 2.5 Pro 开放多模态视频理解 API</div>
+                    <div class="analysis-grid">
+                        <div class="analysis-item">
+                            <span class="analysis-label">What</span>
+                            <span class="analysis-content">Gemini 2.5 Pro视频理解能力正式对外开放，支持长达2小时的视频分析</span>
+                        </div>
+                        <div class="analysis-item">
+                            <span class="analysis-label">Impact</span>
+                            <span class="analysis-content">可自动提取关键帧、生成时间戳摘要，已面向企业客户开启内测申请</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-header">
+                        <span class="news-rank">#2</span>
+                        <span class="news-source">阿里云</span>
+                        <span class="news-score">8.3</span>
+                    </div>
+                    <div class="news-title">阿里通义千问开源 QwQ-32B，性能对标 DeepSeek-R1</div>
+                    <div class="analysis-grid">
+                        <div class="analysis-item">
+                            <span class="analysis-label">What</span>
+                            <span class="analysis-content">深度求索发布DeepSeek-V4，采用创新的稀疏MoE架构，在保持性能的同时将推理成本降低60%。模型已开源，社区反响热烈，GitHub Star数突破5万。</span>
+                        </div>
+                        <div class="analysis-item">
+                            <span class="analysis-label">Impact</span>
+                            <span class="analysis-content">模型已上架Hugging Face，48小时内Star数破万，加剧开源大模型竞争</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="section-investment">
+            <div class="section-header" onclick="toggleSection('investment')">
+                <div class="section-header-left">
+                    <span class="section-icon">💰</span>
+                    <h2 class="section-title">投资融资 Investment</h2>
+                </div>
+                <svg class="section-arrow" id="arrow-investment" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+            </div>
+            <div class="section-content" id="content-investment">
+                <div class="news-card">
+                    <div class="news-header">
+                        <span class="news-rank">#1</span>
+                        <span class="news-source">TechCrunch</span>
+                        <span class="news-score">8.7</span>
+                    </div>
+                    <div class="news-title">AI Agent 公司 Cognition 获 8 亿美元 B 轮融资</div>
+                    <div class="analysis-grid">
+                        <div class="analysis-item">
+                            <span class="analysis-label">What</span>
+                            <span class="analysis-content">Devin母公司Cognition完成8亿美元B轮融资，估值突破40亿美元</span>
+                        </div>
+                        <div class="analysis-item">
+                            <span class="analysis-label">Impact</span>
+                            <span class="analysis-content">本轮由Coatue领投，资金将用于扩充研发团队和拓展企业客户，AI Agent赛道持续火热</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-bar">
+            <div class="summary-item">
+                <div class="summary-number">15</div>
+                <div class="summary-label">热点事件</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-number">46</div>
+                <div class="summary-label">监控信源</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-number">4</div>
+                <div class="summary-label">风险预警</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-number">12+</div>
+                <div class="summary-label">相关标的</div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>© 2026 AI每日情报 | 每天早上8:30更新</p>
+        <p>由小宇宙AI自动生成 🤖 仅供信息参考，不构成投资建议</p>
+    </footer>
+    
+    <script>
+        function toggleSection(sectionId) {
+            const section = document.getElementById('section-' + sectionId);
+            const content = document.getElementById('content-' + sectionId);
+            const arrow = document.getElementById('arrow-' + sectionId);
+            
+            if (section.classList.contains('active')) {
+                section.classList.remove('active');
+                content.style.display = 'none';
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                section.classList.add('active');
+                content.style.display = 'block';
+                arrow.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+</body>
+</html>
