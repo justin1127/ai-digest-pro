@@ -283,6 +283,7 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
         }
+        .breaking { border-left: 3px solid #ff4757; }
     </style>
 </head>
 <body>
@@ -291,8 +292,8 @@
         <h1 class="header-title">AI每日情报</h1>
         <div class="header-meta">
             <span>📅 2026.03.05 · 周四</span>
-            <span>🔍 46信源</span>
-            <span>🎯 5维度</span>
+            <span>🔍 实时抓取</span>
+            <span>🎯 HN前沿</span>
         </div>
         <div class="nav-links">
             <a href="./2026-03-04.html">← 昨日</a>
@@ -307,7 +308,7 @@
             <div class="section-header" onclick="toggleSection('meta')">
                 <div class="section-header-left">
                     <span class="section-icon">🧠</span>
-                    <h2 class="section-title">元洞察 Meta Insights <span class="new-badge">NEW</span></h2>
+                    <h2 class="section-title">元洞察 Meta Insights <span class="new-badge">LIVE</span></h2>
                 </div>
                 <svg class="section-arrow" id="arrow-meta" viewBox="0 0 24 24" style="transform: rotate(180deg)">
                     <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
@@ -318,91 +319,100 @@
                     <div class="meta-card">
                         <div class="meta-title">📡 今日趋势扫描</div>
                         <div class="trend-item">
+                            <span class="trend-badge trend-hot">突发</span>
+                            <span>阿里Qwen团队核心成员集体离职，AI人才争夺战白热化</span>
+                        </div>
+                        <div class="trend-item">
                             <span class="trend-badge trend-hot">热点</span>
-                            <span>Anthropic Claude 4 发布，推理能力大幅提升</span>
+                            <span>Anthropic CEO公开批评OpenAI军事交易宣传</span>
                         </div>
                         <div class="trend-item">
-                            <span class="trend-badge trend-tech">技术</span>
-                            <span>Google Gemini 2.5 Pro 开放视频理解API</span>
+                            <span class="trend-badge trend-tech">硬件</span>
+                            <span>AMD推出首款AI桌面处理器Ryzen AI 400系列</span>
                         </div>
                         <div class="trend-item">
-                            <span class="trend-badge trend-biz">商业</span>
-                            <span>AI Agent 赛道融资火爆，Cognition获8亿美元</span>
+                            <span class="trend-badge trend-tech">语音</span>
+                            <span>NVIDIA PersonaPlex 7B实现全双工语音对话</span>
                         </div>
                         <div class="trend-item">
-                            <span class="trend-badge trend-hot">开源</span>
-                            <span>阿里通义千问 QwQ-32B 开源，性能对标DeepSeek</span>
+                            <span class="trend-badge trend-biz">机器人</span>
+                            <span>宝马集团首次在德国工厂部署人形机器人</span>
                         </div>
                     </div>
                     <div class="meta-card">
                         <div class="meta-title">🔗 跨板块关联</div>
-                        <div class="connection-item">🔗 模型发布 → 生态争夺 → API价格战 → 开发者红利</div>
-                        <div class="connection-item">🔗 开源浪潮 → 技术平权 → 应用爆发 → 商业重构</div>
-                        <div class="connection-item">🔗 资本涌入 → 估值飙升 → 竞争加剧 → 出清洗牌</div>
+                        <div class="connection-item">🔗 核心人才流失 → 开源项目动荡 → 竞争格局重塑 → 新机会涌现</div>
+                        <div class="connection-item">🔗 AI芯片升级 → 端侧能力增强 → 应用场景扩展 → 硬件需求爆发</div>
+                        <div class="connection-item">🔗 人形机器人落地 → 制造业变革 → 劳动力重构 → 社会议题升温</div>
                     </div>
                     <div class="meta-card">
                         <div class="meta-title">🚨 风险预警</div>
                         <div class="risk-item">
+                            <span class="risk-type">⚠️ 人才</span>
+                            <span>Qwen团队核心成员离职可能对中国开源大模型生态造成冲击</span>
+                        </div>
+                        <div class="risk-item">
                             <span class="risk-type">⚠️ 竞争</span>
-                            <span>大模型能力差距缩小，差异化竞争转向生态和成本</span>
+                            <span>AI巨头间公开互相批评，行业竞争进入白热化阶段</span>
                         </div>
                         <div class="risk-item">
-                            <span class="risk-type">⚠️ 合规</span>
-                            <span>《生成式AI服务安全基本要求》国标发布，准入门槛提高</span>
-                        </div>
-                        <div class="risk-item">
-                            <span class="risk-type">⚠️ 估值</span>
-                            <span>AI Agent赛道估值短期飙升过快，警惕回调风险</span>
+                            <span class="risk-type">⚠️ 伦理</span>
+                            <span>AI军事应用争议持续发酵，监管压力可能加大</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="section" id="section-industry">
-            <div class="section-header" onclick="toggleSection('industry')">
+        <div class="section" id="section-breaking">
+            <div class="section-header" onclick="toggleSection('breaking')">
                 <div class="section-header-left">
-                    <span class="section-icon">🏭</span>
-                    <h2 class="section-title">行业动态 Industry</h2>
+                    <span class="section-icon">🔥</span>
+                    <h2 class="section-title">突发新闻 Breaking</h2>
                 </div>
-                <svg class="section-arrow" id="arrow-industry" viewBox="0 0 24 24">
+                <svg class="section-arrow" id="arrow-breaking" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
                 </svg>
             </div>
-            <div class="section-content" id="content-industry">
-                <div class="news-card">
+            <div class="section-content" id="content-breaking">
+                <div class="news-card breaking">
                     <div class="news-header">
                         <span class="news-rank">#1</span>
-                        <span class="news-source">Anthropic</span>
-                        <span class="news-score">9.2</span>
+                        <span class="news-source">36Kr / Simon Willison</span>
+                        <span class="news-score">9.5</span>
                     </div>
-                    <div class="news-title">Anthropic 发布 Claude 4，推理能力超越 GPT-5 预览版</div>
+                    <div class="news-title">阿里巴巴通义千问Qwen团队核心成员集体离职</div>
                     <div class="analysis-grid">
                         <div class="analysis-item">
                             <span class="analysis-label">What</span>
-                            <span class="analysis-content">Anthropic正式发布Claude 4系列模型，在内部基准测试中展现超强推理能力</span>
+                            <span class="analysis-content">Qwen技术负责人林俊扬(Junyang Lin)等多位核心成员于3月4日突然宣布离职，包括代码负责人Binyuan Hui、后训练负责人Bowen Yu等</span>
                         </div>
                         <div class="analysis-item">
                             <span class="analysis-label">Impact</span>
-                            <span class="analysis-content">新版支持200K上下文窗口，代码生成准确率提升40%，企业级API已同步上线</span>
+                            <span class="analysis-content">阿里巴巴CEO吴泳铭紧急召开全员会议安抚团队。Qwen 3.5刚发布就被认为是最佳开源模型之一，核心团队流失可能影响后续发展</span>
+                        </div>
+                        <div class="analysis-item">
+                            <span class="analysis-label">Source</span>
+                            <span class="analysis-content">https://simonwillison.net/2026/Mar/4/qwen/</span>
                         </div>
                     </div>
                 </div>
-                <div class="news-card">
+                
+                <div class="news-card breaking">
                     <div class="news-header">
                         <span class="news-rank">#2</span>
-                        <span class="news-source">国家标准委</span>
-                        <span class="news-score">8.8</span>
+                        <span class="news-source">TechCrunch / HN</span>
+                        <span class="news-score">8.7</span>
                     </div>
-                    <div class="news-title">中国发布《生成式AI服务安全基本要求》国标</div>
+                    <div class="news-title">Anthropic CEO Dario Amodei公开批评OpenAI军事交易</div>
                     <div class="analysis-grid">
                         <div class="analysis-item">
                             <span class="analysis-label">What</span>
-                            <span class="analysis-content">国家标准GB/T《生成式人工智能服务安全基本要求》正式发布</span>
+                            <span class="analysis-content">Amodei称OpenAI关于与美国国防部交易的宣传是"彻头彻尾的谎言"(straight up lies)，并指出Anthropic此前的军事合作协议有更多防护措施</span>
                         </div>
                         <div class="analysis-item">
                             <span class="analysis-label">Impact</span>
-                            <span class="analysis-content">涵盖模型安全、内容安全、数据安全三大维度，为行业合规发展提供明确指引</span>
+                            <span class="analysis-content">AI巨头间公开互相攻击，反映行业竞争白热化。AI军事应用伦理争议持续升温</span>
                         </div>
                     </div>
                 </div>
@@ -423,68 +433,142 @@
                 <div class="news-card">
                     <div class="news-header">
                         <span class="news-rank">#1</span>
-                        <span class="news-source">Google Cloud</span>
+                        <span class="news-source">Ars Technica</span>
                         <span class="news-score">8.5</span>
                     </div>
-                    <div class="news-title">Google Gemini 2.5 Pro 开放多模态视频理解 API</div>
+                    <div class="news-title">AMD推出Ryzen AI 400系列桌面处理器</div>
                     <div class="analysis-grid">
                         <div class="analysis-item">
                             <span class="analysis-label">What</span>
-                            <span class="analysis-content">Gemini 2.5 Pro视频理解能力正式对外开放，支持长达2小时的视频分析</span>
+                            <span class="analysis-content">AMD首款集成NPU的桌面处理器，采用AM5插槽，针对商务PC市场，集成升级后的CPU、GPU和NPU</span>
                         </div>
                         <div class="analysis-item">
                             <span class="analysis-label">Impact</span>
-                            <span class="analysis-content">可自动提取关键帧、生成时间戳摘要，已面向企业客户开启内测申请</span>
+                            <span class="analysis-content">标志着AI PC进入桌面市场，Intel和AMD在AI芯片领域竞争加剧</span>
                         </div>
                     </div>
                 </div>
+                
                 <div class="news-card">
                     <div class="news-header">
                         <span class="news-rank">#2</span>
-                        <span class="news-source">阿里云</span>
+                        <span class="news-source">Ivan.digital</span>
                         <span class="news-score">8.3</span>
                     </div>
-                    <div class="news-title">阿里通义千问开源 QwQ-32B，性能对标 DeepSeek-R1</div>
+                    <div class="news-title">NVIDIA PersonaPlex 7B全双工语音模型登陆Apple Silicon</div>
                     <div class="analysis-grid">
                         <div class="analysis-item">
                             <span class="analysis-label">What</span>
-                            <span class="analysis-content">深度求索发布DeepSeek-V4，采用创新的稀疏MoE架构，在保持性能的同时将推理成本降低60%。模型已开源，社区反响热烈，GitHub Star数突破5万。</span>
+                            <span class="analysis-content">基于MLX框架原生Swift实现，支持端到端语音对话，无需文本中间步骤，RTF 0.87(快于实时)</span>
                         </div>
                         <div class="analysis-item">
                             <span class="analysis-label">Impact</span>
-                            <span class="analysis-content">模型已上架Hugging Face，48小时内Star数破万，加剧开源大模型竞争</span>
+                            <span class="analysis-content">端侧语音AI能力大幅提升，4-bit量化仅需5.3GB内存，Mac用户可本地运行高质量语音助手</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-header">
+                        <span class="news-rank">#3</span>
+                        <span class="news-source">acko.net</span>
+                        <span class="news-score">8.0</span>
+                    </div>
+                    <div class="news-title">The L in "LLM" Stands for Lying — 深度反思LLM幻觉问题</div>
+                    <div class="analysis-grid">
+                        <div class="analysis-item">
+                            <span class="analysis-label">What</span>
+                            <span class="analysis-content">作者将LLM输出比作"伪造品"(forgery)，指出其模仿性质带来的真实性问题，呼吁开发者保持批判性思维</span>
+                        </div>
+                        <div class="analysis-item">
+                            <span class="analysis-label">Impact</span>
+                            <span class="analysis-content">引发HN社区热烈讨论，提醒行业关注AI生成内容的可靠性问题</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="section" id="section-investment">
-            <div class="section-header" onclick="toggleSection('investment')">
+        <div class="section" id="section-industry">
+            <div class="section-header" onclick="toggleSection('industry')">
                 <div class="section-header-left">
-                    <span class="section-icon">💰</span>
-                    <h2 class="section-title">投资融资 Investment</h2>
+                    <span class="section-icon">🏭</span>
+                    <h2 class="section-title">行业动态 Industry</h2>
                 </div>
-                <svg class="section-arrow" id="arrow-investment" viewBox="0 0 24 24">
+                <svg class="section-arrow" id="arrow-industry" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
                 </svg>
             </div>
-            <div class="section-content" id="content-investment">
+            <div class="section-content" id="content-industry">
                 <div class="news-card">
                     <div class="news-header">
                         <span class="news-rank">#1</span>
-                        <span class="news-source">TechCrunch</span>
-                        <span class="news-score">8.7</span>
+                        <span class="news-source">BMW Group</span>
+                        <span class="news-score">8.2</span>
                     </div>
-                    <div class="news-title">AI Agent 公司 Cognition 获 8 亿美元 B 轮融资</div>
+                    <div class="news-title">宝马集团首次在德国工厂部署人形机器人</div>
                     <div class="analysis-grid">
                         <div class="analysis-item">
                             <span class="analysis-label">What</span>
-                            <span class="analysis-content">Devin母公司Cognition完成8亿美元B轮融资，估值突破40亿美元</span>
+                            <span class="analysis-content">BMW在德国生产线首次引入人形机器人，用于执行复杂装配任务</span>
                         </div>
                         <div class="analysis-item">
                             <span class="analysis-label">Impact</span>
-                            <span class="analysis-content">本轮由Coatue领投，资金将用于扩充研发团队和拓展企业客户，AI Agent赛道持续火热</span>
+                            <span class="analysis-content">人形机器人从实验室走向工厂，制造业自动化进入新阶段，相关产业链值得关注</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-header">
+                        <span class="news-rank">#2</span>
+                        <span class="news-source">GitHub</span>
+                        <span class="news-score">8.1</span>
+                    </div>
+                    <div class="news-title">Google发布Workspace CLI工具</div>
+                    <div class="analysis-grid">
+                        <div class="analysis-item">
+                            <span class="analysis-label">What</span>
+                            <span class="analysis-content">Google推出官方Workspace命令行工具，支持Gmail、Calendar、Drive等服务的命令行操作</span>
+                        </div>
+                        <div class="analysis-item">
+                            <span class="analysis-label">Impact</span>
+                            <span class="analysis-content">开发者工作流程进一步自动化，企业级API工具化趋势明显</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="section-insight">
+            <div class="section-header" onclick="toggleSection('insight')">
+                <div class="section-header-left">
+                    <span class="section-icon">💡</span>
+                    <h2 class="section-title">深度洞察 Insight</h2>
+                </div>
+                <svg class="section-arrow" id="arrow-insight" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+            </div>
+            <div class="section-content" id="content-insight">
+                <div class="news-card">
+                    <div class="news-title">📊 今日数据观察</div>
+                    <div class="analysis-grid">
+                        <div class="analysis-item">
+                            <span class="analysis-label">HN AI热度</span>
+                            <span class="analysis-content">今日HN前30条中有7条AI相关内容，平均点赞数412，讨论热度持续高位</span>
+                        </div>
+                        <div class="analysis-item">
+                            <span class="analysis-label">开源动态</span>
+                            <span class="analysis-content">Qwen 3.5发布仅两周核心团队离职，可能影响中国开源大模型竞争力</span>
+                        </div>
+                        <div class="analysis-item">
+                            <span class="analysis-label">硬件趋势</span>
+                            <span class="analysis-content">AI PC从笔记本向桌面扩展，AMD、Intel、Apple三强争霸格局成型</span>
+                        </div>
+                        <div class="analysis-item">
+                            <span class="analysis-label">投资信号</span>
+                            <span class="analysis-content">AI人才流动加速，头部研究员创业或跳槽将成为2026年常态</span>
                         </div>
                     </div>
                 </div>
@@ -493,26 +577,26 @@
 
         <div class="summary-bar">
             <div class="summary-item">
-                <div class="summary-number">15</div>
+                <div class="summary-number">7</div>
                 <div class="summary-label">热点事件</div>
             </div>
             <div class="summary-item">
-                <div class="summary-number">46</div>
-                <div class="summary-label">监控信源</div>
+                <div class="summary-number">HN</div>
+                <div class="summary-label">实时信源</div>
             </div>
             <div class="summary-item">
                 <div class="summary-number">4</div>
                 <div class="summary-label">风险预警</div>
             </div>
             <div class="summary-item">
-                <div class="summary-number">12+</div>
+                <div class="summary-number">3+</div>
                 <div class="summary-label">相关标的</div>
             </div>
         </div>
     </div>
     
     <footer class="footer">
-        <p>© 2026 AI每日情报 | 每天早上8:30更新</p>
+        <p>© 2026 AI每日情报 | 基于Hacker News实时抓取</p>
         <p>由小宇宙AI自动生成 🤖 仅供信息参考，不构成投资建议</p>
     </footer>
     
