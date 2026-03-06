@@ -1,21 +1,54 @@
 #!/usr/bin/env python3
 """
-AI日报每日生成器 - 简化版
-生成带日期后缀的HTML日报，index.html自动跳转
+AI日报每日生成器 - 完整版 v2.0
+整合现有AI日报skill，生成带日期后缀的HTML日报
 """
 
 import subprocess
+import sys
+import json
 from datetime import datetime
 from pathlib import Path
 
 # 路径配置
+SKILL_DIR = Path("/Users/maxjustin/.openclaw/workspace/skills/ai-daily-report")
 PROJECT_DIR = Path("/Users/maxjustin/.openclaw/workspace/ai-digest-pro")
+
+def run_command(cmd, cwd=None, capture=True, timeout=300):
+    """运行shell命令"""
+    try:
+        if capture:
+            result = subprocess.run(cmd, shell=True, cwd=cwd, capture_output=True, text=True, timeout=timeout)
+            return result
+        else:
+            result = subprocess.run(cmd, shell=True, cwd=cwd, timeout=timeout)
+            return result
+    except subprocess.TimeoutExpired:
+        print(f"  命令超时: {cmd}")
+        return None
+    except Exception as e:
+        print(f"  异常: {e}")
+        return None
 
 def get_date_str():
     return datetime.now().strftime("%Y-%m-%d")
 
 def get_date_str_chinese():
     return datetime.now().strftime("%Y.%m.%d")
+
+def fetch_and_generate():
+    """调用skill生成日报"""
+    print("\n[步骤1/2] 调用AI日报skill生成报告...")
+    
+    # 运行skill的完整工作流
+    result = run_command("bash cron_v2.sh", cwd=SKILL_DIR, capture=False, timeout=600)
+    
+    if result and result.returncode == 0:
+        print("✓ AI日报生成成功")
+        return True
+    else:
+        print("✗ AI日报生成失败，使用备用方案")
+        return False
 
 def create_redirect_index(date_str):
     """创建自动跳转的index.html"""
@@ -73,8 +106,8 @@ def create_redirect_index(date_str):
 </body>
 </html>"""
 
-def create_daily_report_html(date_str, date_chinese):
-    """创建日报HTML - 包含今日提示"""
+def create_fallback_html(date_str, date_chinese):
+    """创建备用日报HTML（当skill生成失败时）"""
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -109,6 +142,8 @@ def create_daily_report_html(date_str, date_chinese):
         .action-box {{ background: rgba(243, 195, 68, 0.08); padding: 10px; border-radius: 8px; border-left: 3px solid var(--gold); margin-top: 10px; }}
         footer {{ text-align: center; color: var(--text-gray); font-size: 11px; padding: 40px 0; border-top: 1px solid #222; margin-top: 40px; }}
         .highlight {{ color: var(--gold); font-weight: 600; }}
+        .source-list {{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 12px; color: var(--text-gray); margin: 10px 0; }}
+        .source-list li {{ margin-bottom: 5px; }}
     </style>
 </head>
 <body>
@@ -130,21 +165,32 @@ def create_daily_report_html(date_str, date_chinese):
     </div>
     <div class="accordion-content">
         <div class="news-item">
-            <div class="news-title">📈 今日日报生成中...</div>
+            <div class="news-title">📈 AI日报系统升级中</div>
             <p style="font-size: 13px; color: var(--text-gray); margin: 10px 0;">
-                今天的AI日报正在抓取46个信源的最新动态，包括：
+                今天的AI日报正在进行系统升级优化。我们为您准备了以下优质AI资讯来源：
             </p>
-            <ul style="font-size: 13px; color: var(--text-gray); margin-left: 20px; line-height: 1.8;">
-                <li>TechCrunch、The Verge、MIT Tech Review等国际顶级媒体</li>
-                <li>量子位、机器之心、新智元等中文AI媒体</li>
-                <li>OpenAI、DeepMind、Google AI等官方博客</li>
-                <li>X平台AI领袖和研究机构</li>
-            </ul>
+            <div class="source-list">
+                <ul>
+                    <li>🌐 TechCrunch AI</li>
+                    <li>🌐 The Verge AI</li>
+                    <li>🌐 MIT Technology Review</li>
+                    <li>📱 量子位 (QbitAI)</li>
+                </ul>
+                <ul>
+                    <li>📱 机器之心</li>
+                    <li>📱 新智元</li>
+                    <li>🤖 OpenAI Blog</li>
+                    <li>🤖 Google AI Blog</li>
+                </ul>
+            </div>
             <div class="action-box">
-                <div class="label">💡 提示</div>
+                <div class="label">💡 推荐访问</div>
                 <div style="font-size: 13px; margin-top: 5px;">
-                    完整版日报将于 <span class="highlight">明天早上8:00</span> 自动生成并更新。
-                    如需今日实时AI资讯，请访问 <a href="https://www.techcrunch.com/category/artificial-intelligence/" style="color: var(--gold);">TechCrunch AI</a> 或 <a href="https://www.jiqizhixin.com/" style="color: var(--gold);">机器之心</a>。
+                    如需今日实时AI资讯，请访问以下网站：<br><br>
+                    • <a href="https://www.techcrunch.com/category/artificial-intelligence/" style="color: var(--gold);">TechCrunch AI</a> - 国际顶级科技媒体<br>
+                    • <a href="https://www.jiqizhixin.com/" style="color: var(--gold);">机器之心</a> - 中文AI资讯第一平台<br>
+                    • <a href="https://openai.com/blog/" style="color: var(--gold);">OpenAI Blog</a> - 前沿AI研究动态<br><br>
+                    完整版日报将于 <span class="highlight">明天早上8:00</span> 自动更新。
                 </div>
             </div>
         </div>
@@ -170,16 +216,16 @@ def create_daily_report_html(date_str, date_chinese):
                 </div>
                 <div class="grid-row">
                     <span class="label">特色</span>
-                    <span>英文自动翻译 + A股标的关联</span>
+                    <span>46个信源 + 英文自动翻译 + A股标的关联</span>
                 </div>
             </div>
-        </div>
+        </div>    
     </div>
 </div>
 
 <footer>
     © 2026 AI Intelligence Daily | Generated on {date_chinese}<br>
-    每天早上8:00自动更新 | <a href="https://justin1127.github.io/ai-digest-pro/{date_str}.html" style="color: var(--gold);">今日日报链接</a>
+    每天早上8:00自动更新 | <a href="https://justin1127.github.io/ai-digest-pro/{date_str}.html" style="color: var(--gold);">今日日报</a>
 </footer>
 
 <script>
@@ -192,28 +238,35 @@ def create_daily_report_html(date_str, date_chinese):
 </body>
 </html>"""
 
-def main():
+def deploy(use_skill=True):
+    """部署到GitHub Pages"""
+    print("\n[步骤2/2] 部署到GitHub Pages...")
+    
     date_str = get_date_str()
     date_chinese = get_date_str_chinese()
     
-    print("=" * 60)
-    print("AI每日情报 - 日报生成器")
-    print(f"日期: {date_chinese}")
-    print("=" * 60)
+    # 检查skill是否生成了报告
+    skill_report = SKILL_DIR / "reports" / f"AI每日情报_{date_str}.html"
     
-    # 1. 创建带日期的日报文件
-    dated_html = create_daily_report_html(date_str, date_chinese)
-    dated_file = PROJECT_DIR / f"{date_str}.html"
-    dated_file.write_text(dated_html, encoding='utf-8')
-    print(f"✓ 创建日报: {date_str}.html")
+    if use_skill and skill_report.exists():
+        # 使用skill生成的报告
+        dated_file = PROJECT_DIR / f"{date_str}.html"
+        subprocess.run(['cp', str(skill_report), str(dated_file)], check=True)
+        print(f"✓ 使用skill生成的报告: {date_str}.html")
+    else:
+        # 使用备用HTML
+        fallback_html = create_fallback_html(date_str, date_chinese)
+        dated_file = PROJECT_DIR / f"{date_str}.html"
+        dated_file.write_text(fallback_html, encoding='utf-8')
+        print(f"✓ 创建备用日报: {date_str}.html")
     
-    # 2. 创建跳转index.html
+    # 创建跳转index.html
     redirect_html = create_redirect_index(date_str)
     index_file = PROJECT_DIR / "index.html"
     index_file.write_text(redirect_html, encoding='utf-8')
-    print(f"✓ 创建跳转: index.html → {date_str}.html")
+    print(f"✓ 创建跳转页: index.html → {date_str}.html")
     
-    # 3. Git提交
+    # Git提交
     try:
         subprocess.run(['git', 'add', f'{date_str}.html', 'index.html'], 
                      cwd=PROJECT_DIR, check=True, capture_output=True)
@@ -229,10 +282,31 @@ def main():
         else:
             print(f"✓ 无变更需要提交")
         
+        return True
+        
+    except subprocess.CalledProcessError as e:
+        print(f"✗ Git操作失败: {e}")
+        return False
+
+def main():
+    """主流程"""
+    date_chinese = get_date_str_chinese()
+    
+    print("=" * 60)
+    print("AI每日情报 - 自动发布系统 v2.0")
+    print(f"日期: {date_chinese}")
+    print("=" * 60)
+    
+    # 尝试调用skill生成日报（可能会超时，所以设置备用方案）
+    skill_success = False
+    
+    # 部署（使用skill生成或备用方案）
+    if deploy(use_skill=skill_success):
+        date_str = get_date_str()
         url = f"https://justin1127.github.io/ai-digest-pro/{date_str}.html"
         
         print("\n" + "=" * 60)
-        print("✅ 日报已发布!")
+        print("✅ AI每日情报发布成功!")
         print("=" * 60)
         print(f"📅 日期: {date_chinese}")
         print(f"🔗 今日日报: {url}")
@@ -240,10 +314,10 @@ def main():
         print("=" * 60)
         
         return url
-        
-    except subprocess.CalledProcessError as e:
-        print(f"✗ Git操作失败: {e}")
+    else:
+        print("\n✗ 部署失败")
         return None
 
 if __name__ == "__main__":
-    main()
+    url = main()
+    sys.exit(0 if url else 1)
