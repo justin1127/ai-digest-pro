@@ -11,7 +11,8 @@ from pathlib import Path
 
 class DailyReportGenerator:
     def __init__(self):
-        self.project_dir = Path("/Users/maxjustin/.openclaw/workspace/projects/ai-digest-pro")
+        # GitHub Pages 部署目录
+        self.project_dir = Path("/Users/maxjustin/.openclaw/workspace/ai-digest-pro")
         self.data_dir = self.project_dir / "data"
         self.data_dir.mkdir(exist_ok=True)
         
