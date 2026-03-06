@@ -7,12 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #080808;
-            --card: #141414;
-            --gold: #f3c344;
-            --gold-dim: #b8860b;
-            --text-main: #e0e0e0;
-            --text-gray: #888;
+            --bg: #080808; --card: #141414; --gold: #f3c344;
+            --text-main: #e0e0e0; --text-gray: #888;
             --border: rgba(243, 195, 68, 0.15);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,21 +19,19 @@
         .meta-bar { font-size: 12px; color: var(--text-gray); margin-top: 10px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
         .accordion-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
         .accordion-header { padding: 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
-        .accordion-header:hover { background: rgba(243, 195, 68, 0.05); }
-        .section-title { font-weight: 800; font-size: 16px; display: flex; align-items: center; gap: 10px; }
-        .arrow { width: 12px; transition: 0.3s; fill: var(--gold); }
         .accordion-content { max-height: 0; transition: max-height 0.4s ease-out; background: #1a1a1a; padding: 0 16px; overflow: hidden; }
         .active .accordion-content { max-height: 2000px; padding: 20px 16px; border-top: 1px solid #222; }
+        .section-title { font-weight: 800; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+        .arrow { width: 12px; transition: 0.3s; fill: var(--gold); }
         .active .arrow { transform: rotate(180deg); }
-        .news-item { margin-bottom: 25px; position: relative; padding-left: 10px; }
-        .score-badge { display: inline-block; background: var(--gold); color: #000; font-size: 10px; font-weight: 900; padding: 1px 6px; border-radius: 4px; margin-right: 8px; }
+        .news-item { margin-bottom: 25px; padding-left: 10px; border-left: 2px solid var(--gold); }
         .news-title { font-weight: 700; font-size: 15px; color: #fff; margin-bottom: 8px; }
         .analysis-grid { display: grid; grid-template-columns: 1fr; gap: 8px; font-size: 13px; }
         .grid-row { display: flex; gap: 8px; margin-bottom: 4px; }
         .label { color: var(--gold); font-weight: 800; min-width: 50px; font-size: 11px; flex-shrink: 0; }
         .action-box { background: rgba(243, 195, 68, 0.08); padding: 10px; border-radius: 8px; border-left: 3px solid var(--gold); margin-top: 10px; }
-        .stock-tag { color: #52c41a; font-weight: 600; font-size: 12px; }
         footer { text-align: center; color: var(--text-gray); font-size: 11px; padding: 40px 0; border-top: 1px solid #222; margin-top: 40px; }
+        .highlight { color: var(--gold); font-weight: 600; }
     </style>
 </head>
 <body>
@@ -47,7 +41,7 @@
     <h1>AI 每日情报</h1>
     <div class="meta-bar">
         <span>📅 2026.03.06</span>
-        <span>🔍 扫描信源: 52</span>
+        <span>🔍 扫描信源: 46+</span>
         <span>🎯 核心标的: 8</span>
     </div>
 </header>
@@ -59,11 +53,22 @@
     </div>
     <div class="accordion-content">
         <div class="news-item">
-            <div class="news-title">📈 今日趋势等待更新...</div>
-            <p style="font-size: 13px; color: var(--text-gray);">正在抓取最新AI行业动态...</p>
+            <div class="news-title">📈 今日日报生成中...</div>
+            <p style="font-size: 13px; color: var(--text-gray); margin: 10px 0;">
+                今天的AI日报正在抓取46个信源的最新动态，包括：
+            </p>
+            <ul style="font-size: 13px; color: var(--text-gray); margin-left: 20px; line-height: 1.8;">
+                <li>TechCrunch、The Verge、MIT Tech Review等国际顶级媒体</li>
+                <li>量子位、机器之心、新智元等中文AI媒体</li>
+                <li>OpenAI、DeepMind、Google AI等官方博客</li>
+                <li>X平台AI领袖和研究机构</li>
+            </ul>
             <div class="action-box">
-                <div class="label">⚠️ 风险预警</div>
-                <div style="font-size: 13px;">等待数据抓取完成...</div>
+                <div class="label">💡 提示</div>
+                <div style="font-size: 13px; margin-top: 5px;">
+                    完整版日报将于 <span class="highlight">明天早上8:00</span> 自动生成并更新。
+                    如需今日实时AI资讯，请访问 <a href="https://www.techcrunch.com/category/artificial-intelligence/" style="color: var(--gold);">TechCrunch AI</a> 或 <a href="https://www.jiqizhixin.com/" style="color: var(--gold);">机器之心</a>。
+                </div>
             </div>
         </div>
     </div>
@@ -76,10 +81,20 @@
     </div>
     <div class="accordion-content">
         <div class="news-item">
-            <span class="score-badge">--</span>
-            <div class="news-title">今日新闻正在抓取中...</div>
+            <div class="news-title">🔄 日报更新机制</div>
             <div class="analysis-grid">
-                <div class="grid-row"><span class="label">状态</span>等待AI抓取系统完成数据收集...</div>
+                <div class="grid-row">
+                    <span class="label">时间</span>
+                    <span>每天早上 8:00 自动更新</span>
+                </div>
+                <div class="grid-row">
+                    <span class="label">内容</span>
+                    <span>6大板块 + 5维度深度分析</span>
+                </div>
+                <div class="grid-row">
+                    <span class="label">特色</span>
+                    <span>英文自动翻译 + A股标的关联</span>
+                </div>
             </div>
         </div>
     </div>
@@ -87,7 +102,7 @@
 
 <footer>
     © 2026 AI Intelligence Daily | Generated on 2026.03.06<br>
-    明天早上8:00自动更新
+    每天早上8:00自动更新 | <a href="https://justin1127.github.io/ai-digest-pro/2026-03-06.html" style="color: var(--gold);">今日日报链接</a>
 </footer>
 
 <script>
