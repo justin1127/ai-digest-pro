@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 每日情报 | 2026.03.09</title>
+    <style>
+        :root { --bg: #080808; --card: #141414; --gold: #f3c344; --text-main: #e0e0e0; --text-gray: #888; --border: rgba(243, 195, 68, 0.15); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text-main); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; padding: 15px; }
+        header { padding: 20px 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; text-align: center; }
+        .tag { font-size: 10px; color: var(--gold); letter-spacing: 3px; font-weight: 800; margin-bottom: 8px; }
+        h1 { font-family: 'Noto Serif SC', serif; font-size: 28px; background: linear-gradient(180deg, #fff, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .meta-bar { font-size: 12px; color: var(--text-gray); margin-top: 10px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .accordion-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+        .accordion-header { padding: 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .accordion-header:hover { background: rgba(243, 195, 68, 0.05); }
+        .accordion-content { max-height: 0; transition: max-height 0.4s ease-out; background: #1a1a1a; padding: 0 16px; overflow: hidden; }
+        .active .accordion-content { max-height: 3000px; padding: 20px 16px; border-top: 1px solid #222; }
+        .section-title { font-weight: 800; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+        .arrow { width: 12px; transition: 0.3s; fill: var(--gold); }
+        .active .arrow { transform: rotate(180deg); }
+        .news-item { margin-bottom: 25px; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid var(--gold); }
+        .news-title { font-weight: 700; font-size: 15px; color: #fff; margin-bottom: 8px; }
+        .news-meta { font-size: 11px; color: var(--text-gray); margin-bottom: 10px; }
+        .analysis-grid { display: grid; grid-template-columns: 1fr; gap: 8px; font-size: 13px; }
+        .grid-row { display: flex; gap: 8px; margin-bottom: 4px; }
+        .label { color: var(--gold); font-weight: 800; min-width: 50px; font-size: 11px; }
+        .score-badge { display: inline-block; background: var(--gold); color: #000; font-size: 10px; font-weight: 900; padding: 2px 8px; border-radius: 4px; margin-right: 8px; }
+        .insight-box { background: rgba(243, 195, 68, 0.08); padding: 15px; border-radius: 8px; border-left: 3px solid var(--gold); margin: 15px 0; }
+        .insight-title { color: var(--gold); font-weight: 700; margin-bottom: 10px; font-size: 14px; }
+        footer { text-align: center; color: var(--text-gray); font-size: 11px; padding: 40px 0; border-top: 1px solid #222; margin-top: 40px; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="tag">AI INTELLIGENCE DAILY</div>
+    <h1>AI 每日情报</h1>
+    <div class="meta-bar">
+        <span>📅 2026.03.09</span>
+        <span>🔍 信源: 15核心</span>
+        <span>📰 动态: 8</span>
+        <span>🎯 核心标的: 8</span>
+    </div>
+</header>
+
+<div class="accordion-item active">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="section-title">🧠 元洞察 Meta Insights</div>
+        <svg class="arrow" viewBox="0 0 20 20"><path d="M5 7l5 5 5-5z"/></svg>
+    </div>
+    <div class="accordion-content">
+        <div class="insight-box">
+            <div class="insight-title">🔮 今日趋势扫描</div>
+            <p style="font-size: 13px; color: var(--text-gray);">
+                <strong style="color: var(--gold);">技术突破:</strong> Claude 4和Qwen3发布，大模型进入新阶段；
+                <strong style="color: var(--gold);">资本动态:</strong> 人形机器人赛道获大额融资；
+                <strong style="color: var(--gold);">政策影响:</strong> 芯片出口管制推动国产算力自主化。
+            </p>
+        </div>        
+        <div class="insight-box">
+            <div class="insight-title">💡 创业方向建议</div>
+            <ul style="font-size: 13px; color: var(--text-gray); margin-left: 20px; line-height: 1.8;">
+                <li><strong>国产算力解决方案:</strong> 芯片管制背景下，国产AI芯片需求激增</li>
+                <li><strong>垂直领域大模型:</strong> 针对医疗、法律、教育的专业模型</li>
+                <li><strong>AI Agent应用:</strong> 基于强推理模型的自动化工具</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="section-title">🌐 行业动态 Industry Feed</div>
+        <svg class="arrow" viewBox="0 0 20 20"><path d="M5 7l5 5 5-5z"/></svg>
+    </div>
+    <div class="accordion-content">
+        
+        <div class="news-item">
+            <span class="score-badge">动</span>
+            <div class="news-title">高中生AI创业，现在只招龙虾员工：每月成本2800</div>
+            <div class="news-meta">📍 量子位 · 2026.03.09</div>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">摘要</span><span>全龙虾公司，还设了好几个部门...</span></div>
+                <div class="grid-row"><span class="label">链接</span><a href="https://www.qbitai.com/2026/03/384797.html" target="_blank" style="color: var(--gold);">阅读原文 →</a></div>
+            </div>
+        </div>
+        
+        <div class="news-item">
+            <span class="score-badge">动</span>
+            <div class="news-title">20岁大学生花10天VibeCoding一个开源项目，获盛大3000万投资</div>
+            <div class="news-meta">📍 量子位 · 2026.03.09</div>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">摘要</span><span>...</span></div>
+                <div class="grid-row"><span class="label">链接</span><a href="https://www.qbitai.com/2026/03/384728.html" target="_blank" style="color: var(--gold);">阅读原文 →</a></div>
+            </div>
+        </div>
+        
+        <div class="news-item">
+            <span class="score-badge">动</span>
+            <div class="news-title">Will the Pentagon’s Anthropic controversy scare startups away from defense work?</div>
+            <div class="news-meta">📍 TechCrunch AI · 2026.03.09</div>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">摘要</span><span>On the latest episode of TechCrunch’s Equity podcast, we discussed what the controversy means for other startups seeking...</span></div>
+                <div class="grid-row"><span class="label">链接</span><a href="https://techcrunch.com/2026/03/08/will-the-pentagons-anthropic-controversy-scare-startups-away-from-defense-work/" target="_blank" style="color: var(--gold);">阅读原文 →</a></div>
+            </div>
+        </div>
+        
+        <div class="news-item">
+            <span class="score-badge">动</span>
+            <div class="news-title">Owner of ICE detention facility sees big opportunity in AI man camps</div>
+            <div class="news-meta">📍 TechCrunch AI · 2026.03.09</div>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">摘要</span><span>AI data center developers are increasingly relying on a style of camp popularized as housing for men working in remote o...</span></div>
+                <div class="grid-row"><span class="label">链接</span><a href="https://techcrunch.com/2026/03/08/owner-of-ice-detention-facility-sees-big-opportunity-in-ai-man-camps/" target="_blank" style="color: var(--gold);">阅读原文 →</a></div>
+            </div>
+        </div>
+        
+        <div class="news-item">
+            <span class="score-badge">动</span>
+            <div class="news-title">A roadmap for AI, if anyone will listen</div>
+            <div class="news-meta">📍 TechCrunch AI · 2026.03.09</div>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">摘要</span><span>The Pro-Human Declaration was finalized before last week's Pentagon-Anthropic standoff, but the collision of the two eve...</span></div>
+                <div class="grid-row"><span class="label">链接</span><a href="https://techcrunch.com/2026/03/07/a-roadmap-for-ai-if-anyone-will-listen/" target="_blank" style="color: var(--gold);">阅读原文 →</a></div>
+            </div>
+        </div>
+        
+        <div class="news-item">
+            <span class="score-badge">动</span>
+            <div class="news-title">Google just gave Sundar Pichai a $692M pay package</div>
+            <div class="news-meta">📍 TechCrunch AI · 2026.03.09</div>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">摘要</span><span>Most of it is tied to performance, including new stock incentives linked to Waymo and Wing, its drone delivery venture....</span></div>
+                <div class="grid-row"><span class="label">链接</span><a href="https://techcrunch.com/2026/03/07/google-just-gave-sundar-pichai-a-692m-pay-package/" target="_blank" style="color: var(--gold);">阅读原文 →</a></div>
+            </div>
+        </div>
+        
+        <div class="news-item">
+            <span class="score-badge">动</span>
+            <div class="news-title">Is the Pentagon allowed to surveil Americans with AI?</div>
+            <div class="news-meta">📍 MIT Tech Review · 2026.03.09</div>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">摘要</span><span>The ongoing public feud between the Department of Defense and the AI company Anthropic has raised a deep and still unans...</span></div>
+                <div class="grid-row"><span class="label">链接</span><a href="https://www.technologyreview.com/2026/03/06/1134012/is-the-pentagon-allowed-to-surveil-americans-with-ai/" target="_blank" style="color: var(--gold);">阅读原文 →</a></div>
+            </div>
+        </div>
+        
+        <div class="news-item">
+            <span class="score-badge">动</span>
+            <div class="news-title">The Download: 10 things that matter in AI, plus Anthropic’s plan to sue the Pentagon</div>
+            <div class="news-meta">📍 MIT Tech Review · 2026.03.09</div>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">摘要</span><span>This is today&#8217;s edition of The Download, our weekday newsletter that provides a daily dose of what&#8217;s going o...</span></div>
+                <div class="grid-row"><span class="label">链接</span><a href="https://www.technologyreview.com/2026/03/06/1133989/the-download-10-things-that-matter-in-ai-anthropics-plan-sue-pentagon/" target="_blank" style="color: var(--gold);">阅读原文 →</a></div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="section-title">📈 股票雷达 Stock Radar</div>
+        <svg class="arrow" viewBox="0 0 20 20"><path d="M5 7l5 5 5-5z"/></svg>
+    </div>
+    <div class="accordion-content">
+        <div class="news-item">
+            <div class="analysis-grid" style="font-size: 13px;">
+                <div class="grid-row" style="border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 10px; font-weight: 600;">
+                    <span style="width: 100px;">标的</span>
+                    <span style="width: 120px; color: var(--text-gray);">逻辑</span>
+                    <span style="width: 60px; text-align: center;">趋势</span>
+                </div>
+                <div class="grid-row"><span style="width: 100px; font-weight: 600;">寒武纪</span><span style="width: 120px; color: var(--text-gray);">国产AI芯片</span><span style="width: 60px; text-align: center; color: #52c41a;">📈</span></div>
+                <div class="grid-row"><span style="width: 100px; font-weight: 600;">科大讯飞</span><span style="width: 120px; color: var(--text-gray);">大模型应用</span><span style="width: 60px; text-align: center; color: #52c41a;">📈</span></div>
+                <div class="grid-row"><span style="width: 100px; font-weight: 600;">埃斯顿</span><span style="width: 120px; color: var(--text-gray);">人形机器人</span><span style="width: 60px; text-align: center; color: #52c41a;">📈</span></div>
+                <div class="grid-row"><span style="width: 100px; font-weight: 600;">昆仑万维</span><span style="width: 120px; color: var(--text-gray);">海外AI应用</span><span style="width: 60px; text-align: center; color: #52c41a;">📈</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    © 2026 AI Intelligence Daily | Generated on 2026.03.09<br>
+    每天早上8:00自动更新 · 15核心信源
+</footer>
+
+<script>
+    function toggleAccordion(element) {
+        const item = element.parentElement;
+        item.classList.toggle('active');
+    }
+</script>
+</body>
+</html>
