@@ -1,0 +1,1 @@
+0 8 * * * cd /Users/maxjustin/.openclaw/workspace/ai-digest-pro && /usr/bin/python3 full_publish.py >> /tmp/ai-digest.log 2>&1
