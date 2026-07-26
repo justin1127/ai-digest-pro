@@ -1,12 +1,12 @@
 #!/bin/bash
 # AI日报全自动发布脚本
-# 生成HTML + 创建飞书文档 + 推送通知
+# 生成HTML + 推送到GitHub Pages
 
-cd /Users/maxjustin/.openclaw/workspace/ai-digest-pro
+cd "$(dirname "$0")"
 
 # 1. 生成HTML日报
 echo "🤖 正在生成AI日报..."
-python3 generate.py
+python3 generate.py --fetch --limit 5 --push
 if [ $? -ne 0 ]; then
     echo "❌ 日报生成失败"
     exit 1
@@ -17,10 +17,6 @@ TODAY=$(date +%Y-%m-%d)
 HTML_FILE="${TODAY}.html"
 
 echo "✅ HTML已生成: ${HTML_FILE}"
-
-# 2. 调用OpenClaw创建飞书文档并推送
-# 通过发送消息触发agent执行后续操作
-echo "📄 飞书文档创建完成"
-echo "📎 推送链接给用户..."
+echo "🔗 https://justin1127.github.io/ai-digest-pro/${HTML_FILE}"
 
 exit 0

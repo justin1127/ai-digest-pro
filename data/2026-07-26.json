@@ -1,0 +1,66 @@
+{
+  "date": "2026-07-26",
+  "insights": [
+    "AI行业的政策战场正在从技术标准延伸到选举资金、开源模型和跨境竞争，监管影响已经变成商业变量。",
+    "开源/开放权重模型重新成为巨头共同防线：它既是创新叙事，也是对专有模型垄断和海外竞争的回应。",
+    "硬件入口、模型安全和内容版权继续交织，AI产品经理需要同时关注新入口、合规成本和用户信任。",
+    "今日5条精选更适合做决策雷达：先判断方向，再决定是否进入深度分析或产品实验。"
+  ],
+  "items": [
+    {
+      "title": "AI行业已向2026美国中期选举投入6500万美元，监管路线成为代理战场",
+      "source": "Business Insider",
+      "summary": "OpenAI、Anthropic、Meta等相关力量通过超级PAC和倡议网络影响候选人，亲创新与强监管阵营都在加大投入。",
+      "category": "政策",
+      "link": "https://www.businessinsider.com/ai-midterm-elections-spending-super-pacs-greg-brockman-anthropic-2026-7",
+      "score": 96,
+      "reason": "政策资金化信号强，可能影响美国AI监管、采购和企业合规路线。",
+      "impact": "AI监管会更深地进入选举周期，产品出海、政企销售和安全叙事都需要提前准备。",
+      "action": "把美国AI政策作为周级监控项，跟踪候选人、PAC和州级法案对AI产品的影响。"
+    },
+    {
+      "title": "Microsoft、Meta、Nvidia、OpenAI、Palantir等联名支持开放权重AI模型",
+      "source": "Business Insider",
+      "summary": "多家科技公司和开源组织呼吁美国政策制定者不要对开放权重模型采取一刀切限制，强调开放模型对创新、安全和主权的重要性。",
+      "category": "模型",
+      "link": "https://www.businessinsider.com/microsoft-nvidia-meta-palantir-jensen-huang-open-source-ai-letter-2026-7",
+      "score": 93,
+      "reason": "开放模型阵营出现罕见巨头共识，影响模型生态、企业采用和政策叙事。",
+      "impact": "开放权重模型可能获得更强合法性，企业可重新评估私有部署、成本和可控性路线。",
+      "action": "建立开放模型雷达，对比闭源API、开放权重和自托管方案的成本/风险/能力。"
+    },
+    {
+      "title": "Nvidia黄仁勋为中国AI模型辩护，反对把开放模型竞争简单等同于IP盗用",
+      "source": "Barron's",
+      "summary": "黄仁勋强调开放权重模型的重要性，并呼吁政策制定者区分真实滥用和正常创新竞争。",
+      "category": "算力",
+      "link": "https://www.barrons.com/articles/nvidia-jensen-huang-china-ai-models-openai-anthropic-82fe7a80",
+      "score": 90,
+      "reason": "Nvidia立场同时牵动芯片出口、开放模型和中美AI竞争。",
+      "impact": "算力公司会在监管、客户需求和全球市场之间继续寻找平衡，国产/海外模型生态都受影响。",
+      "action": "关注Moonshot/Kimi等开放模型争议是否引发实体清单、披露义务或企业采购限制。"
+    },
+    {
+      "title": "苹果与OpenAI硬件相关商业秘密诉讼，指向后智能手机时代入口之争",
+      "source": "The Verge",
+      "summary": "苹果围绕前员工和OpenAI硬件计划提起诉讼，争议背后是AI设备、屏幕之外交互和下一代入口控制权。",
+      "category": "产品",
+      "link": "https://www.theverge.com/podcast/968787/apple-openai-trade-secrets-lawsuit-ai-hardware-smartphone-jony-ive",
+      "score": 85,
+      "reason": "AI硬件从概念走向入口竞争，牵动苹果、OpenAI和消费级AI交互。",
+      "impact": "如果AI设备成立，App入口、操作系统分发和个人助理形态都可能被重排。",
+      "action": "拆解AI硬件的核心假设：无屏/低屏交互、记忆、隐私、任务代理和生态绑定。"
+    },
+    {
+      "title": "DeepMind CEO呼吁建立独立标准机构监管前沿AI",
+      "source": "TechCrunch",
+      "summary": "DeepMind CEO提出需要独立标准机构来监管前沿AI，反映行业对安全评测、责任边界和全球协调的需求。",
+      "category": "安全",
+      "link": "https://techcrunch.com/2026/07/14/deepmind-ceo-calls-for-an-independent-standards-body-to-regulate-frontier-ai/",
+      "score": 82,
+      "reason": "安全标准化会影响模型发布、企业采购、安全评估和政府监管协作。",
+      "impact": "前沿AI可能进入更标准化的审查流程，创业公司需要关注评测合规和安全证明。",
+      "action": "把模型安全评测、红队、权限隔离和事故披露纳入AI产品发布清单。"
+    }
+  ]
+}

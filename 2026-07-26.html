@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI决策情报 | 2026.07.26</title>
+    <meta name="description" content="AI决策情报 Pro：每日5条AI行业高优先级精选，按评分排序。">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0a0a0f;
+            --panel: #141418;
+            --panel-2: #1c1c22;
+            --gold: #f0c674;
+            --gold-2: #d4a853;
+            --text: #eeeeee;
+            --muted: #9a9aa3;
+            --line: rgba(240, 198, 116, 0.22);
+            --danger: #ff6b6b;
+            --ok: #51cf66;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+            background: radial-gradient(circle at top, #1a1a2e 0, var(--bg) 42%);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        a { color: inherit; }
+        .container { max-width: 860px; margin: 0 auto; }
+
+        #password-overlay {
+            position: fixed; inset: 0; min-height: 100dvh;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            display: flex; justify-content: center; align-items: center; z-index: 9999;
+            padding: 24px;
+        }
+        #password-overlay.hidden { display: none !important; }
+        .password-box {
+            background: var(--panel); border: 1px solid #333; border-radius: 16px;
+            padding: 36px; text-align: center; max-width: 420px; width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .password-box h2, h1 {
+            background: linear-gradient(90deg, #fff, var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .password-box h2 { font-size: 24px; margin-bottom: 10px; }
+        .password-box p { color: var(--muted); margin-bottom: 24px; font-size: 14px; }
+        .password-box input {
+            width: 100%; padding: 14px 16px; font-size: 16px;
+            background: #0a0a0f; border: 1px solid #333; border-radius: 8px;
+            color: #fff; text-align: center; letter-spacing: 2px; margin-bottom: 16px;
+        }
+        .password-box input:focus { outline: none; border-color: var(--gold); }
+        .password-box button {
+            width: 100%; padding: 14px; font-size: 16px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-2));
+            color: #000; border: none; border-radius: 8px; cursor: pointer; font-weight: 800;
+        }
+        .error-msg { color: var(--danger); font-size: 13px; margin-top: 12px; }
+        .success-msg { color: var(--ok); font-size: 13px; margin-top: 12px; }
+        .subscribe-info {
+            margin-top: 24px; padding-top: 24px; border-top: 1px solid #333;
+            font-size: 13px; color: #666;
+        }
+        .subscribe-info a { color: var(--gold); text-decoration: none; }
+        .user-info {
+            position: fixed; top: 18px; right: 18px; background: rgba(20,20,24,0.92);
+            border: 1px solid #333; border-radius: 8px; padding: 10px 14px;
+            font-size: 12px; color: var(--muted); z-index: 100; backdrop-filter: blur(10px);
+        }
+        .user-info span { color: var(--gold); }
+        header {
+            padding: 30px 0 24px; border-bottom: 1px solid var(--line); margin-bottom: 24px;
+            text-align: center;
+        }
+        .eyebrow {
+            color: var(--gold); font-size: 11px; font-weight: 900; letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+        h1 { font-size: clamp(30px, 6vw, 48px); line-height: 1.12; letter-spacing: 0; }
+        .subtitle { color: var(--muted); margin-top: 12px; font-size: 14px; }
+        .stats {
+            display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;
+            margin: 24px 0;
+        }
+        .stat {
+            background: rgba(255,255,255,0.035); border: 1px solid var(--line);
+            border-radius: 8px; padding: 14px; min-height: 74px;
+        }
+        .stat-label { color: var(--muted); font-size: 12px; }
+        .stat-value { font-size: 22px; font-weight: 900; color: #fff; margin-top: 4px; }
+        section { margin-bottom: 22px; }
+        .section-title {
+            display: flex; align-items: center; gap: 10px; font-size: 18px;
+            font-weight: 900; margin-bottom: 14px;
+        }
+        .insight-card {
+            display: grid; grid-template-columns: 46px 1fr; gap: 12px;
+            background: rgba(240,198,116,0.08); border: 1px solid var(--line);
+            border-radius: 8px; padding: 14px; margin-bottom: 10px;
+        }
+        .insight-index { color: var(--gold); font-weight: 900; }
+        .insight-card p { color: #d8d8df; font-size: 14px; }
+        .news-item {
+            background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+            border: 1px solid var(--line); border-left: 4px solid var(--gold);
+            border-radius: 10px; padding: 18px; margin-bottom: 16px;
+        }
+        .item-topline {
+            display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;
+        }
+        .rank { color: var(--gold); font-weight: 900; font-size: 12px; }
+        .tag, .score {
+            display: inline-flex; align-items: center; min-height: 24px;
+            padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 800;
+        }
+        .tag { background: rgba(240,198,116,0.14); color: var(--gold); }
+        .score { background: var(--gold); color: #000; margin-left: auto; }
+        h3 { font-size: 18px; line-height: 1.38; color: #fff; margin-bottom: 8px; }
+        .meta { color: var(--muted); font-size: 12px; margin-bottom: 10px; }
+        .summary { color: #c9c9d1; font-size: 14px; margin-bottom: 14px; }
+        .analysis-grid {
+            display: grid; gap: 8px; font-size: 13px; background: rgba(0,0,0,0.18);
+            border-radius: 8px; padding: 12px; margin-bottom: 14px;
+        }
+        .grid-row { display: grid; grid-template-columns: 72px 1fr; gap: 10px; }
+        .label { color: var(--gold); font-weight: 900; font-size: 12px; }
+        .link { color: var(--gold); text-decoration: none; font-size: 13px; font-weight: 800; }
+        .link:hover { text-decoration: underline; }
+        footer {
+            text-align: center; padding: 30px 0; color: #666; font-size: 12px;
+            border-top: 1px solid #333; margin-top: 30px;
+        }
+        @media (max-width: 680px) {
+            body { padding: 14px; }
+            .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .score { margin-left: 0; }
+            .grid-row { grid-template-columns: 1fr; gap: 2px; }
+            .user-info { position: static; margin: 0 auto 12px; width: fit-content; }
+            .password-box { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="password-overlay">
+        <div class="password-box">
+            <h2>🔐 AI决策情报 Pro</h2>
+            <p>输入您的专属密码解锁今日内容</p>
+            <input type="text" id="password-input" placeholder="输入密码（如：TEST888）" maxlength="24" autocomplete="one-time-code">
+            <button id="unlock-btn" onclick="checkPassword()">解锁访问</button>
+            <div id="message"></div>
+            <div class="subscribe-info">
+                未订阅？<a href="#" onclick="alert('请添加微信：justin1127（备注AI日报）订阅')">点击咨询订阅</a><br>
+                <span style="font-size: 11px; color: #555;">月付¥19 / 年付¥169</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="user-info" id="user-info" style="display: none;">
+        👤 <span id="user-name">用户</span> | 有效期至 <span id="expiry-date">--</span>
+    </div>
+
+    <div class="container" id="content" style="display: none;">
+        <header>
+            <div class="eyebrow">AI INTELLIGENCE DAILY</div>
+            <h1>AI决策情报</h1>
+            <p class="subtitle">📅 2026.07.26 · 每日5条高优先级精选 · 按评分排序</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat"><div class="stat-label">精选</div><div class="stat-value">5</div></div>
+            <div class="stat"><div class="stat-label">平均分</div><div class="stat-value">89</div></div>
+            <div class="stat"><div class="stat-label">来源</div><div class="stat-value">4</div></div>
+            <div class="stat"><div class="stat-label">阅读</div><div class="stat-value">5min</div></div>
+        </div>
+
+        <section>
+            <div class="section-title">🧠 元洞察 Meta Insights</div>
+            
+        <div class="insight-card">
+            <span class="insight-index">01</span>
+            <p>AI行业的政策战场正在从技术标准延伸到选举资金、开源模型和跨境竞争，监管影响已经变成商业变量。</p>
+        </div>
+        
+
+        <div class="insight-card">
+            <span class="insight-index">02</span>
+            <p>开源/开放权重模型重新成为巨头共同防线：它既是创新叙事，也是对专有模型垄断和海外竞争的回应。</p>
+        </div>
+        
+
+        <div class="insight-card">
+            <span class="insight-index">03</span>
+            <p>硬件入口、模型安全和内容版权继续交织，AI产品经理需要同时关注新入口、合规成本和用户信任。</p>
+        </div>
+        
+
+        <div class="insight-card">
+            <span class="insight-index">04</span>
+            <p>今日5条精选更适合做决策雷达：先判断方向，再决定是否进入深度分析或产品实验。</p>
+        </div>
+        
+        </section>
+
+        <section>
+            <div class="section-title">🌐 今日精选 Top 5</div>
+            
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">#01</span>
+                <span class="tag">⚖️ 政策</span>
+                <span class="score">96分</span>
+            </div>
+            <h3>AI行业已向2026美国中期选举投入6500万美元，监管路线成为代理战场</h3>
+            <p class="meta">📍 Business Insider · 2026.07.26</p>
+            <p class="summary">OpenAI、Anthropic、Meta等相关力量通过超级PAC和倡议网络影响候选人，亲创新与强监管阵营都在加大投入。</p>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">入选理由</span><span>政策资金化信号强，可能影响美国AI监管、采购和企业合规路线。</span></div>
+                <div class="grid-row"><span class="label">影响判断</span><span>AI监管会更深地进入选举周期，产品出海、政企销售和安全叙事都需要提前准备。</span></div>
+                <div class="grid-row"><span class="label">行动建议</span><span>把美国AI政策作为周级监控项，跟踪候选人、PAC和州级法案对AI产品的影响。</span></div>
+            </div>
+            <a href="https://www.businessinsider.com/ai-midterm-elections-spending-super-pacs-greg-brockman-anthropic-2026-7" target="_blank" rel="noopener noreferrer" class="link">阅读原文 →</a>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">#02</span>
+                <span class="tag">🧠 模型</span>
+                <span class="score">93分</span>
+            </div>
+            <h3>Microsoft、Meta、Nvidia、OpenAI、Palantir等联名支持开放权重AI模型</h3>
+            <p class="meta">📍 Business Insider · 2026.07.26</p>
+            <p class="summary">多家科技公司和开源组织呼吁美国政策制定者不要对开放权重模型采取一刀切限制，强调开放模型对创新、安全和主权的重要性。</p>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">入选理由</span><span>开放模型阵营出现罕见巨头共识，影响模型生态、企业采用和政策叙事。</span></div>
+                <div class="grid-row"><span class="label">影响判断</span><span>开放权重模型可能获得更强合法性，企业可重新评估私有部署、成本和可控性路线。</span></div>
+                <div class="grid-row"><span class="label">行动建议</span><span>建立开放模型雷达，对比闭源API、开放权重和自托管方案的成本/风险/能力。</span></div>
+            </div>
+            <a href="https://www.businessinsider.com/microsoft-nvidia-meta-palantir-jensen-huang-open-source-ai-letter-2026-7" target="_blank" rel="noopener noreferrer" class="link">阅读原文 →</a>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">#03</span>
+                <span class="tag">⚙️ 算力</span>
+                <span class="score">90分</span>
+            </div>
+            <h3>Nvidia黄仁勋为中国AI模型辩护，反对把开放模型竞争简单等同于IP盗用</h3>
+            <p class="meta">📍 Barron&#x27;s · 2026.07.26</p>
+            <p class="summary">黄仁勋强调开放权重模型的重要性，并呼吁政策制定者区分真实滥用和正常创新竞争。</p>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">入选理由</span><span>Nvidia立场同时牵动芯片出口、开放模型和中美AI竞争。</span></div>
+                <div class="grid-row"><span class="label">影响判断</span><span>算力公司会在监管、客户需求和全球市场之间继续寻找平衡，国产/海外模型生态都受影响。</span></div>
+                <div class="grid-row"><span class="label">行动建议</span><span>关注Moonshot/Kimi等开放模型争议是否引发实体清单、披露义务或企业采购限制。</span></div>
+            </div>
+            <a href="https://www.barrons.com/articles/nvidia-jensen-huang-china-ai-models-openai-anthropic-82fe7a80" target="_blank" rel="noopener noreferrer" class="link">阅读原文 →</a>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">#04</span>
+                <span class="tag">📱 产品</span>
+                <span class="score">85分</span>
+            </div>
+            <h3>苹果与OpenAI硬件相关商业秘密诉讼，指向后智能手机时代入口之争</h3>
+            <p class="meta">📍 The Verge · 2026.07.26</p>
+            <p class="summary">苹果围绕前员工和OpenAI硬件计划提起诉讼，争议背后是AI设备、屏幕之外交互和下一代入口控制权。</p>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">入选理由</span><span>AI硬件从概念走向入口竞争，牵动苹果、OpenAI和消费级AI交互。</span></div>
+                <div class="grid-row"><span class="label">影响判断</span><span>如果AI设备成立，App入口、操作系统分发和个人助理形态都可能被重排。</span></div>
+                <div class="grid-row"><span class="label">行动建议</span><span>拆解AI硬件的核心假设：无屏/低屏交互、记忆、隐私、任务代理和生态绑定。</span></div>
+            </div>
+            <a href="https://www.theverge.com/podcast/968787/apple-openai-trade-secrets-lawsuit-ai-hardware-smartphone-jony-ive" target="_blank" rel="noopener noreferrer" class="link">阅读原文 →</a>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">#05</span>
+                <span class="tag">🛡️ 安全</span>
+                <span class="score">82分</span>
+            </div>
+            <h3>DeepMind CEO呼吁建立独立标准机构监管前沿AI</h3>
+            <p class="meta">📍 TechCrunch · 2026.07.26</p>
+            <p class="summary">DeepMind CEO提出需要独立标准机构来监管前沿AI，反映行业对安全评测、责任边界和全球协调的需求。</p>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">入选理由</span><span>安全标准化会影响模型发布、企业采购、安全评估和政府监管协作。</span></div>
+                <div class="grid-row"><span class="label">影响判断</span><span>前沿AI可能进入更标准化的审查流程，创业公司需要关注评测合规和安全证明。</span></div>
+                <div class="grid-row"><span class="label">行动建议</span><span>把模型安全评测、红队、权限隔离和事故披露纳入AI产品发布清单。</span></div>
+            </div>
+            <a href="https://techcrunch.com/2026/07/14/deepmind-ceo-calls-for-an-independent-standards-body-to-regulate-frontier-ai/" target="_blank" rel="noopener noreferrer" class="link">阅读原文 →</a>
+        </article>
+    
+        </section>
+
+        <footer>
+            © 2026 AI决策情报 | 每天早上8:00更新<br>
+            订阅咨询微信：justin1127<br>
+            <a href="https://justin1127.github.io/ai-digest-pro/2026-07-26.html" style="color: #777;">https://justin1127.github.io/ai-digest-pro/2026-07-26.html</a>
+        </footer>
+    </div>
+
+    <script>
+        const VALID_PASSWORDS = {"TEST888": {"name": "测试用户", "expiry": "2099-12-31"}};
+
+        window.onload = function() {
+            const savedPassword = localStorage.getItem('ai_digest_password');
+            const savedExpiry = localStorage.getItem('ai_digest_expiry');
+
+            if (savedPassword && savedExpiry) {
+                const today = new Date().toISOString().split('T')[0];
+                if (savedExpiry >= today && VALID_PASSWORDS[savedPassword]) {
+                    unlockContent(savedPassword, VALID_PASSWORDS[savedPassword]);
+                } else {
+                    localStorage.removeItem('ai_digest_password');
+                    localStorage.removeItem('ai_digest_expiry');
+                    localStorage.removeItem('ai_digest_user');
+                }
+            }
+
+            document.getElementById('password-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') checkPassword();
+            });
+        };
+
+        function checkPassword() {
+            const input = document.getElementById('password-input').value.trim().toUpperCase();
+            const message = document.getElementById('message');
+            const btn = document.getElementById('unlock-btn');
+
+            if (!input) {
+                message.innerHTML = '<p class="error-msg">请输入密码</p>';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = '验证中...';
+
+            setTimeout(() => {
+                const userInfo = VALID_PASSWORDS[input];
+
+                if (userInfo) {
+                    const today = new Date().toISOString().split('T')[0];
+                    if (userInfo.expiry >= today) {
+                        message.innerHTML = '<p class="success-msg">✅ 验证成功！正在进入...</p>';
+                        localStorage.setItem('ai_digest_password', input);
+                        localStorage.setItem('ai_digest_expiry', userInfo.expiry);
+                        localStorage.setItem('ai_digest_user', userInfo.name);
+                        setTimeout(() => unlockContent(input, userInfo), 350);
+                    } else {
+                        message.innerHTML = '<p class="error-msg">❌ 密码已过期，请联系续费</p>';
+                        btn.disabled = false;
+                        btn.textContent = '解锁访问';
+                    }
+                } else {
+                    message.innerHTML = '<p class="error-msg">❌ 密码错误，请检查或联系订阅</p>';
+                    btn.disabled = false;
+                    btn.textContent = '解锁访问';
+                }
+            }, 350);
+        }
+
+        function unlockContent(password, userInfo) {
+            document.getElementById('password-overlay').classList.add('hidden');
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('user-info').style.display = 'block';
+            document.getElementById('user-name').textContent = userInfo.name;
+            document.getElementById('expiry-date').textContent = userInfo.expiry;
+        }
+    </script>
+</body>
+</html>

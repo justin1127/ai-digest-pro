@@ -1,1 +1,1 @@
-0 8 * * * cd /Users/maxjustin/.openclaw/workspace/ai-digest-pro && /usr/bin/python3 full_publish.py >> /tmp/ai-digest.log 2>&1
+0 8 * * * cd /Users/maxjustin/Documents/Codex/2026-06-25/claude-agent-skill-mcp-ai-vibe/work/ai-digest-pro && /usr/bin/python3 generate.py --fetch --limit 5 --push >> /tmp/ai-digest.log 2>&1
