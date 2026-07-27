@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI决策情报 | 2026.07.27</title>
+    <meta name="description" content="AI决策情报 Pro：每日5条AI行业高优先级精选，按评分排序。">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0a0a0f;
+            --panel: #141418;
+            --panel-2: #1c1c22;
+            --gold: #f0c674;
+            --gold-2: #d4a853;
+            --text: #eeeeee;
+            --muted: #9a9aa3;
+            --line: rgba(240, 198, 116, 0.22);
+            --danger: #ff6b6b;
+            --ok: #51cf66;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+            background: radial-gradient(circle at top, #1a1a2e 0, var(--bg) 42%);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        a { color: inherit; }
+        .container { max-width: 860px; margin: 0 auto; }
+
+        #password-overlay {
+            position: fixed; inset: 0; min-height: 100dvh;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            display: flex; justify-content: center; align-items: center; z-index: 9999;
+            padding: 24px;
+        }
+        #password-overlay.hidden { display: none !important; }
+        .password-box {
+            background: var(--panel); border: 1px solid #333; border-radius: 16px;
+            padding: 36px; text-align: center; max-width: 420px; width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .password-box h2, h1 {
+            background: linear-gradient(90deg, #fff, var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .password-box h2 { font-size: 24px; margin-bottom: 10px; }
+        .password-box p { color: var(--muted); margin-bottom: 24px; font-size: 14px; }
+        .password-box input {
+            width: 100%; padding: 14px 16px; font-size: 16px;
+            background: #0a0a0f; border: 1px solid #333; border-radius: 8px;
+            color: #fff; text-align: center; letter-spacing: 2px; margin-bottom: 16px;
+        }
+        .password-box input:focus { outline: none; border-color: var(--gold); }
+        .password-box button {
+            width: 100%; padding: 14px; font-size: 16px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-2));
+            color: #000; border: none; border-radius: 8px; cursor: pointer; font-weight: 800;
+        }
+        .error-msg { color: var(--danger); font-size: 13px; margin-top: 12px; }
+        .success-msg { color: var(--ok); font-size: 13px; margin-top: 12px; }
+        .subscribe-info {
+            margin-top: 24px; padding-top: 24px; border-top: 1px solid #333;
+            font-size: 13px; color: #666;
+        }
+        .subscribe-info a { color: var(--gold); text-decoration: none; }
+        .user-info {
+            position: fixed; top: 18px; right: 18px; background: rgba(20,20,24,0.92);
+            border: 1px solid #333; border-radius: 8px; padding: 10px 14px;
+            font-size: 12px; color: var(--muted); z-index: 100; backdrop-filter: blur(10px);
+        }
+        .user-info span { color: var(--gold); }
+        header {
+            padding: 30px 0 24px; border-bottom: 1px solid var(--line); margin-bottom: 24px;
+            text-align: center;
+        }
+        .eyebrow {
+            color: var(--gold); font-size: 11px; font-weight: 900; letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+        h1 { font-size: clamp(30px, 6vw, 48px); line-height: 1.12; letter-spacing: 0; }
+        .subtitle { color: var(--muted); margin-top: 12px; font-size: 14px; }
+        .stats {
+            display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;
+            margin: 24px 0;
+        }
+        .stat {
+            background: rgba(255,255,255,0.035); border: 1px solid var(--line);
+            border-radius: 8px; padding: 14px; min-height: 74px;
+        }
+        .stat-label { color: var(--muted); font-size: 12px; }
+        .stat-value { font-size: 22px; font-weight: 900; color: #fff; margin-top: 4px; }
+        section { margin-bottom: 22px; }
+        .section-title {
+            display: flex; align-items: center; gap: 10px; font-size: 18px;
+            font-weight: 900; margin-bottom: 14px;
+        }
+        .insight-card {
+            display: grid; grid-template-columns: 46px 1fr; gap: 12px;
+            background: rgba(240,198,116,0.08); border: 1px solid var(--line);
+            border-radius: 8px; padding: 14px; margin-bottom: 10px;
+        }
+        .insight-index { color: var(--gold); font-weight: 900; }
+        .insight-card p { color: #d8d8df; font-size: 14px; }
+        .news-item {
+            background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+            border: 1px solid var(--line); border-left: 4px solid var(--gold);
+            border-radius: 10px; padding: 18px; margin-bottom: 16px;
+        }
+        .item-topline {
+            display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;
+        }
+        .rank { color: var(--gold); font-weight: 900; font-size: 12px; }
+        .tag, .score {
+            display: inline-flex; align-items: center; min-height: 24px;
+            padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 800;
+        }
+        .tag { background: rgba(240,198,116,0.14); color: var(--gold); }
+        .score { background: var(--gold); color: #000; margin-left: auto; }
+        h3 { font-size: 18px; line-height: 1.38; color: #fff; margin-bottom: 8px; }
+        .meta { color: var(--muted); font-size: 12px; margin-bottom: 10px; }
+        .summary { color: #c9c9d1; font-size: 14px; margin-bottom: 14px; }
+        .analysis-grid {
+            display: grid; gap: 8px; font-size: 13px; background: rgba(0,0,0,0.18);
+            border-radius: 8px; padding: 12px; margin-bottom: 14px;
+        }
+        .grid-row { display: grid; grid-template-columns: 72px 1fr; gap: 10px; }
+        .label { color: var(--gold); font-weight: 900; font-size: 12px; }
+        .link { color: var(--gold); text-decoration: none; font-size: 13px; font-weight: 800; }
+        .link:hover { text-decoration: underline; }
+        footer {
+            text-align: center; padding: 30px 0; color: #666; font-size: 12px;
+            border-top: 1px solid #333; margin-top: 30px;
+        }
+        @media (max-width: 680px) {
+            body { padding: 14px; }
+            .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .score { margin-left: 0; }
+            .grid-row { grid-template-columns: 1fr; gap: 2px; }
+            .user-info { position: static; margin: 0 auto 12px; width: fit-content; }
+            .password-box { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="password-overlay">
+        <div class="password-box">
+            <h2>🔐 AI决策情报 Pro</h2>
+            <p>输入您的专属密码解锁今日内容</p>
+            <input type="text" id="password-input" placeholder="输入密码（如：TEST888）" maxlength="24" autocomplete="one-time-code">
+            <button id="unlock-btn" onclick="checkPassword()">解锁访问</button>
+            <div id="message"></div>
+            <div class="subscribe-info">
+                未订阅？<a href="#" onclick="alert('请添加微信：justin1127（备注AI日报）订阅')">点击咨询订阅</a><br>
+                <span style="font-size: 11px; color: #555;">月付¥19 / 年付¥169</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="user-info" id="user-info" style="display: none;">
+        👤 <span id="user-name">用户</span> | 有效期至 <span id="expiry-date">--</span>
+    </div>
+
+    <div class="container" id="content" style="display: none;">
+        <header>
+            <div class="eyebrow">AI INTELLIGENCE DAILY</div>
+            <h1>AI决策情报</h1>
+            <p class="subtitle">📅 2026.07.27 · 每日5条高优先级精选 · 按评分排序</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat"><div class="stat-label">精选</div><div class="stat-value">5</div></div>
+            <div class="stat"><div class="stat-label">平均分</div><div class="stat-value">90</div></div>
+            <div class="stat"><div class="stat-label">来源</div><div class="stat-value">1</div></div>
+            <div class="stat"><div class="stat-label">阅读</div><div class="stat-value">5min</div></div>
+        </div>
+
+        <section>
+            <div class="section-title">🧠 元洞察 Meta Insights</div>
+            
+        <div class="insight-card">
+            <span class="insight-index">01</span>
+            <p>今日最高优先级来自「产品」：OpenAI security test fails as autonomous agent hacks Hugging Face - Dagens.com，说明AI行业的关键变量仍集中在政策、模型、算力和入口之争。</p>
+        </div>
+        
+
+        <div class="insight-card">
+            <span class="insight-index">02</span>
+            <p>5条精选覆盖「产品」等方向，适合用来更新产品路线图、投资观察池和竞品雷达。</p>
+        </div>
+        
+
+        <div class="insight-card">
+            <span class="insight-index">03</span>
+            <p>建议把每条新闻都转成一个判断：会改变用户入口、成本结构、合规风险，还是商业化机会。</p>
+        </div>
+        
+        </section>
+
+        <section>
+            <div class="section-title">🌐 今日精选 Top 5</div>
+            
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">#01</span>
+                <span class="tag">📱 产品</span>
+                <span class="score">95分</span>
+            </div>
+            <h3>OpenAI security test fails as autonomous agent hacks Hugging Face - Dagens.com</h3>
+            <p class="meta">📍 Google News AI · Sun, 26 Jul 2026 07:20:56 GMT</p>
+            <p class="summary">OpenAI security test fails as autonomous agent hacks Hugging Face Dagens.com</p>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">入选理由</span><span>产品影响面广，优先级最高</span></div>
+                <div class="grid-row"><span class="label">影响判断</span><span>可能带来新的交互入口、增长渠道或应用形态。</span></div>
+                <div class="grid-row"><span class="label">行动建议</span><span>拆解交互模式，判断是否可迁移到自己的产品。</span></div>
+            </div>
+            <a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxOSGZHZTA4MHJGMHM2Sjl4NlVPbDU1QlZrMzBjUzItMDBuUkxhdHRiejkyUmVpdHRCSmlyR2RaMER1S1N0NndteTdiNEhFZU5ucjRWZGU3anNyQVNJU21Sa0I0ZG0yaUp0WEJ6N2tQZEtpektBaFBlRzMtYjN1TU1JM3kzNEM2Q1JsYndpaUZGbmVDbzZTTTR5aA?oc=5" target="_blank" rel="noopener noreferrer" class="link">阅读原文 →</a>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">#02</span>
+                <span class="tag">📱 产品</span>
+                <span class="score">90分</span>
+            </div>
+            <h3>OpenAI Incident: AI Agents Demand Cyber-Grade Security, Not Chatbot Controls - TechGig</h3>
+            <p class="meta">📍 Google News AI · Sat, 25 Jul 2026 02:29:21 GMT</p>
+            <p class="summary">OpenAI Incident: AI Agents Demand Cyber-Grade Security, Not Chatbot Controls TechGig</p>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">入选理由</span><span>产品影响面广，优先级最高</span></div>
+                <div class="grid-row"><span class="label">影响判断</span><span>可能带来新的交互入口、增长渠道或应用形态。</span></div>
+                <div class="grid-row"><span class="label">行动建议</span><span>拆解交互模式，判断是否可迁移到自己的产品。</span></div>
+            </div>
+            <a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxOdndCV1hOSXB5OFYtUWVETldVU0hydWMtdEVCdG1NM2hOSjZrYkY0ZU9sMUpuSWI3UTEtak9ja0pOVjMxcEM5ODZHTjJaWkNWVkozYzFHbXpBWXdCd3VPMUdWemNmbk1TSDBoWGk4SWdLX3h0Umt4eHo0OXAzbV9NaTc3Ynh6U3NUNDk3a3ZKcFh6NHVVMUEyMWhYc1ZfeUs1alZDdzVOTnlic2xGd1Y1d2Rn0gG3AUFVX3lxTE5VY2NOM0lUT0VmZ0NJU2F2S3p3TGNyRXgzWkQ1UmdUYVNHcHZsQ2JleVp6YXhZZnluTF9iZHVLVENZbEpkNWxJVTZJRkxSU0MtQWNpbDlOSjRsYnM3TUlWMHpIT29vVUZDTGtTdFNtZXJYdFVEWFhWTWhMdUZqRWN3S3FGaHUzV3BsbmgtcUVmTXZzQ0I1cEJqNnVXU2pHYTQxWUMtMWtITDFZUU5xWThHY2pXQnpVdw?oc=5" target="_blank" rel="noopener noreferrer" class="link">阅读原文 →</a>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">#03</span>
+                <span class="tag">📱 产品</span>
+                <span class="score">88分</span>
+            </div>
+            <h3>Hugging Face presses OpenAI for transparency after AI agent breach - The Manila Times</h3>
+            <p class="meta">📍 Google News AI · Sun, 26 Jul 2026 12:18:00 GMT</p>
+            <p class="summary">Hugging Face presses OpenAI for transparency after AI agent breach The Manila Times</p>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">入选理由</span><span>产品相关信号强，值得关注</span></div>
+                <div class="grid-row"><span class="label">影响判断</span><span>可能带来新的交互入口、增长渠道或应用形态。</span></div>
+                <div class="grid-row"><span class="label">行动建议</span><span>拆解交互模式，判断是否可迁移到自己的产品。</span></div>
+            </div>
+            <a href="https://news.google.com/rss/articles/CBMi2AFBVV95cUxQN2Q2YW1BZTk5TmE0OGMtZzBZYzBJclhlNXQ5VEFMWmVzbmhLaVdEelpFSUhtRElOc2diN0xnMXhmcVYzTmFTcWpRaVJMcmQ0dXJ1WjdlWElXNnRfOHp1UkJDYm4tWksxbVgxVkFhcXJHTGZzQ3lIV0w1VEd2NEFsbG90SjRMZHRhZG95RnBscXI3WjdVYkFCb3Z4TVVOdGs3Wm8yd0hVaGR3VE9qMzhQWndsXzhDZml5U3lXVUtmSjdadTBnc3VqUHMyZEtpUVdqbG5udWUwRG0?oc=5" target="_blank" rel="noopener noreferrer" class="link">阅读原文 →</a>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">#04</span>
+                <span class="tag">📱 产品</span>
+                <span class="score">88分</span>
+            </div>
+            <h3>OpenAI Agent Spent Days Hacking Hugging Face Unnoticed: Report - LatestLY</h3>
+            <p class="meta">📍 Google News AI · Sun, 26 Jul 2026 03:02:01 GMT</p>
+            <p class="summary">OpenAI Agent Spent Days Hacking Hugging Face Unnoticed: Report LatestLY</p>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">入选理由</span><span>产品相关信号强，值得关注</span></div>
+                <div class="grid-row"><span class="label">影响判断</span><span>可能带来新的交互入口、增长渠道或应用形态。</span></div>
+                <div class="grid-row"><span class="label">行动建议</span><span>拆解交互模式，判断是否可迁移到自己的产品。</span></div>
+            </div>
+            <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPeGpOQ0gxTW5DdTFSWlBXRWtIdWtaaTlkaTVGdDE4dFpUdzNOSjBPdlJxWF9LT2JIMlFDeW1lUHl5Q211Zi1SemJLUmx2MlZFQ1QwNEpjSUVodHYtamZ5NVBBajEtdnB5Uk9DRlhIODlCQkpuZ1dmRDcwcGxIVUphWFc5MFhfcXJqU3cwY3JmX2d5TWt2TW5meWZtVmNuNWtxdmw4VVRiQWdZbVlEYXVF0gG0AUFVX3lxTE5vUFBLWEp2aExrMDRRQ3Q5NzN2ZFpWY0hpaDlMTEFiWmNMVnFPLThRd2c4UTF4U3FKRGg0R0lCX0lvSndDamhMNHk5bGRfZU4yQW9fVWM0OF9WWGtSUVB1MzFoWkUyTDZJNUVEY01uR1NZX1dac0VvaDcyb0ZOb0hkWnp5T29WTjYwQ3pkcHUwVEYyZE9VaGo1alBLMkx5N1V2OTI5ZFJNOHJtYlNTZTVHZURMMA?oc=5" target="_blank" rel="noopener noreferrer" class="link">阅读原文 →</a>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">#05</span>
+                <span class="tag">📱 产品</span>
+                <span class="score">88分</span>
+            </div>
+            <h3>OpenAI Agent’s Hugging Face Breach Turns Autonomous Cyber Risk into a Regulatory Test - EU Today</h3>
+            <p class="meta">📍 Google News AI · Sun, 26 Jul 2026 12:56:39 GMT</p>
+            <p class="summary">OpenAI Agent’s Hugging Face Breach Turns Autonomous Cyber Risk into a Regulatory Test EU Today</p>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">入选理由</span><span>产品相关信号强，值得关注</span></div>
+                <div class="grid-row"><span class="label">影响判断</span><span>可能带来新的交互入口、增长渠道或应用形态。</span></div>
+                <div class="grid-row"><span class="label">行动建议</span><span>拆解交互模式，判断是否可迁移到自己的产品。</span></div>
+            </div>
+            <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE1BT1pQLUJsZnEwQWt5RUhBVDBnb1U2cGlSTFpXOWVMNGpxSFZPVkhCeXZKT2dSa1Zna3REb0U2SUFzMTdzMERGWVhJbDRfYmFXRC1QbDF4X0g5UzhPdWloa0VKbU9tYWt0Sk9fck9uWmM2QTFkR1E?oc=5" target="_blank" rel="noopener noreferrer" class="link">阅读原文 →</a>
+        </article>
+    
+        </section>
+
+        <footer>
+            © 2026 AI决策情报 | 每天早上8:00更新<br>
+            订阅咨询微信：justin1127<br>
+            <a href="https://justin1127.github.io/ai-digest-pro/2026-07-27.html" style="color: #777;">https://justin1127.github.io/ai-digest-pro/2026-07-27.html</a>
+        </footer>
+    </div>
+
+    <script>
+        const VALID_PASSWORDS = {"TEST888": {"name": "测试用户", "expiry": "2099-12-31"}};
+
+        window.onload = function() {
+            const savedPassword = localStorage.getItem('ai_digest_password');
+            const savedExpiry = localStorage.getItem('ai_digest_expiry');
+
+            if (savedPassword && savedExpiry) {
+                const today = new Date().toISOString().split('T')[0];
+                if (savedExpiry >= today && VALID_PASSWORDS[savedPassword]) {
+                    unlockContent(savedPassword, VALID_PASSWORDS[savedPassword]);
+                } else {
+                    localStorage.removeItem('ai_digest_password');
+                    localStorage.removeItem('ai_digest_expiry');
+                    localStorage.removeItem('ai_digest_user');
+                }
+            }
+
+            document.getElementById('password-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') checkPassword();
+            });
+        };
+
+        function checkPassword() {
+            const input = document.getElementById('password-input').value.trim().toUpperCase();
+            const message = document.getElementById('message');
+            const btn = document.getElementById('unlock-btn');
+
+            if (!input) {
+                message.innerHTML = '<p class="error-msg">请输入密码</p>';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = '验证中...';
+
+            setTimeout(() => {
+                const userInfo = VALID_PASSWORDS[input];
+
+                if (userInfo) {
+                    const today = new Date().toISOString().split('T')[0];
+                    if (userInfo.expiry >= today) {
+                        message.innerHTML = '<p class="success-msg">✅ 验证成功！正在进入...</p>';
+                        localStorage.setItem('ai_digest_password', input);
+                        localStorage.setItem('ai_digest_expiry', userInfo.expiry);
+                        localStorage.setItem('ai_digest_user', userInfo.name);
+                        setTimeout(() => unlockContent(input, userInfo), 350);
+                    } else {
+                        message.innerHTML = '<p class="error-msg">❌ 密码已过期，请联系续费</p>';
+                        btn.disabled = false;
+                        btn.textContent = '解锁访问';
+                    }
+                } else {
+                    message.innerHTML = '<p class="error-msg">❌ 密码错误，请检查或联系订阅</p>';
+                    btn.disabled = false;
+                    btn.textContent = '解锁访问';
+                }
+            }, 350);
+        }
+
+        function unlockContent(password, userInfo) {
+            document.getElementById('password-overlay').classList.add('hidden');
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('user-info').style.display = 'block';
+            document.getElementById('user-name').textContent = userInfo.name;
+            document.getElementById('expiry-date').textContent = userInfo.expiry;
+        }
+    </script>
+</body>
+</html>
