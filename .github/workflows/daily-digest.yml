@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  models: read
 
 jobs:
   generate:
@@ -23,8 +24,21 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Generate daily digest
-        run: python3 generate.py --fetch --limit 5
+      - name: Select five ranked signals
+        run: python3 generate.py --fetch --limit 5 --export-items .tmp/candidates.json --no-render
+
+      - name: Install GitHub Models client
+        run: gh extension install https://github.com/github/gh-models
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Produce Chinese decision analysis
+        run: cat .tmp/candidates.json | gh models run --file prompts/daily-decision-brief.prompt.yml > .tmp/editorial.json
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Render Chinese daily digest
+        run: python3 generate.py --items-file .tmp/candidates.json --editorial-file .tmp/editorial.json --limit 5
 
       - name: Commit and push changes
         run: |
