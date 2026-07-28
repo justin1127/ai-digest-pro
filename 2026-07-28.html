@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI决策情报 | 2026.07.28</title>
+    <meta name="description" content="AI决策情报 Pro：每日5条AI行业高优先级精选，按评分排序。">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0a0a0f;
+            --panel: #141418;
+            --panel-2: #1c1c22;
+            --gold: #f0c674;
+            --gold-2: #d4a853;
+            --text: #eeeeee;
+            --muted: #9a9aa3;
+            --line: rgba(240, 198, 116, 0.22);
+            --danger: #ff6b6b;
+            --ok: #51cf66;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+            background: radial-gradient(circle at top, #1a1a2e 0, var(--bg) 42%);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        a { color: inherit; }
+        .container { max-width: 860px; margin: 0 auto; }
+
+        #password-overlay {
+            position: fixed; inset: 0; min-height: 100dvh;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            display: flex; justify-content: center; align-items: center; z-index: 9999;
+            padding: 24px;
+        }
+        #password-overlay.hidden { display: none !important; }
+        .password-box {
+            background: var(--panel); border: 1px solid #333; border-radius: 16px;
+            padding: 36px; text-align: center; max-width: 420px; width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .password-box h2, h1 {
+            background: linear-gradient(90deg, #fff, var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .password-box h2 { font-size: 24px; margin-bottom: 10px; }
+        .password-box p { color: var(--muted); margin-bottom: 24px; font-size: 14px; }
+        .password-box input {
+            width: 100%; padding: 14px 16px; font-size: 16px;
+            background: #0a0a0f; border: 1px solid #333; border-radius: 8px;
+            color: #fff; text-align: center; letter-spacing: 2px; margin-bottom: 16px;
+        }
+        .password-box input:focus { outline: none; border-color: var(--gold); }
+        .password-box button {
+            width: 100%; padding: 14px; font-size: 16px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-2));
+            color: #000; border: none; border-radius: 8px; cursor: pointer; font-weight: 800;
+        }
+        .error-msg { color: var(--danger); font-size: 13px; margin-top: 12px; }
+        .success-msg { color: var(--ok); font-size: 13px; margin-top: 12px; }
+        .subscribe-info {
+            margin-top: 24px; padding-top: 24px; border-top: 1px solid #333;
+            font-size: 13px; color: #666;
+        }
+        .subscribe-info a { color: var(--gold); text-decoration: none; }
+        .user-info {
+            position: fixed; top: 18px; right: 18px; background: rgba(20,20,24,0.92);
+            border: 1px solid #333; border-radius: 8px; padding: 10px 14px;
+            font-size: 12px; color: var(--muted); z-index: 100; backdrop-filter: blur(10px);
+        }
+        .user-info span { color: var(--gold); }
+        header {
+            padding: 30px 0 24px; border-bottom: 1px solid var(--line); margin-bottom: 24px;
+            text-align: center;
+        }
+        .eyebrow {
+            color: var(--gold); font-size: 11px; font-weight: 900; letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+        h1 { font-size: clamp(30px, 6vw, 48px); line-height: 1.12; letter-spacing: 0; }
+        .subtitle { color: var(--muted); margin-top: 12px; font-size: 14px; }
+        .stats {
+            display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;
+            margin: 24px 0;
+        }
+        .stat {
+            background: rgba(255,255,255,0.035); border: 1px solid var(--line);
+            border-radius: 8px; padding: 14px; min-height: 74px;
+        }
+        .stat-label { color: var(--muted); font-size: 12px; }
+        .stat-value { font-size: 22px; font-weight: 900; color: #fff; margin-top: 4px; }
+        section { margin-bottom: 22px; }
+        .section-title {
+            display: flex; align-items: center; gap: 10px; font-size: 18px;
+            font-weight: 900; margin-bottom: 14px;
+        }
+        .insight-card {
+            display: grid; grid-template-columns: 46px 1fr; gap: 12px;
+            background: rgba(240,198,116,0.08); border: 1px solid var(--line);
+            border-radius: 8px; padding: 14px; margin-bottom: 10px;
+        }
+        .insight-index { color: var(--gold); font-weight: 900; }
+        .insight-card p { color: #d8d8df; font-size: 14px; }
+        .news-item {
+            background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+            border: 1px solid var(--line); border-left: 4px solid var(--gold);
+            border-radius: 10px; padding: 18px; margin-bottom: 16px;
+        }
+        .item-topline {
+            display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;
+        }
+        .rank { color: var(--gold); font-weight: 900; font-size: 12px; }
+        .tag, .score {
+            display: inline-flex; align-items: center; min-height: 24px;
+            padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 800;
+        }
+        .tag { background: rgba(240,198,116,0.14); color: var(--gold); }
+        .score { background: var(--gold); color: #000; margin-left: auto; }
+        h3 { font-size: 18px; line-height: 1.38; color: #fff; margin-bottom: 8px; }
+        .meta { color: var(--muted); font-size: 12px; margin-bottom: 10px; }
+        .summary { color: #c9c9d1; font-size: 14px; margin-bottom: 14px; }
+        .analysis-grid {
+            display: grid; gap: 8px; font-size: 13px; background: rgba(0,0,0,0.18);
+            border-radius: 8px; padding: 12px; margin-bottom: 14px;
+        }
+        .grid-row { display: grid; grid-template-columns: 72px 1fr; gap: 10px; }
+        .label { color: var(--gold); font-weight: 900; font-size: 12px; }
+        .link { color: var(--gold); text-decoration: none; font-size: 13px; font-weight: 800; }
+        .link:hover { text-decoration: underline; }
+        footer {
+            text-align: center; padding: 30px 0; color: #666; font-size: 12px;
+            border-top: 1px solid #333; margin-top: 30px;
+        }
+        @media (max-width: 680px) {
+            body { padding: 14px; }
+            .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .score { margin-left: 0; }
+            .grid-row { grid-template-columns: 1fr; gap: 2px; }
+            .user-info { position: static; margin: 0 auto 12px; width: fit-content; }
+            .password-box { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="password-overlay">
+        <div class="password-box">
+            <h2>🔐 AI决策情报 Pro</h2>
+            <p>输入您的专属密码解锁今日内容</p>
+            <input type="text" id="password-input" placeholder="输入密码（如：TEST888）" maxlength="24" autocomplete="one-time-code">
+            <button id="unlock-btn" onclick="checkPassword()">解锁访问</button>
+            <div id="message"></div>
+            <div class="subscribe-info">
+                未订阅？<a href="#" onclick="alert('请添加微信：justin1127（备注AI日报）订阅')">点击咨询订阅</a><br>
+                <span style="font-size: 11px; color: #555;">月付¥19 / 年付¥169</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="user-info" id="user-info" style="display: none;">
+        👤 <span id="user-name">用户</span> | 有效期至 <span id="expiry-date">--</span>
+    </div>
+
+    <div class="container" id="content" style="display: none;">
+        <header>
+            <div class="eyebrow">AI INTELLIGENCE DAILY</div>
+            <h1>AI决策情报</h1>
+            <p class="subtitle">📅 2026.07.28 · 每日5条高优先级精选 · 按评分排序</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat"><div class="stat-label">精选</div><div class="stat-value">5</div></div>
+            <div class="stat"><div class="stat-label">平均分</div><div class="stat-value">94</div></div>
+            <div class="stat"><div class="stat-label">来源</div><div class="stat-value">2</div></div>
+            <div class="stat"><div class="stat-label">阅读</div><div class="stat-value">5min</div></div>
+        </div>
+
+        <section>
+            <div class="section-title">🧠 元洞察 Meta Insights</div>
+            
+        <div class="insight-card">
+            <span class="insight-index">01</span>
+            <p>今日最高优先级来自「算力」：OpenAI, Google, and Anthropic absent from Nvidia-led Open Secure AI Alliance — 30+ companies join security alliance after OpenAI agent breach - Tom&#x27;s Hardware，说明AI行业的关键变量仍集中在政策、模型、算力和入口之争。</p>
+        </div>
+        
+
+        <div class="insight-card">
+            <span class="insight-index">02</span>
+            <p>5条精选覆盖「算力、产品、模型」等方向，适合用来更新产品路线图、投资观察池和竞品雷达。</p>
+        </div>
+        
+
+        <div class="insight-card">
+            <span class="insight-index">03</span>
+            <p>建议把每条新闻都转成一个判断：会改变用户入口、成本结构、合规风险，还是商业化机会。</p>
+        </div>
+        
+        </section>
+
+        <section>
+            <div class="section-title">🌐 今日精选 Top 5</div>
+            
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">#01</span>
+                <span class="tag">⚙️ 算力</span>
+                <span class="score">99分</span>
+            </div>
+            <h3>OpenAI, Google, and Anthropic absent from Nvidia-led Open Secure AI Alliance — 30+ companies join security alliance after OpenAI agent breach - Tom&#x27;s Hardware</h3>
+            <p class="meta">📍 Google News AI · Mon, 27 Jul 2026 19:03:47 GMT</p>
+            <p class="summary">OpenAI, Google, and Anthropic absent from Nvidia-led Open Secure AI Alliance — 30+ companies join security alliance after OpenAI agent breach Tom&#x27;s Hardware</p>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">入选理由</span><span>算力影响面广，优先级最高</span></div>
+                <div class="grid-row"><span class="label">影响判断</span><span>可能影响训练/推理成本、供应链和基础设施布局。</span></div>
+                <div class="grid-row"><span class="label">行动建议</span><span>关注供应链、云厂商价格和国产替代机会。</span></div>
+            </div>
+            <a href="https://news.google.com/rss/articles/CBMiqwJBVV95cUxPbi1KeUFoOGVsWS0wT29pY2xSTUxlb1FBRjVtZUhnS0NGNnVEVVVDdURuc0NIWGNqQTJSaWthNkZ3SmNYLXJHM1dnUUJNcmxaYzNxQmMwVWZ5RE5ibnYySDhBMy1lV0x4dURYXzJIcVhxLTh6UVVEVG9MS05DVktBM0FoeGtoWlp5RzVkYjdJam4tZ1AyREFZVG9QbDFCTmx1UHc2VXU1Vk1YMVJCaDN2aU53dG53MWp5c1RPbjlrd2Z4OFZ6RmRsTUwtTUphaTZ2cFFCMjItWS1ZSnAwUWtTTlZ6aUNoVmN1WnEyeW9iTy1QdHkxZFY0VWJNZG5PbUlTVWZaVnZJS2VVSnpkZG85Q01PMEF0LWxSdldsdlNtUDJOeFU3dUFNS1BCRQ?oc=5" target="_blank" rel="noopener noreferrer" class="link">阅读原文 →</a>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">#02</span>
+                <span class="tag">📱 产品</span>
+                <span class="score">95分</span>
+            </div>
+            <h3>Reuters: OpenAI Agent Hacked Hugging Face for Days Before Being Detected - Security Affairs</h3>
+            <p class="meta">📍 Google News AI · Mon, 27 Jul 2026 22:29:13 GMT</p>
+            <p class="summary">Reuters: OpenAI Agent Hacked Hugging Face for Days Before Being Detected Security Affairs</p>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">入选理由</span><span>产品影响面广，优先级最高</span></div>
+                <div class="grid-row"><span class="label">影响判断</span><span>可能带来新的交互入口、增长渠道或应用形态。</span></div>
+                <div class="grid-row"><span class="label">行动建议</span><span>拆解交互模式，判断是否可迁移到自己的产品。</span></div>
+            </div>
+            <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxOMmNMbUdubUpMUXNSMkNFZDBlZl9HR0dvRHpqVFFtZHV4SDFYWXJ5b0lmUklITkM1QzBUUkxQcWtOaDFBV25aM3hjRDFFcXZsQUdjTElsUTFXQmxBOThfZ0I0dkFsSU5pODU4cTVFbGRDa2M3bUowTi1YR2dUZVZSZlJUS3ItdW1tSF9WMEg2djdGdVl2ejhjVW5jOTM4aHZia0RwcHJBSU1kQ2M2dWxDZ05TTVXSAboBQVVfeXFMT0hKWnJ6X1d5cnBNSDFHUWF2eGhQSU5jU1czZ1BoamhqcWh3VDV1X1RuVEF5SHpZTlNBQ2FkZUdWQTFPLW52Ykd0ajBiMVBJb2JjcmRXZkRkQXZRcU9KOGZ1U2FoR1JJTWJ2dkRmMjhRZURuZmNUSmlnNjNJaFZTLUVnNWY2OUZ4dlV1Z3hqa2FQcEp0TXpSNkVCWUhnT1V5S3B6LU9nYm5MdHJmX21JM1F6X25Hb0YySHF3?oc=5" target="_blank" rel="noopener noreferrer" class="link">阅读原文 →</a>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">#03</span>
+                <span class="tag">🧠 模型</span>
+                <span class="score">93分</span>
+            </div>
+            <h3>Microsoft launches its first cybersecurity model, plus a new agentic cybersecurity system</h3>
+            <p class="meta">📍 TechCrunch AI · Mon, 27 Jul 2026 18:32:11 +0000</p>
+            <p class="summary">Microsoft bolstered its AI cybersecurity offerings this week with the launch of its first AI security model and a new security platform.</p>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">入选理由</span><span>模型影响面广，优先级最高</span></div>
+                <div class="grid-row"><span class="label">影响判断</span><span>可能影响模型选型、产品能力边界和成本结构。</span></div>
+                <div class="grid-row"><span class="label">行动建议</span><span>评估是否进入模型雷达，补一次成本和能力对比。</span></div>
+            </div>
+            <a href="https://techcrunch.com/2026/07/27/microsoft-launches-its-first-cyber-model-and-a-new-agentic-cybersecurity-system/" target="_blank" rel="noopener noreferrer" class="link">阅读原文 →</a>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">#04</span>
+                <span class="tag">⚙️ 算力</span>
+                <span class="score">93分</span>
+            </div>
+            <h3>Nvidia is putting its Vera CPUs to work alongside AI agents to speed up chip design - SiliconANGLE</h3>
+            <p class="meta">📍 Google News AI · Mon, 27 Jul 2026 03:24:03 GMT</p>
+            <p class="summary">Nvidia is putting its Vera CPUs to work alongside AI agents to speed up chip design SiliconANGLE</p>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">入选理由</span><span>算力影响面广，优先级最高</span></div>
+                <div class="grid-row"><span class="label">影响判断</span><span>可能影响训练/推理成本、供应链和基础设施布局。</span></div>
+                <div class="grid-row"><span class="label">行动建议</span><span>关注供应链、云厂商价格和国产替代机会。</span></div>
+            </div>
+            <a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxOR1BHTTExS1NxS1A3Vmd0Z09ia3YzSDZBWkZ4bjJXc1g2b0o5RUZCRzF6TjNYQUxrZE9wMjk1NFdvcG9EU1kxX3JwSmF4VXlDR2pEbVlmZTlWMFhBNHlvTTIySmhIbFd6YnhxZFVaMG5uTWZMRER1bzVrcE50NmtMME9rTF9GbDlkakJud1VIVkpXT2l5N2dtRkZtWnJYLTlTR081eHd3NA?oc=5" target="_blank" rel="noopener noreferrer" class="link">阅读原文 →</a>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">#05</span>
+                <span class="tag">🧠 模型</span>
+                <span class="score">89分</span>
+            </div>
+            <h3>Anthropic’s Dario Amodei responds: doesn’t oppose open-weight models, but fears Chinese AI</h3>
+            <p class="meta">📍 TechCrunch AI · Tue, 28 Jul 2026 00:13:33 +0000</p>
+            <p class="summary">Anthropic founder and CEO Dario Amodei made his views clear about open-weight models and China&#x27;s growing AI capabilities.</p>
+            <div class="analysis-grid">
+                <div class="grid-row"><span class="label">入选理由</span><span>模型相关信号强，值得关注</span></div>
+                <div class="grid-row"><span class="label">影响判断</span><span>可能影响模型选型、产品能力边界和成本结构。</span></div>
+                <div class="grid-row"><span class="label">行动建议</span><span>评估是否进入模型雷达，补一次成本和能力对比。</span></div>
+            </div>
+            <a href="https://techcrunch.com/2026/07/27/anthropics-dario-amodei-responds-doesnt-oppose-open-weight-models-but-fears-chinese-ai/" target="_blank" rel="noopener noreferrer" class="link">阅读原文 →</a>
+        </article>
+    
+        </section>
+
+        <footer>
+            © 2026 AI决策情报 | 每天早上8:00更新<br>
+            订阅咨询微信：justin1127<br>
+            <a href="https://justin1127.github.io/ai-digest-pro/2026-07-28.html" style="color: #777;">https://justin1127.github.io/ai-digest-pro/2026-07-28.html</a>
+        </footer>
+    </div>
+
+    <script>
+        const VALID_PASSWORDS = {"TEST888": {"name": "测试用户", "expiry": "2099-12-31"}};
+
+        window.onload = function() {
+            const savedPassword = localStorage.getItem('ai_digest_password');
+            const savedExpiry = localStorage.getItem('ai_digest_expiry');
+
+            if (savedPassword && savedExpiry) {
+                const today = new Date().toISOString().split('T')[0];
+                if (savedExpiry >= today && VALID_PASSWORDS[savedPassword]) {
+                    unlockContent(savedPassword, VALID_PASSWORDS[savedPassword]);
+                } else {
+                    localStorage.removeItem('ai_digest_password');
+                    localStorage.removeItem('ai_digest_expiry');
+                    localStorage.removeItem('ai_digest_user');
+                }
+            }
+
+            document.getElementById('password-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') checkPassword();
+            });
+        };
+
+        function checkPassword() {
+            const input = document.getElementById('password-input').value.trim().toUpperCase();
+            const message = document.getElementById('message');
+            const btn = document.getElementById('unlock-btn');
+
+            if (!input) {
+                message.innerHTML = '<p class="error-msg">请输入密码</p>';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = '验证中...';
+
+            setTimeout(() => {
+                const userInfo = VALID_PASSWORDS[input];
+
+                if (userInfo) {
+                    const today = new Date().toISOString().split('T')[0];
+                    if (userInfo.expiry >= today) {
+                        message.innerHTML = '<p class="success-msg">✅ 验证成功！正在进入...</p>';
+                        localStorage.setItem('ai_digest_password', input);
+                        localStorage.setItem('ai_digest_expiry', userInfo.expiry);
+                        localStorage.setItem('ai_digest_user', userInfo.name);
+                        setTimeout(() => unlockContent(input, userInfo), 350);
+                    } else {
+                        message.innerHTML = '<p class="error-msg">❌ 密码已过期，请联系续费</p>';
+                        btn.disabled = false;
+                        btn.textContent = '解锁访问';
+                    }
+                } else {
+                    message.innerHTML = '<p class="error-msg">❌ 密码错误，请检查或联系订阅</p>';
+                    btn.disabled = false;
+                    btn.textContent = '解锁访问';
+                }
+            }, 350);
+        }
+
+        function unlockContent(password, userInfo) {
+            document.getElementById('password-overlay').classList.add('hidden');
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('user-info').style.display = 'block';
+            document.getElementById('user-name').textContent = userInfo.name;
+            document.getElementById('expiry-date').textContent = userInfo.expiry;
+        }
+    </script>
+</body>
+</html>

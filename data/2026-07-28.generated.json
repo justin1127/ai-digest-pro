@@ -1,0 +1,65 @@
+{
+  "date": "2026-07-28",
+  "items": [
+    {
+      "title": "OpenAI, Google, and Anthropic absent from Nvidia-led Open Secure AI Alliance — 30+ companies join security alliance after OpenAI agent breach - Tom's Hardware",
+      "source": "Google News AI",
+      "summary": "OpenAI, Google, and Anthropic absent from Nvidia-led Open Secure AI Alliance — 30+ companies join security alliance after OpenAI agent breach Tom's Hardware",
+      "category": "算力",
+      "link": "https://news.google.com/rss/articles/CBMiqwJBVV95cUxPbi1KeUFoOGVsWS0wT29pY2xSTUxlb1FBRjVtZUhnS0NGNnVEVVVDdURuc0NIWGNqQTJSaWthNkZ3SmNYLXJHM1dnUUJNcmxaYzNxQmMwVWZ5RE5ibnYySDhBMy1lV0x4dURYXzJIcVhxLTh6UVVEVG9MS05DVktBM0FoeGtoWlp5RzVkYjdJam4tZ1AyREFZVG9QbDFCTmx1UHc2VXU1Vk1YMVJCaDN2aU53dG53MWp5c1RPbjlrd2Z4OFZ6RmRsTUwtTUphaTZ2cFFCMjItWS1ZSnAwUWtTTlZ6aUNoVmN1WnEyeW9iTy1QdHkxZFY0VWJNZG5PbUlTVWZaVnZJS2VVSnpkZG85Q01PMEF0LWxSdldsdlNtUDJOeFU3dUFNS1BCRQ?oc=5",
+      "score": 99,
+      "reason": "算力影响面广，优先级最高",
+      "impact": "可能影响训练/推理成本、供应链和基础设施布局。",
+      "action": "关注供应链、云厂商价格和国产替代机会。",
+      "published_at": "Mon, 27 Jul 2026 19:03:47 GMT"
+    },
+    {
+      "title": "Reuters: OpenAI Agent Hacked Hugging Face for Days Before Being Detected - Security Affairs",
+      "source": "Google News AI",
+      "summary": "Reuters: OpenAI Agent Hacked Hugging Face for Days Before Being Detected Security Affairs",
+      "category": "产品",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOMmNMbUdubUpMUXNSMkNFZDBlZl9HR0dvRHpqVFFtZHV4SDFYWXJ5b0lmUklITkM1QzBUUkxQcWtOaDFBV25aM3hjRDFFcXZsQUdjTElsUTFXQmxBOThfZ0I0dkFsSU5pODU4cTVFbGRDa2M3bUowTi1YR2dUZVZSZlJUS3ItdW1tSF9WMEg2djdGdVl2ejhjVW5jOTM4aHZia0RwcHJBSU1kQ2M2dWxDZ05TTVXSAboBQVVfeXFMT0hKWnJ6X1d5cnBNSDFHUWF2eGhQSU5jU1czZ1BoamhqcWh3VDV1X1RuVEF5SHpZTlNBQ2FkZUdWQTFPLW52Ykd0ajBiMVBJb2JjcmRXZkRkQXZRcU9KOGZ1U2FoR1JJTWJ2dkRmMjhRZURuZmNUSmlnNjNJaFZTLUVnNWY2OUZ4dlV1Z3hqa2FQcEp0TXpSNkVCWUhnT1V5S3B6LU9nYm5MdHJmX21JM1F6X25Hb0YySHF3?oc=5",
+      "score": 95,
+      "reason": "产品影响面广，优先级最高",
+      "impact": "可能带来新的交互入口、增长渠道或应用形态。",
+      "action": "拆解交互模式，判断是否可迁移到自己的产品。",
+      "published_at": "Mon, 27 Jul 2026 22:29:13 GMT"
+    },
+    {
+      "title": "Microsoft launches its first cybersecurity model, plus a new agentic cybersecurity system",
+      "source": "TechCrunch AI",
+      "summary": "Microsoft bolstered its AI cybersecurity offerings this week with the launch of its first AI security model and a new security platform.",
+      "category": "模型",
+      "link": "https://techcrunch.com/2026/07/27/microsoft-launches-its-first-cyber-model-and-a-new-agentic-cybersecurity-system/",
+      "score": 93,
+      "reason": "模型影响面广，优先级最高",
+      "impact": "可能影响模型选型、产品能力边界和成本结构。",
+      "action": "评估是否进入模型雷达，补一次成本和能力对比。",
+      "published_at": "Mon, 27 Jul 2026 18:32:11 +0000"
+    },
+    {
+      "title": "Nvidia is putting its Vera CPUs to work alongside AI agents to speed up chip design - SiliconANGLE",
+      "source": "Google News AI",
+      "summary": "Nvidia is putting its Vera CPUs to work alongside AI agents to speed up chip design SiliconANGLE",
+      "category": "算力",
+      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOR1BHTTExS1NxS1A3Vmd0Z09ia3YzSDZBWkZ4bjJXc1g2b0o5RUZCRzF6TjNYQUxrZE9wMjk1NFdvcG9EU1kxX3JwSmF4VXlDR2pEbVlmZTlWMFhBNHlvTTIySmhIbFd6YnhxZFVaMG5uTWZMRER1bzVrcE50NmtMME9rTF9GbDlkakJud1VIVkpXT2l5N2dtRkZtWnJYLTlTR081eHd3NA?oc=5",
+      "score": 93,
+      "reason": "算力影响面广，优先级最高",
+      "impact": "可能影响训练/推理成本、供应链和基础设施布局。",
+      "action": "关注供应链、云厂商价格和国产替代机会。",
+      "published_at": "Mon, 27 Jul 2026 03:24:03 GMT"
+    },
+    {
+      "title": "Anthropic’s Dario Amodei responds: doesn’t oppose open-weight models, but fears Chinese AI",
+      "source": "TechCrunch AI",
+      "summary": "Anthropic founder and CEO Dario Amodei made his views clear about open-weight models and China's growing AI capabilities.",
+      "category": "模型",
+      "link": "https://techcrunch.com/2026/07/27/anthropics-dario-amodei-responds-doesnt-oppose-open-weight-models-but-fears-chinese-ai/",
+      "score": 89,
+      "reason": "模型相关信号强，值得关注",
+      "impact": "可能影响模型选型、产品能力边界和成本结构。",
+      "action": "评估是否进入模型雷达，补一次成本和能力对比。",
+      "published_at": "Tue, 28 Jul 2026 00:13:33 +0000"
+    }
+  ]
+}
