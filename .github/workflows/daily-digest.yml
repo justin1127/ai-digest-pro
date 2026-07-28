@@ -2,8 +2,10 @@ name: Daily AI Digest
 
 on:
   schedule:
-    # 08:00 Asia/Shanghai
-    - cron: "0 0 * * *"
+    # Primary run: 05:17 Asia/Shanghai. Avoids GitHub's top-of-hour scheduler congestion.
+    - cron: "17 21 * * *"
+    # Backup run: 07:17 Asia/Shanghai. No-op if the primary run already published.
+    - cron: "17 23 * * *"
   workflow_dispatch:
 
 permissions:
