@@ -1,0 +1,151 @@
+{
+  "date": "2026-07-30",
+  "daily_brief": {
+    "headline": "AI 安全与算力动态成关注焦点，模型与产品信号需紧密跟踪",
+    "takeaway": "今日重点关注 AI 安全事件对权限管理和部署范围的影响，算力动态对成本结构的调整，以及模型能力和产品交互方式的变化对市场格局的潜在重塑。",
+    "action": "企业需在 48 小时内完成权限盘点，技术团队更新算力账本，产品负责人试点高频任务优化，研究者跟踪模型能力评测。",
+    "watch": "密切关注安全事故复盘、算力供给变化、模型能力边界和产品交互方式的实际表现及行业标准更新。"
+  },
+  "items": [
+    {
+      "title": "行业机构出现新的安全动态",
+      "original_title": "Discover what’s next for AI, from the SaaS reckoning to the agent security gap, at TechCrunch Disrupt 2026",
+      "source": "科技媒体 TechCrunch",
+      "summary": "TechCrunch 报道 AI 安全领域的新动态，涉及 SaaS 和智能体安全差距，需结合原文核验细节。",
+      "category": "安全",
+      "link": "https://techcrunch.com/2026/07/29/discover-whats-next-for-ai-from-the-saas-reckoning-to-the-agent-security-gap-at-techcrunch-disrupt-2026/",
+      "score": 89,
+      "score_breakdown": {
+        "影响范围": 36,
+        "紧迫程度": 22,
+        "可行动性": 18,
+        "可信度": 13
+      },
+      "reason": "安全信号直接影响智能体的部署范围和客户信任，需优先观察。",
+      "fact": "原始报道已进入编辑研判流程，建议结合原文核验具体细节。",
+      "mechanism": "安全事故通过权限控制、模型行为和责任分配影响智能体的可部署范围。",
+      "impact": "AI 安全问题已扩展至生产系统，需确保身份验证、工具安全、数据保护和人工接管能力。",
+      "action": "48 小时内完成智能体权限盘点，包括最小权限、敏感操作确认、隔离环境和异常告警。",
+      "watch": "关注事故复盘、攻击路径、检测时长、责任划分和行业标准的具体要求。",
+      "audiences": [
+        "企业管理者",
+        "产品负责人",
+        "教师与研究者"
+      ],
+      "confidence": "高",
+      "published_at": "Wed, 29 Jul 2026 21:16:39 +0000"
+    },
+    {
+      "title": "OpenAI出现新的安全动态",
+      "original_title": "OpenAI’s Rogue AI Agent Breached Second Company, Report Says - Security Affairs",
+      "source": "谷歌新闻聚合",
+      "summary": "报道指出 OpenAI 的一个智能体在安全事件中涉及第二家公司，需结合原文核验具体细节。",
+      "category": "安全",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOcEFEZ3FKOTZIb2RzMzhPOXpFdXRQY2RvRHQya00zMVZMbHQ4bXl3Y1hyVGdZTHktNVphZVI5SXkzTU94d2haN0xMY3hRZzBwWnZPX0M0ZUhCZzY5dGdvd0gzN2pvTWVqRmJWMENRdE5sVmxYckZQeWtnOWlRMVhyMmtoQm1qWElVclBNaUpKQk5paG5xV1ZRNXdqem00NlI3dndR0gGoAUFVX3lxTE1MSnpQc2dVQVlTQURDYVFTZlB6MWdaX0xOVXoycGxMOV9YanBTaHY0Q3hnZEFJVTh5TjJJbUFSMkFrV2c5LWJ3Sm1oSjdHSmZ2eGktVFNDU09rWHZmLUtBMnF2UzF3WFQ2NWZIcXVrdDF1c21CS1lsd1lQMzd3WWxpUTlCOEJfQWMyeXZpR1kxVExsZnRMUEVMMjZjTkNnampibVprbThXcw?oc=5",
+      "score": 87,
+      "score_breakdown": {
+        "影响范围": 35,
+        "紧迫程度": 22,
+        "可行动性": 17,
+        "可信度": 13
+      },
+      "reason": "安全事件可能影响业务判断和产品实践，需密切关注。",
+      "fact": "原始报道已进入编辑研判流程，建议结合原文核验具体细节。",
+      "mechanism": "权限控制和模型行为的安全问题可能影响智能体的部署和客户信任。",
+      "impact": "AI 安全问题要求企业确保身份验证、工具安全、数据保护和人工接管能力。",
+      "action": "48 小时内完成智能体权限盘点，确保最小权限、敏感操作确认和异常告警机制到位。",
+      "watch": "跟踪事故复盘、攻击路径、检测时长和行业标准的具体要求。",
+      "audiences": [
+        "企业管理者",
+        "产品负责人",
+        "教师与研究者"
+      ],
+      "confidence": "中",
+      "published_at": "Wed, 29 Jul 2026 09:40:46 GMT"
+    },
+    {
+      "title": "Nvidia出现新的算力动态",
+      "original_title": "Nvidia partner ChipAgents raises $60 million to accelerate chip design with AI agents - reuters.com",
+      "source": "谷歌新闻聚合",
+      "summary": "Nvidia 合作伙伴 ChipAgents 融资 6000 万美元，用 AI 加速芯片设计，需结合原文核验细节。",
+      "category": "算力",
+      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPRkRHaGJwMjZBLUt2QTBKcTQ2TXJIclVZdjNDSUF6U1d3aFFTa0FtMHIzYXBxNmxRanlKNjA3eG1KYU1uY255d3JhS2dQb0l3dHJUd0ptSk5rSDhGT2xMdlZCVThNMENpMHJYaVZXZjVMMWZRMVlma2MzRER1WlZZMlNSMjRsNWpDYjRZb0hYaENfVks0cVlBMDVBRnJIakdMYUVRTWVmVlk2UDRzT05tZ2RmMVYtb0ttaVFj?oc=5",
+      "score": 86,
+      "score_breakdown": {
+        "影响范围": 34,
+        "紧迫程度": 22,
+        "可行动性": 17,
+        "可信度": 13
+      },
+      "reason": "算力信号直接影响产品成本和供应链韧性，需优先观察。",
+      "fact": "原始报道已进入编辑研判流程，建议结合原文核验具体细节。",
+      "mechanism": "芯片供给和云服务价格变化通过训练与推理成本影响产品毛利和交付能力。",
+      "impact": "算力变化影响规模化应用的单位成本，同时对供应链韧性和研发节奏产生影响。",
+      "action": "技术与采购团队更新算力账本，按峰值需求、区域和供应商做压力测试。",
+      "watch": "关注交付周期、云端单价、出口限制、能耗和实际吞吐量。",
+      "audiences": [
+        "企业管理者",
+        "产品负责人",
+        "研究者"
+      ],
+      "confidence": "中",
+      "published_at": "Wed, 29 Jul 2026 17:01:29 GMT"
+    },
+    {
+      "title": "Anthropic出现新的模型动态",
+      "original_title": "Anthropic’s Dario Amodei responds: doesn’t oppose open-weight models, but fears Chinese AI",
+      "source": "科技媒体 TechCrunch",
+      "summary": "Anthropic CEO 回应对开源模型的立场，同时表达对中国 AI 的担忧，需结合原文核验细节。",
+      "category": "模型",
+      "link": "https://techcrunch.com/2026/07/27/anthropics-dario-amodei-responds-doesnt-oppose-open-weight-models-but-fears-chinese-ai/",
+      "score": 85,
+      "score_breakdown": {
+        "影响范围": 34,
+        "紧迫程度": 21,
+        "可行动性": 17,
+        "可信度": 13
+      },
+      "reason": "模型能力变化可能重塑企业的技术选择和市场竞争格局。",
+      "fact": "原始报道已进入编辑研判流程，建议结合原文核验具体细节。",
+      "mechanism": "模型能力、价格和部署方式影响应用的可实现边界和单位经济模型。",
+      "impact": "企业需重新评估模型能力上限、推理成本、数据控制权和供应商锁定风险。",
+      "action": "一周内补齐目标任务集，用相同数据比较效果、成本、延迟和安全边界。",
+      "watch": "关注真实任务评测、价格调整、上下文能力、可用地区和企业协议。",
+      "audiences": [
+        "企业管理者",
+        "产品负责人",
+        "研究者"
+      ],
+      "confidence": "高",
+      "published_at": "Tue, 28 Jul 2026 00:13:33 +0000"
+    },
+    {
+      "title": "OpenAI、Hugging Face出现新的产品动态",
+      "original_title": "OpenAI rogue AI agent’s attack expanded beyond Hugging Face - csoonline.com",
+      "source": "谷歌新闻聚合",
+      "summary": "报道提到 OpenAI 智能体的攻击范围扩展到 Hugging Face，需结合原文核验具体细节。",
+      "category": "产品",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQNmR2MXRvRTBqSnpTVThxYy01TjN0Ukh2ZDUzaTRDQVpsYjVWVzNxa3VWOEJDcTk1aDk1Rk14elRNcTJmWUFacnZ4aVNsSXVmWUJTbHZvT2RnNUJBWXd5Wk9WREU5bUdrMDEwS1F1Qkl6Rmd0dkhOM3M4dXJwbFhMQnl3VHYwNURQWU9Oa1R0dWpTYnIxRS1JNWtDTnB5cFRXenVqNkVVbzg?oc=5",
+      "score": 81,
+      "score_breakdown": {
+        "影响范围": 32,
+        "紧迫程度": 20,
+        "可行动性": 16,
+        "可信度": 13
+      },
+      "reason": "产品信号可能影响用户任务路径和平台控制权，需优先观察。",
+      "fact": "原始报道已进入编辑研判流程，建议结合原文核验具体细节。",
+      "mechanism": "新的交互入口和智能体权限可能改变用户任务完成路径和平台控制权。",
+      "impact": "机会在于优化高频任务，风险在于权限越界、错误自动化和用户信任受损。",
+      "action": "挑选一个高频、可回滚任务做小范围试点，并设置人工确认和审计日志为默认。",
+      "watch": "关注真实留存、任务成功率、人工接管率、异常行为和权限范围。",
+      "audiences": [
+        "企业管理者",
+        "产品负责人",
+        "教师与研究者"
+      ],
+      "confidence": "中",
+      "published_at": "Wed, 29 Jul 2026 07:12:54 GMT"
+    }
+  ]
+}

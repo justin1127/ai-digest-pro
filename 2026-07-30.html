@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 决策情报｜2026年07月30日</title>
+    <meta name="description" content="面向企业管理者、产品负责人、教师与研究者的中文 AI 应用决策日报。每日 5 条，按综合优先级排序。">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #11151a; --surface: #191f25; --surface-2: #202831; --ink: #f4f6f7;
+            --muted: #aeb8c1; --line: #34414c; --teal: #57d1bd; --amber: #f1b863;
+            --danger: #ff8585; --ok: #70d69b;
+        }
+        body { background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.65; padding: 24px; }
+        a { color: inherit; }
+        .container { max-width: 1080px; margin: 0 auto; }
+        #password-overlay { position: fixed; inset: 0; min-height: 100dvh; background: #11151a; display: flex; justify-content: center; align-items: center; z-index: 9999; padding: 24px; }
+        #password-overlay.hidden { display: none !important; }
+        .password-box { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 36px; text-align: center; max-width: 420px; width: 100%; box-shadow: 0 20px 60px rgba(0, 0, 0, .32); }
+        .password-box h2 { font-size: 24px; margin-bottom: 10px; }
+        .password-box p { color: var(--muted); margin-bottom: 22px; font-size: 14px; }
+        .password-box input { width: 100%; padding: 13px 14px; font-size: 16px; background: #0e1216; border: 1px solid var(--line); border-radius: 6px; color: var(--ink); text-align: center; letter-spacing: 1px; margin-bottom: 14px; }
+        .password-box input:focus { outline: 2px solid var(--teal); outline-offset: 2px; }
+        .password-box button { width: 100%; padding: 13px; font-size: 15px; background: var(--teal); color: #071311; border: 0; border-radius: 6px; cursor: pointer; font-weight: 800; }
+        .password-box button:disabled { opacity: .65; cursor: wait; }
+        .error-msg { color: var(--danger); font-size: 13px; margin-top: 12px; }
+        .success-msg { color: var(--ok); font-size: 13px; margin-top: 12px; }
+        .subscribe-info { margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+        .subscribe-info a { color: var(--teal); text-decoration: none; }
+        .user-info { position: fixed; top: 16px; right: 16px; background: rgba(25, 31, 37, .94); border: 1px solid var(--line); border-radius: 6px; padding: 8px 11px; font-size: 12px; color: var(--muted); z-index: 100; }
+        .user-info span { color: var(--teal); }
+        header { padding: 32px 0 26px; border-bottom: 1px solid var(--line); }
+        .eyebrow, .section-kicker { color: var(--teal); font-size: 12px; font-weight: 800; letter-spacing: 1px; }
+        .eyebrow { margin-bottom: 8px; }
+        h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.18; letter-spacing: 0; }
+        .subtitle { color: var(--muted); margin-top: 11px; font-size: 15px; }
+        .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 1px solid var(--line); }
+        .stat { padding: 17px 16px; border-right: 1px solid var(--line); }
+        .stat:last-child { border-right: 0; }
+        .stat-label { color: var(--muted); font-size: 12px; }
+        .stat-value { color: var(--ink); font-size: 22px; font-weight: 850; margin-top: 2px; }
+        section { margin-top: 30px; }
+        .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+        .section-heading h2 { font-size: 21px; line-height: 1.25; }
+        .section-note { color: var(--muted); font-size: 12px; text-align: right; }
+        .brief { border-top: 3px solid var(--teal); border-bottom: 1px solid var(--line); padding: 22px 0; }
+        .brief h2 { font-size: 23px; line-height: 1.35; margin: 6px 0 18px; max-width: 850px; }
+        .brief-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+        .brief-grid > div { border-top: 1px solid var(--line); padding-top: 10px; }
+        .brief-label, .row-label { color: var(--amber); font-size: 12px; font-weight: 850; }
+        .brief-grid p { color: #d9e0e5; margin-top: 5px; font-size: 14px; }
+        .method { background: #151b20; border-left: 3px solid var(--amber); padding: 16px 18px; }
+        .method p { color: #d4dde3; font-size: 14px; }
+        .method strong { color: var(--ink); }
+        .news-item { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+        .item-topline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+        .rank { color: var(--teal); font-size: 12px; font-weight: 900; }
+        .tag, .action-level, .score, .role { display: inline-flex; align-items: center; min-height: 24px; font-size: 12px; font-weight: 800; }
+        .tag { color: var(--teal); border: 1px solid rgba(87, 209, 189, .4); border-radius: 999px; padding: 2px 8px; }
+        .action-level { color: var(--amber); }
+        .score { background: var(--amber); color: #211300; border-radius: 4px; padding: 2px 8px; margin-left: auto; }
+        .news-item h2 { font-size: clamp(19px, 2.4vw, 25px); line-height: 1.35; letter-spacing: 0; max-width: 900px; }
+        .source { color: var(--muted); font-size: 12px; margin-top: 8px; }
+        .why { color: #dce4e8; font-size: 14px; margin: 16px 0; }
+        .why strong { color: var(--teal); }
+        .fact-row { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 13px 0; }
+        .fact-row p, .analysis-columns p { color: #dce4e8; font-size: 14px; margin-top: 4px; }
+        .analysis-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+        .action-columns .row-label { color: var(--teal); }
+        .item-foot { display: flex; align-items: center; gap: 10px 16px; flex-wrap: wrap; padding-top: 14px; }
+        .score-detail { color: var(--muted); font-size: 12px; }
+        .roles { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); font-size: 12px; flex-wrap: wrap; }
+        .role { background: var(--surface-2); color: #d8e2e8; border-radius: 3px; padding: 2px 6px; font-size: 11px; }
+        .link { margin-left: auto; color: var(--teal); font-size: 13px; font-weight: 800; text-decoration: none; white-space: nowrap; }
+        .link:hover { text-decoration: underline; }
+        footer { color: var(--muted); border-top: 1px solid var(--line); padding: 28px 0 10px; margin-top: 36px; text-align: center; font-size: 12px; }
+        footer a { color: var(--teal); }
+        @media (max-width: 720px) {
+            body { padding: 14px; }
+            .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .stat:nth-child(2) { border-right: 0; }
+            .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+            .brief-grid, .analysis-columns { grid-template-columns: 1fr; gap: 14px; }
+            .user-info { position: static; width: fit-content; margin: 0 auto 10px; }
+            .password-box { padding: 28px 20px; }
+            .news-item { padding: 17px; }
+            .score { margin-left: 0; }
+            .link { margin-left: 0; }
+            .section-heading { align-items: flex-start; flex-direction: column; }
+            .section-note { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+    <div id="password-overlay">
+        <div class="password-box">
+            <h2>AI 决策情报</h2>
+            <p>输入专属密码，查看今日中文决策日报</p>
+            <input type="text" id="password-input" placeholder="输入密码" maxlength="24" autocomplete="one-time-code">
+            <button id="unlock-btn" onclick="checkPassword()">解锁访问</button>
+            <div id="message"></div>
+            <div class="subscribe-info">未订阅？<a href="#" onclick="alert('请添加微信：justin1127（备注 AI 日报）订阅')">咨询订阅</a><br><span>月付 19 元 / 年付 169 元</span></div>
+        </div>
+    </div>
+    <div class="user-info" id="user-info" style="display: none;">订阅用户：<span id="user-name">用户</span> · 有效期至 <span id="expiry-date">--</span></div>
+    <main class="container" id="content" style="display: none;">
+        <header>
+            <div class="eyebrow">AI 应用决策日报</div>
+            <h1>AI 决策情报</h1>
+            <p class="subtitle">2026年07月30日 · 面向企业管理者、产品负责人、教师与研究者 · 每日五条高优先级信号</p>
+        </header>
+        <div class="stats" aria-label="今日日报概览">
+            <div class="stat"><div class="stat-label">精选信号</div><div class="stat-value">5 条</div></div>
+            <div class="stat"><div class="stat-label">平均优先级</div><div class="stat-value">86 分</div></div>
+            <div class="stat"><div class="stat-label">独立来源</div><div class="stat-value">2 个</div></div>
+            <div class="stat"><div class="stat-label">建议阅读</div><div class="stat-value">8 分钟</div></div>
+        </div>
+        <section class="brief" aria-labelledby="daily-brief-title">
+            <div class="section-kicker">先给结论</div>
+            <h2 id="daily-brief-title">AI 安全与算力动态成关注焦点，模型与产品信号需紧密跟踪</h2>
+            <div class="brief-grid">
+                <div><div class="brief-label">这意味着什么</div><p>今日重点关注 AI 安全事件对权限管理和部署范围的影响，算力动态对成本结构的调整，以及模型能力和产品交互方式的变化对市场格局的潜在重塑。</p></div>
+                <div><div class="brief-label">本周建议</div><p>企业需在 48 小时内完成权限盘点，技术团队更新算力账本，产品负责人试点高频任务优化，研究者跟踪模型能力评测。</p></div>
+                <div><div class="brief-label">保持验证</div><p>密切关注安全事故复盘、算力供给变化、模型能力边界和产品交互方式的实际表现及行业标准更新。</p></div>
+            </div>
+        </section>
+        <section class="method" aria-label="研判方法说明">
+            <p><strong>如何阅读：</strong>评分由影响范围、紧迫程度、可行动性与来源可信度组成。每条内容严格区分<strong>已知事实</strong>与<strong>决策研判</strong>，并用“技术能力 → 成本结构 → 组织治理 → 市场格局”的四层框架判断影响。</p>
+        </section>
+        <section aria-labelledby="signals-title">
+            <div class="section-heading"><h2 id="signals-title">今日五条决策信号</h2><p class="section-note">按综合优先级降序排列</p></div>
+            
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">优先级 01</span>
+                <span class="tag">安全</span>
+                <span class="action-level">纳入本周评估</span>
+                <span class="score" aria-label="综合优先级评分">89分</span>
+            </div>
+            <h2>行业机构出现新的安全动态</h2>
+            <p class="source">来源：科技媒体 TechCrunch · 发布于 07月30日 05:16 · 事实把握度：高</p>
+            <p class="why"><strong>为什么入选：</strong>安全信号直接影响智能体的部署范围和客户信任，需优先观察。</p>
+            <div class="fact-row">
+                <div class="row-label">已知事实</div>
+                <p>原始报道已进入编辑研判流程，建议结合原文核验具体细节。</p>
+            </div>
+            <div class="analysis-columns">
+                <div>
+                    <div class="row-label">影响机制</div>
+                    <p>安全事故通过权限控制、模型行为和责任分配影响智能体的可部署范围。</p>
+                </div>
+                <div>
+                    <div class="row-label">决策影响</div>
+                    <p>AI 安全问题已扩展至生产系统，需确保身份验证、工具安全、数据保护和人工接管能力。</p>
+                </div>
+            </div>
+            <div class="analysis-columns action-columns">
+                <div>
+                    <div class="row-label">建议行动</div>
+                    <p>48 小时内完成智能体权限盘点，包括最小权限、敏感操作确认、隔离环境和异常告警。</p>
+                </div>
+                <div>
+                    <div class="row-label">下一步验证</div>
+                    <p>关注事故复盘、攻击路径、检测时长、责任划分和行业标准的具体要求。</p>
+                </div>
+            </div>
+            <div class="item-foot">
+                <span class="score-detail">评分构成：影响范围 36 · 紧迫程度 22 · 可行动性 18 · 可信度 13</span>
+                <span class="roles">适用：<span class="role">企业管理者</span><span class="role">产品负责人</span><span class="role">教师与研究者</span></span>
+                <a href="https://techcrunch.com/2026/07/29/discover-whats-next-for-ai-from-the-saas-reckoning-to-the-agent-security-gap-at-techcrunch-disrupt-2026/" target="_blank" rel="noopener noreferrer" class="link">查看原始报道</a>
+            </div>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">优先级 02</span>
+                <span class="tag">安全</span>
+                <span class="action-level">纳入本周评估</span>
+                <span class="score" aria-label="综合优先级评分">87分</span>
+            </div>
+            <h2>OpenAI出现新的安全动态</h2>
+            <p class="source">来源：谷歌新闻聚合 · 发布于 07月29日 17:40 · 事实把握度：中</p>
+            <p class="why"><strong>为什么入选：</strong>安全事件可能影响业务判断和产品实践，需密切关注。</p>
+            <div class="fact-row">
+                <div class="row-label">已知事实</div>
+                <p>原始报道已进入编辑研判流程，建议结合原文核验具体细节。</p>
+            </div>
+            <div class="analysis-columns">
+                <div>
+                    <div class="row-label">影响机制</div>
+                    <p>权限控制和模型行为的安全问题可能影响智能体的部署和客户信任。</p>
+                </div>
+                <div>
+                    <div class="row-label">决策影响</div>
+                    <p>AI 安全问题要求企业确保身份验证、工具安全、数据保护和人工接管能力。</p>
+                </div>
+            </div>
+            <div class="analysis-columns action-columns">
+                <div>
+                    <div class="row-label">建议行动</div>
+                    <p>48 小时内完成智能体权限盘点，确保最小权限、敏感操作确认和异常告警机制到位。</p>
+                </div>
+                <div>
+                    <div class="row-label">下一步验证</div>
+                    <p>跟踪事故复盘、攻击路径、检测时长和行业标准的具体要求。</p>
+                </div>
+            </div>
+            <div class="item-foot">
+                <span class="score-detail">评分构成：影响范围 35 · 紧迫程度 22 · 可行动性 17 · 可信度 13</span>
+                <span class="roles">适用：<span class="role">企业管理者</span><span class="role">产品负责人</span><span class="role">教师与研究者</span></span>
+                <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxOcEFEZ3FKOTZIb2RzMzhPOXpFdXRQY2RvRHQya00zMVZMbHQ4bXl3Y1hyVGdZTHktNVphZVI5SXkzTU94d2haN0xMY3hRZzBwWnZPX0M0ZUhCZzY5dGdvd0gzN2pvTWVqRmJWMENRdE5sVmxYckZQeWtnOWlRMVhyMmtoQm1qWElVclBNaUpKQk5paG5xV1ZRNXdqem00NlI3dndR0gGoAUFVX3lxTE1MSnpQc2dVQVlTQURDYVFTZlB6MWdaX0xOVXoycGxMOV9YanBTaHY0Q3hnZEFJVTh5TjJJbUFSMkFrV2c5LWJ3Sm1oSjdHSmZ2eGktVFNDU09rWHZmLUtBMnF2UzF3WFQ2NWZIcXVrdDF1c21CS1lsd1lQMzd3WWxpUTlCOEJfQWMyeXZpR1kxVExsZnRMUEVMMjZjTkNnampibVprbThXcw?oc=5" target="_blank" rel="noopener noreferrer" class="link">查看原始报道</a>
+            </div>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">优先级 03</span>
+                <span class="tag">算力</span>
+                <span class="action-level">纳入本周评估</span>
+                <span class="score" aria-label="综合优先级评分">86分</span>
+            </div>
+            <h2>Nvidia出现新的算力动态</h2>
+            <p class="source">来源：谷歌新闻聚合 · 发布于 07月30日 01:01 · 事实把握度：中</p>
+            <p class="why"><strong>为什么入选：</strong>算力信号直接影响产品成本和供应链韧性，需优先观察。</p>
+            <div class="fact-row">
+                <div class="row-label">已知事实</div>
+                <p>原始报道已进入编辑研判流程，建议结合原文核验具体细节。</p>
+            </div>
+            <div class="analysis-columns">
+                <div>
+                    <div class="row-label">影响机制</div>
+                    <p>芯片供给和云服务价格变化通过训练与推理成本影响产品毛利和交付能力。</p>
+                </div>
+                <div>
+                    <div class="row-label">决策影响</div>
+                    <p>算力变化影响规模化应用的单位成本，同时对供应链韧性和研发节奏产生影响。</p>
+                </div>
+            </div>
+            <div class="analysis-columns action-columns">
+                <div>
+                    <div class="row-label">建议行动</div>
+                    <p>技术与采购团队更新算力账本，按峰值需求、区域和供应商做压力测试。</p>
+                </div>
+                <div>
+                    <div class="row-label">下一步验证</div>
+                    <p>关注交付周期、云端单价、出口限制、能耗和实际吞吐量。</p>
+                </div>
+            </div>
+            <div class="item-foot">
+                <span class="score-detail">评分构成：影响范围 34 · 紧迫程度 22 · 可行动性 17 · 可信度 13</span>
+                <span class="roles">适用：<span class="role">企业管理者</span><span class="role">产品负责人</span><span class="role">研究者</span></span>
+                <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxPRkRHaGJwMjZBLUt2QTBKcTQ2TXJIclVZdjNDSUF6U1d3aFFTa0FtMHIzYXBxNmxRanlKNjA3eG1KYU1uY255d3JhS2dQb0l3dHJUd0ptSk5rSDhGT2xMdlZCVThNMENpMHJYaVZXZjVMMWZRMVlma2MzRER1WlZZMlNSMjRsNWpDYjRZb0hYaENfVks0cVlBMDVBRnJIakdMYUVRTWVmVlk2UDRzT05tZ2RmMVYtb0ttaVFj?oc=5" target="_blank" rel="noopener noreferrer" class="link">查看原始报道</a>
+            </div>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">优先级 04</span>
+                <span class="tag">模型</span>
+                <span class="action-level">纳入本周评估</span>
+                <span class="score" aria-label="综合优先级评分">85分</span>
+            </div>
+            <h2>Anthropic出现新的模型动态</h2>
+            <p class="source">来源：科技媒体 TechCrunch · 发布于 07月28日 08:13 · 事实把握度：高</p>
+            <p class="why"><strong>为什么入选：</strong>模型能力变化可能重塑企业的技术选择和市场竞争格局。</p>
+            <div class="fact-row">
+                <div class="row-label">已知事实</div>
+                <p>原始报道已进入编辑研判流程，建议结合原文核验具体细节。</p>
+            </div>
+            <div class="analysis-columns">
+                <div>
+                    <div class="row-label">影响机制</div>
+                    <p>模型能力、价格和部署方式影响应用的可实现边界和单位经济模型。</p>
+                </div>
+                <div>
+                    <div class="row-label">决策影响</div>
+                    <p>企业需重新评估模型能力上限、推理成本、数据控制权和供应商锁定风险。</p>
+                </div>
+            </div>
+            <div class="analysis-columns action-columns">
+                <div>
+                    <div class="row-label">建议行动</div>
+                    <p>一周内补齐目标任务集，用相同数据比较效果、成本、延迟和安全边界。</p>
+                </div>
+                <div>
+                    <div class="row-label">下一步验证</div>
+                    <p>关注真实任务评测、价格调整、上下文能力、可用地区和企业协议。</p>
+                </div>
+            </div>
+            <div class="item-foot">
+                <span class="score-detail">评分构成：影响范围 34 · 紧迫程度 21 · 可行动性 17 · 可信度 13</span>
+                <span class="roles">适用：<span class="role">企业管理者</span><span class="role">产品负责人</span><span class="role">研究者</span></span>
+                <a href="https://techcrunch.com/2026/07/27/anthropics-dario-amodei-responds-doesnt-oppose-open-weight-models-but-fears-chinese-ai/" target="_blank" rel="noopener noreferrer" class="link">查看原始报道</a>
+            </div>
+        </article>
+    
+
+        <article class="news-item">
+            <div class="item-topline">
+                <span class="rank">优先级 05</span>
+                <span class="tag">产品</span>
+                <span class="action-level">纳入本周评估</span>
+                <span class="score" aria-label="综合优先级评分">81分</span>
+            </div>
+            <h2>OpenAI、Hugging Face出现新的产品动态</h2>
+            <p class="source">来源：谷歌新闻聚合 · 发布于 07月29日 15:12 · 事实把握度：中</p>
+            <p class="why"><strong>为什么入选：</strong>产品信号可能影响用户任务路径和平台控制权，需优先观察。</p>
+            <div class="fact-row">
+                <div class="row-label">已知事实</div>
+                <p>原始报道已进入编辑研判流程，建议结合原文核验具体细节。</p>
+            </div>
+            <div class="analysis-columns">
+                <div>
+                    <div class="row-label">影响机制</div>
+                    <p>新的交互入口和智能体权限可能改变用户任务完成路径和平台控制权。</p>
+                </div>
+                <div>
+                    <div class="row-label">决策影响</div>
+                    <p>机会在于优化高频任务，风险在于权限越界、错误自动化和用户信任受损。</p>
+                </div>
+            </div>
+            <div class="analysis-columns action-columns">
+                <div>
+                    <div class="row-label">建议行动</div>
+                    <p>挑选一个高频、可回滚任务做小范围试点，并设置人工确认和审计日志为默认。</p>
+                </div>
+                <div>
+                    <div class="row-label">下一步验证</div>
+                    <p>关注真实留存、任务成功率、人工接管率、异常行为和权限范围。</p>
+                </div>
+            </div>
+            <div class="item-foot">
+                <span class="score-detail">评分构成：影响范围 32 · 紧迫程度 20 · 可行动性 16 · 可信度 13</span>
+                <span class="roles">适用：<span class="role">企业管理者</span><span class="role">产品负责人</span><span class="role">教师与研究者</span></span>
+                <a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxQNmR2MXRvRTBqSnpTVThxYy01TjN0Ukh2ZDUzaTRDQVpsYjVWVzNxa3VWOEJDcTk1aDk1Rk14elRNcTJmWUFacnZ4aVNsSXVmWUJTbHZvT2RnNUJBWXd5Wk9WREU5bUdrMDEwS1F1Qkl6Rmd0dkhOM3M4dXJwbFhMQnl3VHYwNURQWU9Oa1R0dWpTYnIxRS1JNWtDTnB5cFRXenVqNkVVbzg?oc=5" target="_blank" rel="noopener noreferrer" class="link">查看原始报道</a>
+            </div>
+        </article>
+    
+        </section>
+        <footer>
+            AI 决策情报 · 每日自动生成并保留可追溯原始报道<br>
+            本页研判用于辅助决策，不替代事实核验、专业意见或组织内部评审。<br>
+            <a href="https://justin1127.github.io/ai-digest-pro/2026-07-30.html">https://justin1127.github.io/ai-digest-pro/2026-07-30.html</a>
+        </footer>
+    </main>
+    <script>
+        const VALID_PASSWORDS = {"TEST888": {"name": "测试用户", "expiry": "2099-12-31"}};
+        window.onload = function() {
+            const savedPassword = localStorage.getItem('ai_digest_password');
+            const savedExpiry = localStorage.getItem('ai_digest_expiry');
+            if (savedPassword && savedExpiry) {
+                const today = new Date().toISOString().split('T')[0];
+                if (savedExpiry >= today && VALID_PASSWORDS[savedPassword]) unlockContent(savedPassword, VALID_PASSWORDS[savedPassword]);
+                else { localStorage.removeItem('ai_digest_password'); localStorage.removeItem('ai_digest_expiry'); localStorage.removeItem('ai_digest_user'); }
+            }
+            document.getElementById('password-input').addEventListener('keypress', function(event) { if (event.key === 'Enter') checkPassword(); });
+        };
+        function checkPassword() {
+            const input = document.getElementById('password-input').value.trim().toUpperCase();
+            const message = document.getElementById('message');
+            const button = document.getElementById('unlock-btn');
+            if (!input) { message.innerHTML = '<p class="error-msg">请输入密码</p>'; return; }
+            button.disabled = true; button.textContent = '验证中…';
+            setTimeout(() => {
+                const userInfo = VALID_PASSWORDS[input];
+                const today = new Date().toISOString().split('T')[0];
+                if (userInfo && userInfo.expiry >= today) {
+                    message.innerHTML = '<p class="success-msg">验证成功，正在进入…</p>';
+                    localStorage.setItem('ai_digest_password', input); localStorage.setItem('ai_digest_expiry', userInfo.expiry); localStorage.setItem('ai_digest_user', userInfo.name);
+                    setTimeout(() => unlockContent(input, userInfo), 250);
+                } else { message.innerHTML = `<p class="error-msg">${userInfo ? '密码已过期，请联系续费' : '密码错误，请检查或联系订阅'}</p>`; button.disabled = false; button.textContent = '解锁访问'; }
+            }, 250);
+        }
+        function unlockContent(password, userInfo) {
+            document.getElementById('password-overlay').classList.add('hidden'); document.getElementById('content').style.display = 'block'; document.getElementById('user-info').style.display = 'block';
+            document.getElementById('user-name').textContent = userInfo.name; document.getElementById('expiry-date').textContent = userInfo.expiry;
+        }
+    </script>
+</body>
+</html>
